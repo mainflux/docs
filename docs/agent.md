@@ -12,7 +12,7 @@ If using Mainflux UI this is done automatically when adding gateway through UI.
 
 To create a bootstrap config you will need to provision a thing and channels.
 You can do it with 
-```
+```bash
 docker run -it mainflux/cli -m http://mainflux-host provision test
 ```
 
