@@ -152,21 +152,21 @@ Commands are:
 **Operation**
   
 ```
-mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-operation, start, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-operation, start, edgex-support-notifications, edgex-core-data"}]'
 ```
 **Config**
 ```
-mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-config, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-config, edgex-support-notifications, edgex-core-data"}]'
 ```
 **Metrics**
 ```
-mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-metrics, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-metrics, edgex-support-notifications, edgex-core-data"}]'
 ```
 
 If you subscribe to
 
 ```
-mosquitto_sub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/#
+mosquitto_sub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages/#
 ```
 You can observe commands and response from commands executed against edgex
 ```
