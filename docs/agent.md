@@ -1,22 +1,22 @@
 Agent is application that is used to manage gateways that are connected to Mainflux. It provides a way to send commands to gateway and receive response via mqtt.
 There are two type of channels used for **Agent** `data` and `control`.
-Over the `control` we are sending commands and receiving response from commands
+Over the `control` we are sending commands and receiving response from commands.
 Data collected from sensors connected to gateway are being sent over `data` channel.
-Agent is able to configure itself provided that [bootstrap server](./bootstrap.md) is running, it will retrieve configuration from bootstrap server provided few argumentss.
+Agent is able to configure itself provided that [bootstrap server](./bootstrap.md) is running, it will retrieve configuration from bootstrap server provided few arguments - `external_id` and `external_key` see [bootstraping](./bootstrap.md/#bootstraping).
 
 ## Run Agent
 
 Before running agent we need to provision a thing and DATA and CONTROL channel. Thing that will be used as gateway representation and make bootstrap configuration.
-If using Mainflux UI this is done automatically.
+If using Mainflux UI this is done automatically when adding gateway through UI.
 
 
 To create a bootstrap config you will need to provision a thing and channels.
 You can do it with 
 ```
-docker run -it mainflux/cli -m http://mainflux_host provision test
+docker run -it mainflux/cli -m http://mainflux-host provision test
 ```
 
-if you run this command against your locally deployed Mainflux you will have to replace `mainflux_host` with docker network IP
+if you run this command against your locally deployed Mainflux you will have to replace `mainflux-host` with docker network IP
 ```
 sudo ifconfig -a
 docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500                                                                                                                 
@@ -104,20 +104,20 @@ MF_AGENT_BOOTSTRAP_ID=34:e1:2d:e6:cf:03 ./mainflux-agent
 
 ```
 
- - MF_AGENT_BOOTSTRAP_KEY - is external_key in bootstrap configuration
- - MF_AGENT_BOOSTRAP_ID - is external_id in bootstrap configuration 
+ - `MF_AGENT_BOOTSTRAP_KEY` - is `external_key` in bootstrap configuration.
+ - `MF_AGENT_BOOSTRAP_ID` - is `external_id` in bootstrap configuration.
 
-## Executing commands via Agent
+### Executing commands via Agent
 
 To see how commands are executed on remote device via **agent** subscribe first to CONTROL_CH like this
 
 ```
-mosquitto_sub -u THING_ID -P THING_KEY -t channels/CONTROL_CH/messages/res -h localhost -p 1883
+mosquitto_sub -u <thing_id> -P <thing_key> -t channels/CONTROL_CH/messages/res -h localhost -p 1883
 ```
 
 Then send command to be executed send senml vi mqtt like this ( use different terminal than for subscribe)
 ```
-mosquitto_pub -u THING_ID -P THING_KEY -t channels/CONTROL_CH/messages/req -h localhost -p 1883  -m  '[{"bn":"1:", "n":"exec", "vs":"ls, -l"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/CONTROL_CH/messages/req -h localhost -p 1883  -m  '[{"bn":"1:", "n":"exec", "vs":"ls, -l"}]'
 ```
 
 In the terminal where you subscribed you will get result of executing `ls -l` in the dir where your agent is running (`build`) so you should get result something like this
@@ -128,15 +128,17 @@ In the terminal where you subscribed you will get result of executing `ls -l` in
 ## EdgeX 
 
 [Edgex](https://github.com/edgexfoundry/edgex-go) control messages are sent and received over control channel. MF sends a control SenML of the following form:
-
+```
 [{"bn":"<uuid>:", "n":"control", "vs":"<cmd>, <param>, edgexsvc1, edgexsvc2, …, edgexsvcN"}}]
+```
 For example,
-
+```
 [{"bn":"1:", "n":"control", "vs":"operation, stop, edgex-support-notifications, edgex-core-data"}]
-
+```
 Agent, on the other hand, returns a response SenML of the following form:
-
+```
 [{"bn":"<uuid>:", "n":"<>", "v":"<RESP>"}]
+```
 ### Remote Commands
 EdgeX defines SMA commands in the following [RAML file](https://github.com/edgexfoundry/edgex-go/blob/master/api/raml/system-agent.raml)
 
@@ -150,13 +152,24 @@ Commands are:
 **Operation**
   
 ```
-mosquitto_pub -u 2caf6758-1248-4047-b323-bf9177d71056 -P 2ef07679-0764-4009-a65d-29b673a550fe -t channels/3ace3fa3-aa84-4a02-b0ab-6d594268dc77/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"operation, start, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-operation, start, edgex-support-notifications, edgex-core-data"}]'
 ```
 **Config**
 ```
-mosquitto_pub -u 2caf6758-1248-4047-b323-bf9177d71056 -P 2ef07679-0764-4009-a65d-29b673a550fe -t channels/3ace3fa3-aa84-4a02-b0ab-6d594268dc77/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"config, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-config, edgex-support-notifications, edgex-core-data"}]'
 ```
 **Metrics**
 ```
-mosquitto_pub -u 2caf6758-1248-4047-b323-bf9177d71056 -P 2ef07679-0764-4009-a65d-29b673a550fe -t channels/3ace3fa3-aa84-4a02-b0ab-6d594268dc77/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"metrics, edgex-support-notifications, edgex-core-data"}]'
+mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/req -h localhost -m '[{"bn":"1:", "n":"control", "vs":"edgex-metrics, edgex-support-notifications, edgex-core-data"}]'
+```
+
+If you subscribe to
+
+```
+mosquitto_sub -u <thing_id> -P <thing_key> -t channels/<CHANNEL_ID>/messages/#
+```
+You can observe commands and response from commands executed against edgex
+```
+[{"bn":"1:", "n":"control", "vs":"edgex-metrics, edgex-support-notifications, edgex-core-data"}]                                                                            
+[{"bn":"1","n":"edgex-metrics","vs":"{\"Metrics\":{\"edgex-core-data\":{\"CpuBusyAvg\":15.568632467698606,\"Memory\":{\"Alloc\":2040136,\"Frees\":876344,\"LiveObjects\":15134,\"Mallocs\":891478,\"Sys\":73332984,\"TotalAlloc\":80657464}},\"edgex-support-notifications\":{\"CpuBusyAvg\":14.65381169745318,\"Memory\":{\"Alloc\":961784,\"Frees\":127430,\"LiveObjects\":6095,\"Mallocs\":133525,\"Sys\":72808696,\"TotalAlloc\":11665416}}}}\n"}] 
 ```
