@@ -152,7 +152,7 @@ mainflux-cli channels get <channel_id> <user_auth_token>
 ### Access control
 #### Connect Thing to Channel
 ```
-mainflux-cli things connect <thing_id> <channel_id> <user_auth_token>
+mainflux-cli things connect <channel_id> <thing_id> <user_auth_token>
 ```
 
 #### Bulk Connect Things to Channels
@@ -207,5 +207,5 @@ mainflux-cli channels connections <channel_id> <user_auth_token>
 ### Messaging
 #### Send a message over HTTP
 ```
-mainflux-cli msg send <channel_id> '[{"bn":"Dev1","n":"temp","v":20}, {"n":"hum","v":40}, {"bn":"Dev2", "n":"temp","v":20}, {"n":"hum","v":40}]' <thing_auth_token>
+mainflux-cli messages send <channel_id> '[{"bn":"Dev1","n":"temp","v":20}, {"n":"hum","v":40}, {"bn":"Dev2", "n":"temp","v":20}, {"n":"hum","v":40}]' <thing_auth_token>
 ```
