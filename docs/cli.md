@@ -39,6 +39,12 @@ Flags:
 Use "mainflux-cli [command] --help" for more information about a command.
 ```
 
+It is also possible to use the docker image `mainflux/cli` to execute CLI command:
+
+```
+docker run -it --rm mainflux/cli -m http://<IP_SERVER> [command]
+```
+
 You can execute each command with `-h` flag for more information about that command, e.g.
 
 ```
