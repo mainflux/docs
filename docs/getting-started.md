@@ -38,7 +38,7 @@ Output of the command follows this pattern:
 ```json
 {
   "email": "friendly_beaver@email.com",
-  "password": "123"
+  "password": "12345678"
 }
 
 

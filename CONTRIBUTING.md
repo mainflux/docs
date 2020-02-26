@@ -13,7 +13,7 @@ Reporting issues are a great way to contribute to the project. We are perpetuall
 thorough bug report.
 
 Before raising a new issue, check [our issue
-list](https://github.com/mainflux/mainflux/issues) to determine if it already contains the
+list](https://github.com/mainflux/docs/issues) to determine if it already contains the
 problem that you are facing.
 
 A good bug report shouldn't leave others needing to chase you for more information. Please be as detailed as possible. The following questions might serve as a template for writing a detailed
@@ -41,9 +41,9 @@ To contribute to the project, [fork](https://help.github.com/articles/fork-a-rep
 clone your fork repository, and configure the remotes:
 
 ```
-git clone https://github.com/<your-username>/mainflux.git
-cd mainflux
-git remote add upstream https://github.com/mainflux/mainflux.git
+git clone https://github.com/<your-username>/docs.git
+cd docs
+git remote add upstream https://github.com/mainflux/docs.git
 ```
 
 If your cloned repository is behind the upstream commits, then get the latest changes from upstream:

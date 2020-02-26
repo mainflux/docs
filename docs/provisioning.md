@@ -8,7 +8,7 @@ used in the platform - users, channels and things.
 Use the Mainflux API to create user account:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" https://localhost/users -d '{"email":"john.doe@email.com", "password":"123"}'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" https://localhost/users -d '{"email":"john.doe@email.com", "password":"12345678"}'
 ```
 
 Note that when using official `docker-compose`, all services are behind `nginx`
@@ -20,7 +20,7 @@ In order for this user to be able to authenticate to the system, you will have
 to create an authorization token for him:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" https://localhost/tokens -d '{"email":"john.doe@email.com", "password":"123"}'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" https://localhost/tokens -d '{"email":"john.doe@email.com", "password":"12345678"}'
 ```
 
 Response should look like this:
@@ -44,7 +44,7 @@ Note that you will also need `user_auth_token` in order to create things
 that belong to this particular user.
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things -d '{"name":"weio"}'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things -d '{"name":"weio"}'
 ```
 
 Response will contain `Location` header whose value represents path to newly
@@ -63,7 +63,7 @@ Content-Length: 0
 Multiple things can be created by executing a `POST /things/bulk` request with a JSON payload.  The payload should contain a JSON array of the things to be created.  If there is an error any of the things, none of the things will be created.
 
 ```bash
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things/bulk -d '[{"name":"weio"},{"name":"bob"}]'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things/bulk -d '[{"name":"weio"},{"name":"bob"}]'
 ```
 
 The response's body will contain a list of the created things.
@@ -85,7 +85,7 @@ In order to retrieve data of provisioned things that is written in database, you
 can send following request:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/things
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things
 ```
 
 Notice that you will receive only those things that were provisioned by
@@ -120,14 +120,14 @@ You can specify `offset` and `limit` parameters in order to fetch specific
 group of things. In that case, your request should look like:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5
 ```
 
 You can specify `name` and/or `metadata` parameters in order to fetch specific
 group of things. When specifiying metadata you can specify just a part of the metadata json you want to match
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}
 ```
 
 If you don't provide them, default values will be used instead: 0 for `offset`,
@@ -139,7 +139,7 @@ invalid values will be considered malformed request.
 In order to remove you own thing you can send following request:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X DELETE -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>
 ```
 
 ### Provisioning channels
@@ -149,7 +149,7 @@ curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X DELETE
 Channels are created by executing request `POST /channels`:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/channels -d '{"name":"mychan"}'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/channels -d '{"name":"mychan"}'
 ```
 
 After sending request you should receive response with `Location` header that
@@ -168,7 +168,7 @@ Content-Length: 0
 Multiple channels can be created by executing a `POST /things/bulk` request with a JSON payload.  The payload should contain a JSON array of the channels to be created.  If there is an error any of the channels, none of the channels will be created.
 
 ```bash
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/channels/bulk -d '[{"name":"joe"},{"name":"betty"}]'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/channels/bulk -d '[{"name":"joe"},{"name":"betty"}]'
 ```
 
 The response's body will contain a list of the created channels.
@@ -190,7 +190,7 @@ To retreve provisioned channels you should send request to `/channels` with
 authorization token in `Authorization` header:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/channels
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels
 ```
 
 Note that you will receive only those channels that were created by authorization
@@ -219,7 +219,7 @@ You can specify  `offset` and  `limit` parameters in order to fetch specific
 group of channels. In that case, your request should look like:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/channels?offset=0&limit=5
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels?offset=0&limit=5
 ```
 
 If you don't provide them, default values will be used instead: 0 for `offset`,
@@ -231,7 +231,7 @@ invalid values will be considered malformed request.
 In order to remove specific channel you should send following request:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>
 ```
 
 ## Access control
@@ -250,19 +250,19 @@ To connect a thing to the channel you should send following request:
 > This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint found at /connect.
 
 ```bash
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X PUT -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X PUT -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
 ```
 
 To connect multiple things to a channel, you can send the following request:
 
 ```bash
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/connect -d '{"channel_ids":["<channel_id>", "<channel_id>"],"thing_ids":["<thing_id>", "<thing_id>"]}'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/connect -d '{"channel_ids":["<channel_id>", "<channel_id>"],"thing_ids":["<thing_id>", "<thing_id>"]}'
 ```
 
 You can observe which things are connected to specific channel:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things
 ```
 
 Response that you'll get should look like this:
@@ -292,7 +292,7 @@ Response that you'll get should look like this:
 You can also observe to which channels is specified thing connected:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>/channels
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>/channels
 ```
 
 Response that you'll get should look like this:
@@ -320,5 +320,5 @@ Response that you'll get should look like this:
 If you want to disconnect your thing from the channel, send following request:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/mainflux-server.crt --insecure -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
 ```
