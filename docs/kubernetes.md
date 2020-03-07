@@ -86,7 +86,8 @@ All Mainflux services can have their `logLevel`, `image.pullPolicy`, `image.repo
 
 - adapter_coap
 - adapter_http
-- adapter_mqtt
+- mqtt.broker
+- mqtt.proxy
 - adapter_ws
 - things
 - ui
