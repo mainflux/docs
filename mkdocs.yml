@@ -40,4 +40,5 @@ pages:
   - Bootstrap: bootstrap.md
   - Tracing: tracing.md
   - Developer's Guide: dev-guide.md
+  - Kubernetes: kubernetes.md
   - Load Test: load-test.md
