@@ -32,7 +32,6 @@ If Nginx Ingress Controller isn't already installed, this would install it in `m
 helm install nginx-mainflux stable/nginx-ingress -n mf
 ```
 
-
 ## Deploying Mainflux
 
 Get Helm charts from [Mainflux DevOps GitHub repository](https://github.com/mainflux/devops):
