@@ -14,14 +14,14 @@ In order to run these services, core services, as well as the network from the c
 
 Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to `SenML` format, and store them in specific data store.
 
-Each writer can filter messages based on subjects list that is set in `subjects.toml` configuration file. If you want to listen on all subjects, just pass one element [">"], otherwise pass the list of subjects. Here is an example:
+Each writer can filter messages based on subjects list that is set in `subjects.toml` configuration file. If you want to listen on all subjects, just pass one element ["channel.>"], otherwise pass the list of subjects. Here is an example:
 
 ```toml
 [subjects]
-filter = [">"]
+filter = ["channel.>"]
 ```
 
-Regarding the [Subtopics Section](messaging.md#subtopics) in the messaging page, the example `channels/<channel_id>/messages/bedroom/temperature` can be filtered as `"*.bedroom.temperature"`. The formatting of this filtering list is determined by the NATS format ([Subject-Based Messaging](https://docs.nats.io/nats-concepts/subjects) & [Wildcards](https://docs.nats.io/nats-concepts/subjects#wildcards)).
+Regarding the [Subtopics Section](messaging.md#subtopics) in the messaging page, the example `channels/<channel_id>/messages/bedroom/temperature` can be filtered as `"channel.*.bedroom.temperature"`. The formatting of this filtering list is determined by the NATS format ([Subject-Based Messaging](https://docs.nats.io/nats-concepts/subjects) & [Wildcards](https://docs.nats.io/nats-concepts/subjects#wildcards)).
 
 ### InfluxDB, InfluxDB-writer and Grafana
 
