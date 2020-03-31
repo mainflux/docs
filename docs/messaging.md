@@ -21,7 +21,7 @@ to send `Authorization` header with thing authorization token. In order to pass
 message content type to WS adapter you can use `Content-Type` header.
 
 If you are not able to send custom headers in your handshake request, send them as
-query parameter `authorization` and `content-type`. Then your path should look like 
+query parameter `authorization` and `content-type`. Then your path should look like
 this `/channels/<channel_id>/messages?authorization=<thing_auth_key>&content-type=<content-type>`.
 
 If you are using the docker environment prepend the url with `ws`. So for example
@@ -107,8 +107,8 @@ Topics with subtopics are propagated to NATS broker in the following format `cha
 
 Our example topic `channels/<channel_id>/messages/bedroom/temperature` will be translated to appropriate NATS topic `channel.<channel_id>.bedroom.temperature`.
 
-You can use multilevel subtopics, that have multiple parts. These parts are seaprated by `.` or `/` separators. 
-When you use combination of these two, have in mind that behind the scene, `/` separator will be replaced with `.`. 
+You can use multilevel subtopics, that have multiple parts. These parts are separated by `.` or `/` separators. 
+When you use combination of these two, have in mind that behind the scene, `/` separator will be replaced with `.`.
 Every empty part of subtopic will be removed. What this means is that subtopic `a///b` is equivalent to `a/b`.
 When you want to subscribe, you can use NATS wildcards `*` and `>`. Every subtopic part can have `*` or `>` as it's value, but if there is any other character beside these wildcards, subtopic will be invalid. What this means is that subtopics such as `a.b*c.d` will be invalid, while `a.b.*.c.d` will be valid.
 

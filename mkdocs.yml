@@ -4,7 +4,7 @@
 #
 
 copyright: Copyright (c) Mainflux
-repo_url: https://github.com/mainflux/mainflux
+repo_url: https://github.com/mainflux/docs
 site_description: Mainflux IoT System
 site_name: Mainflux
 theme: readthedocs
