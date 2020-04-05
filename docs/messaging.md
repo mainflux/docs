@@ -103,11 +103,11 @@ Example subtopic publish/subscribe for bedroom temperature would be `channels/<c
 
 Subtopics are generic and multilevel. You can use almost any suffix with any depth.
 
-Topics with subtopics are propagated to NATS broker in the following format `channel.<channel_id>.<optional_subtopic>`.
+Topics with subtopics are propagated to NATS broker in the following format `channels.<channel_id>.<optional_subtopic>`.
 
-Our example topic `channels/<channel_id>/messages/bedroom/temperature` will be translated to appropriate NATS topic `channel.<channel_id>.bedroom.temperature`.
+Our example topic `channels/<channel_id>/messages/bedroom/temperature` will be translated to appropriate NATS topic `channels.<channel_id>.bedroom.temperature`.
 
-You can use multilevel subtopics, that have multiple parts. These parts are separated by `.` or `/` separators. 
+You can use multilevel subtopics, that have multiple parts. These parts are separated by `.` or `/` separators.
 When you use combination of these two, have in mind that behind the scene, `/` separator will be replaced with `.`.
 Every empty part of subtopic will be removed. What this means is that subtopic `a///b` is equivalent to `a/b`.
 When you want to subscribe, you can use NATS wildcards `*` and `>`. Every subtopic part can have `*` or `>` as it's value, but if there is any other character beside these wildcards, subtopic will be invalid. What this means is that subtopics such as `a.b*c.d` will be invalid, while `a.b.*.c.d` will be valid.
