@@ -179,6 +179,7 @@ To do this by hand, execute:
 
 ```
 protoc --gofast_out=plugins=grpc:. *.proto
+protoc --gogo_out=plugins=grpc:. broker/*.proto
 ```
 
 A shorthand to do this via `make` tool is:
