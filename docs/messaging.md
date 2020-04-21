@@ -7,48 +7,11 @@ of message publishing for each of the supported protocols.
 To publish message over channel, thing should send following request:
 
 ```
-curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/senml+json" -H "Authorization: <thing_token>" https://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Authorization: <thing_token>" https://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
 ```
 
 Note that if you're going to use senml message format, you should always send
 messages as an array.
-
-## WebSocket
-
-To publish and receive messages over channel using web socket, you should first
-send handshake request to `/channels/<channel_id>/messages` path. Don't forget
-to send `Authorization` header with thing authorization token. In order to pass
-message content type to WS adapter you can use `Content-Type` header.
-
-If you are not able to send custom headers in your handshake request, send them as
-query parameter `authorization` and `content-type`. Then your path should look like
-this `/channels/<channel_id>/messages?authorization=<thing_auth_key>&content-type=<content-type>`.
-
-If you are using the docker environment prepend the url with `ws`. So for example
-`/ws/channels/<channel_id>/messages?authorization=<thing_auth_key>&content-type=<content-type>`.
-
-### Basic nodejs example
-
-```javascript
-const WebSocket = require('ws');
-
-// do not verify self-signed certificates if you are using one
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
-// cbf02d60-72f2-4180-9f82-2c957db929d1  is an example of a thing_auth_key
-const ws = new WebSocket('wss://localhost/ws/channels/1/messages?authorization=cbf02d60-72f2-4180-9f82-2c957db929d1&content-type=application%2Fsenml%2Bjson')
-
-ws.on('open', () => {
-    ws.send('something')
-})
-
-ws.on('message', (data) => {
-    console.log(data)
-})
-ws.on('error', (e) => {
-    console.log(e)
-})
-```
 
 ## MQTT
 
@@ -67,11 +30,7 @@ To subscribe to channel, thing should call following command:
 mosquitto_sub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages -h localhost
 ```
 
-In order to pass content type as part of topic, one should append it to the end
-of an existing topic. Content type value should always be prefixed with `/ct/`.
-If you want to use standard topic such as `channels/<channel_id>/messages`
-with SenML content type, you should use following topic `channels/<channel_id>/messages/ct/application_senml-json`. Characters like `/` and `+` in the content type will be
-replaced with `_` and `-` respectively.
+If you want to use standard topic such as `channels/<channel_id>/messages` with SenML content type (JSON or CBOR), you should use following topic `channels/<channel_id>/messages`.
 
 If you are using TLS to secure MQTT connection, add `--cafile docker/ssl/certs/ca.crt`
 to every command.
@@ -84,7 +43,7 @@ CoAP adapter implements CoAP protocol using underlying UDP and according to [RFC
 coap://localhost/channels/<channel_id>/messages?authorization=<thing_auth_key>
 ```
 
-To send a message, use `POST` request. When posting a message you can pass content type in `Content-Format` option.
+To send a message, use `POST` request.
 To subscribe, send `GET` request with Observe option set to 0. There are two ways to unsubscribe:
   1) Send `GET` request with Observe option set to 1.
   2) Forget the token and send `RST` message as a response to `CONF` message received by the server.
