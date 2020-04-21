@@ -51,7 +51,7 @@ docker-compose -f docker/addons/lora-adapter/docker-compose.yml up -d
 
 The lora-adapter use [Redis](https://redis.io/) database to create a route map between both systems. As in Mainflux we use Channels to connect Things, LoRa Server uses Applications to connect Devices.
 
-The lora-adapter uses the matadata of provision events emitted by Mainflux system to update his route map. For that, you must provision Mainflux Channels and Things with an extra metadata key in the JSON Body of the HTTP request. It must be a JSON object with key `lora` which value is another JSON object. This nested JSON object should contain `appID` or `devEUI` field. In this case `appID` or `devEUI` must be an existent Lora application ID or device EUI:
+The lora-adapter uses the matadata of provision events emitted by Mainflux system to update his route map. For that, you must provision Mainflux Channels and Things with an extra metadata key in the JSON Body of the HTTP request. It must be a JSON object with key `lora` which value is another JSON object. This nested JSON object should contain `app_id` or `dev_eui` field. In this case `app_id` or `dev_eui` must be an existent Lora application ID or device EUI:
 
 **Channel structure:**
 
@@ -60,7 +60,7 @@ The lora-adapter uses the matadata of provision events emitted by Mainflux syste
   "name": "<channel name>",
   "metadata:": {
     "lora": {
-      "appID": "<application ID>"
+      "app_id": "<application ID>"
     }
   }
 }
@@ -74,7 +74,7 @@ The lora-adapter uses the matadata of provision events emitted by Mainflux syste
   "name": "<thing name>",
   "metadata:": {
     "lora": {
-      "devEUI": "<device EUI>"
+      "dev_eui": "<device EUI>"
     }
   }
 }
@@ -82,4 +82,4 @@ The lora-adapter uses the matadata of provision events emitted by Mainflux syste
 
 ##### Messaging
 
-To forward LoRa messages the lora-adapter subscribes to topics `applications/+/devices/+` of the LoRa Server MQTT broker. It verifies `appID` and `devEUI` of published messages. If the mapping exists it uses corresponding `channelID` and `thingID` to sign and forwards the content of the LoRa message to the Mainflux message broker.
+To forward LoRa messages the lora-adapter subscribes to topics `applications/+/devices/+` of the LoRa Server MQTT broker. It verifies the `app_id` and the `dev_eui` of received messages. If the mapping exists it uses corresponding `Channel ID` and `Thing ID` to sign and forwards the content of the LoRa message to the Mainflux message broker.
