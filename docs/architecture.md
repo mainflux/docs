@@ -2,16 +2,16 @@
 
 Mainflux IoT platform is comprised of the following services:
 
-| Service                                                                   | Description                                                             |
-|:--------------------------------------------------------------------------|:------------------------------------------------------------------------|
-| [users](https://github.com/mainflux/mainflux/tree/master/users)           | Manages platform's users and auth concerns                              |
-| [things](https://github.com/mainflux/mainflux/tree/master/things)         | Manages platform's things, channels and access policies                 |
-| [http-adapter](https://github.com/mainflux/mainflux/tree/master/http)     | Provides an HTTP interface for accessing communication channels         |
-| [ws-adapter](https://github.com/mainflux/mainflux/tree/master/ws)         | Provides a WebSocket interface for accessing communication channels     |
-| [mqtt-adapter](https://github.com/mainflux/mainflux/tree/master/mqtt)     | Provides an MQTT interface for accessing communication channels         |
-| [coap-adapter](https://github.com/mainflux/mainflux/tree/master/coap)     | Provides a CoAP interface for accessing communication channels          |
-| [lora-adapter](https://github.com/mainflux/mainflux/tree/master/lora)     | Provides a LoRa Server forwarder for accessing communication channels   |
-| [mainflux-cli](https://github.com/mainflux/mainflux/tree/master/cli)      | Command line interface                                                  |
+| Service                                                                   | Description                                                                      |
+|:--------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+| [users](https://github.com/mainflux/mainflux/tree/master/users)           | Manages platform's users and auth concerns                                       |
+| [things](https://github.com/mainflux/mainflux/tree/master/things)         | Manages platform's things, channels and access policies                          |
+| [http-adapter](https://github.com/mainflux/mainflux/tree/master/http)     | Provides an HTTP interface for accessing communication channels                  |
+| [mqtt-adapter](https://github.com/mainflux/mainflux/tree/master/mqtt)     | Provides an MQTT and MQTT over WS interface for accessing communication channels |
+| [coap-adapter](https://github.com/mainflux/mainflux/tree/master/coap)     | Provides a CoAP interface for accessing communication channels                   |
+| [opcua-adapter](https://github.com/mainflux/mainflux/tree/master/opcua)   | Provides an OPC-UA interface for accessing communication channels                |
+| [lora-adapter](https://github.com/mainflux/mainflux/tree/master/lora)     | Provides a LoRa Server forwarder for accessing communication channels            |
+| [mainflux-cli](https://github.com/mainflux/mainflux/tree/master/cli)      | Command line interface                                                           |
 
 ![arch](img/architecture.jpg)
 
