@@ -78,18 +78,38 @@ mainflux-cli version
 ### Users management
 #### Create User
 ```
-mainflux-cli users create john.doe@email.com password
+mainflux-cli users create <user_email> <user_password>
 ```
 
 #### Login User
 ```
-mainflux-cli users token john.doe@email.com password
+mainflux-cli users token <user_email> <user_password>
+```
+
+#### Retrieve User
+```
+mainflux-cli users get <user_auth_token>
+```
+
+#### Update User Metadata
+```
+mainflux-cli users update '{"key1":"value1", "key2":"value2"}' <user_auth_token>
+```
+
+#### Update User Password
+```
+mainflux-cli users password <old_password> <password> <user_auth_token>
 ```
 
 ### System Provisioning
 #### Create Thing
 ```
 mainflux-cli things create '{"name":"myThing"}' <user_auth_token>
+```
+
+#### Create Thing with metadata
+```
+mainflux-cli things create '{"name":"myThing", "metadata": {\"key1\":\"value1\"}}' <user_auth_token>
 ```
 
 #### Bulk Provision Things
@@ -210,8 +230,41 @@ mainflux-cli things connections <thing_id> <user_auth_token>
 mainflux-cli channels connections <channel_id> <user_auth_token>
 ```
 
+
 ### Messaging
 #### Send a message over HTTP
 ```
 mainflux-cli messages send <channel_id> '[{"bn":"Dev1","n":"temp","v":20}, {"n":"hum","v":40}, {"bn":"Dev2", "n":"temp","v":20}, {"n":"hum","v":40}]' <thing_auth_token>
+```
+
+#### Read messages over HTTP
+```
+mainflux-cli messages read <channel_id> <thing_auth_token>
+```
+
+### Bootstrap
+
+#### Add configuration
+```
+mainflux-cli bootstrap add '{"external_id": "myExtID", "external_key": "myExtKey", "name": "myName", "content": "myContent"}' <user_auth_token>
+```
+
+#### View configuration
+```
+mainflux-cli bootstrap view <thing_id> <user_auth_token>
+```
+
+#### Update configuration
+```
+mainflux-cli bootstrap update '{"MFThing":"<thing_id>", "name": "newName", "content": "newContent"}' <user_auth_token>
+```
+
+#### Remove configuration
+```
+mainflux-cli bootstrap remove <thing_id> <user_auth_token>
+```
+
+#### Bootstrap configuration
+```
+mainflux-cli bootstrap bootstrap <external_id> <external_key>
 ```
