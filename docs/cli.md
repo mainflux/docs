@@ -118,7 +118,7 @@ mainflux-cli things create '{"name":"myThing", "metadata": {\"key1\":\"value1\"}
 mainflux-cli provision things <file> <user_auth_token>
 ```
 
-* `file` - A CSV or JSON file containing things
+* `file` - A CSV or JSON file containing things (must have extension `.csv` or `.json`)
 * `user_auth_token` - A valid user auth token for the current system
 
 #### Update Thing
@@ -151,7 +151,7 @@ mainflux-cli channels create '{"name":"myChannel"}' <user_auth_token>
 mainflux-cli provision channels <file> <user_auth_token>
 ```
 
-* `file` - A CSV or JSON file containing channels
+* `file` - A CSV or JSON file containing channels (must have extension `.csv` or `.json`)
 * `user_auth_token` - A valid user auth token for the current system
 
 #### Update Channel
@@ -185,7 +185,7 @@ mainflux-cli things connect <thing_id> <channel_id> <user_auth_token>
 mainflux-cli provision connect <file> <user_auth_token>
 ```
 
-* `file` - A CSV or JSON file containing thing and channel ids
+* `file` - A CSV or JSON file containing thing and channel ids (must have extension `.csv` or `.json`)
 * `user_auth_token` - A valid user auth token for the current system
 
 An example CSV file might be
