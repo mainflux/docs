@@ -40,6 +40,7 @@ pages:
   - Authentication: authentication.md
   - CLI: cli.md
   - Bootstrap: bootstrap.md
+  - Twins: twins.md
   - Tracing: tracing.md
   - Developer's Guide: dev-guide.md
   - Kubernetes: kubernetes.md
