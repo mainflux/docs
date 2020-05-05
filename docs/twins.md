@@ -4,7 +4,9 @@
 fully understand what follows, be sure to get acquainted with [overall Mainflux
 architecture](architecture.md).*
 
-**Twin** refers to a **digital representation** of a **real world system**
+### What is digital twin
+
+**Twin** refers to a **digital representation** of a **real world data system**
 consisting of possibly multiple data sources/producers and/or
 destinations/consumers (data agents).
 
@@ -16,18 +18,28 @@ current human operator, etc. - as well as to receive control, i.e. actuation
 messages - such as, turn on/off light, increment/decrement borer speed, switch
 knifes, etc.
 
-Each of these data sources and data consumers - which we refer to collectively
-here as data agents - can be represented by means of multiple **Mainflux things,
-channels and subtopics**. For example, an OPC-UA server can be represented as a
-Mainflux thing and different nodes can be represented as multiple Mainflux
-channels or multiple subtopics of a single Mainflux channel. A machine hosted
-CSV file can be represented as a thing and columns can be represented as
-subtopics of a channel.
+Digital twin is an abstract - and usually less detailed - digital replica of a
+real world system such as the industrial machine we have just described. It is
+used to create and store information about system's state at any given moment,
+to compare system state over a given period of time - so called diffs or
+deltas - as well as to control agents composing the system.
+
+### What is Mainflux digital twin
+
+Any data producer or data consumer - which we refer to here collectively as data
+agent - or an interrelated system of data agents, can be represented by means of
+possibly multiple [Mainflux things, channels and subtopics]((architecture.md)).
+For example, an OPC-UA server can be represented as a Mainflux thing and its
+nodes can be represented as multiple Mainflux channels or multiple subtopics of
+a single Mainflux channel. What is more, you can invert the representation: you
+can represent server as a channel and node as things. Mainflux platform is meant
+to empower you with the freedom of expression so you can make a digital
+representation of any data agent according to your needs.
 
 Although this works well, satisfies the requirements of a wide variety of use
 cases and corresponds to the intended use of Mainlfux IoT platform, this setup
-can be insufficient in two important ways. Firstly, different things and
-channels connections - i.e. Mainflux representations of different data agent
+can be insufficient in two important ways. Firstly, different things, channels
+and their connections - i.e. Mainflux representations of different data agent
 structures - are unrelated to each other, i.e. they do not form a **meaningful
 whole** and, as a consequence, they do not represent a **single unified
 system**. Secondly, the **semantic** aspect, i.e. the **meaning** of different
@@ -36,13 +48,13 @@ platform entities (channels and things).
 
 Certainly, we can try to describe things and channels connections and relations
 as well as their meaning - i.e. their role, position, function in the overall
-system - by means of their metadata. Although this might work well - with a
-proviso of a lot of additional effort of writing the relatively complex code to
-create and parse metadata - it is not a practical approach and we still don't
-get - at least not out of the box - a readable and useful overview of the system
-as a whole and of its components. Also, this approach does not enable us to
-answer a simple but very important question, what was the state of the system at
-a certain moment in time.
+system - by means of their [metadata](provisioning.md). Although this might work
+well - with a proviso of a lot of additional effort of writing the relatively
+complex code to create and parse metadata - it is not a practical approach and
+we still don't get - at least not out of the box - a readable and useful
+overview of the system as a whole. Also, this approach does not enable us to
+answer a simple but very important question, i.e. what was the detailed state of
+a complete system at a certain moment in time.
 
 To overcome these problems, Mainflux comes with a **digital twin service**. The
 twins service is built on top of the Mainflux platform and relies on its
@@ -54,33 +66,39 @@ twins. Mainflux digital twin consists of three parts:
 - history of twin's **definitions**, including current definition,
 - history of twin's **states**, including current state.
 
+Before we dwell into twin's anatomy, it is important to realize that in order to
+use Mainflux twin service, you have to [provision Mainflux things and
+channels](provisioning.md) and you have to connect things and channels
+beforehand. As you go, you can modify your things, channels and connections and
+you can modify your digital twin to reflect these modifications, but you have to
+have at least a minimal setup in order to use the twin service.
+
 ## Twin's anatomy
 
 Twin's **general information** stores twin's owner email - owner is represented
-by Mainflux user -, twin's ID (unique) and name (not unique), twin's creation
-and update dates as well as twin's revision number. The latter refers to the
-sequential number of twin's definition.
+by Mainflux user -, twin's ID (unique) and name (not necessarily unique), twin's
+creation and update dates as well as twin's revision number. The latter refers
+to the sequential number of twin's definition.
 
 The twin's **definition** is meant to be a semantic representation of system's
 data sources and consumers (data agents). Each data data agent is represented by
 means of **attribute**. Attribute consists of data agent's name, Mainflux
 channel and subtopic over which it communicates. Nota bene: each attribute is
 uniquely defined by the combination of channel and subtopic and we cannot have
-two or more attributes as a part of the same definition with a same channel and
-subtopic.
+two or more attributes with a same channel and subtopic in the same definition .
 
 Attributes has a state persistance flag that determines whether the messages
 communicated by it's corresponding channel and subtopic trigger the creation of
-a new twin state.
+a new twin state. Twin states are persisted in the separate collection of the
+same database. Currently, twins service uses the MongoDB. InfluxDB support for
+twins and states persistance is on the roadmap.
 
-A JSON representation of twin might look like this when we define our digital
-twin:
+When we define our digital twin, its JSON representation might look like this:
 
 ```
 {
     "owner": "john.doe@email.net",
     "id": "a838e608-1c1b-4fea-9c34-def877473a89",
-    "thing_id": "",
     "name": "grinding machine 2",
     "revision": 2,
     "created": "2020-05-05T08:41:39.142Z",
@@ -155,21 +173,23 @@ twin:
 In the case of the upper twin, we begin with an empty definition, the one with
 the `id` **0** - we could have provided the definition immediately - and over
 the course of time, we add two more definitions, so the total number of
-revisions is **2**. We decide not to persist the number of rotation per second
-in our digital twin state. We define it, though, because the definition and its
-attributes are used not only to define states of a complex data agent system,
-but also to define the semantic structure of the system. `delta` is the number
-of nanoseconds used to determine whether the received attribute value should
-trigger the generation of the new state if the value is equal to the previous
-value.
+revisions is **2** (revision index is zero based). We decide not to persist the
+number of rotation per second in our digital twin state. We define it, though,
+because the definition and its attributes are used not only to define states of
+a complex data agent system, but also to define the semantic structure of the
+system. `delta` is the number of nanoseconds used to determine whether the
+received attribute value should trigger the generation of the new state or the
+same state should be updated. The reason for this is to enable state sampling
+over the regular intervals of time. Discarded values are written to the database
+of choice by Mainflux [writers](storage.md), so you can always retrieve
+intermediate values if need be.
 
 
-Finally, **states** are created according to the twin's current definition. A
-state stores twin's ID - every state belongs to a single twin -, state's own ID,
-twin's definition sequence number that underlies the state's semantics, creation
-date and the actual payload. **Payload** is a set of key-value pairs where a key
-corresponds to the attribute name and a value is the actual value of the
-attribute. All [SenML value
+**states** are created according to the twin's current definition. A state
+stores twin's ID - every state belongs to a single twin -, its own ID, twin's
+definition number, creation date and the actual payload. **Payload** is a set of
+key-value pairs where a key corresponds to the attribute name and a value is the
+actual value of the attribute. All [SenML value
 types](https://tools.ietf.org/html/rfc8428#section-4.3) are supported.
 
 A JSON representation of a partial list of states might look like this:
@@ -236,26 +256,33 @@ A JSON representation of a partial list of states might look like this:
 }
 ```
 
-As you can see, the first two states correspond to the definition 1 and have
+As you can see, the first two states correspond to the definition **1** and have
 only two attributes in the payload. The rest of the states is based on the
-definition 2, where we persist 3 attributes and, as a consequence, its payload
-consists of 3 entries.
+definition **2**, where we persist three attributes and, as a consequence, its
+payload consists of three entries.
 
 ### Authentication and authorization
 
-Twin belongs to a Mainflux user, tenant that represents physical person or
-organization and owns Mainflux things and channels. Mainflux user provides
-authorization and authentication mechanisms to twins service. For more details,
-please see [Authentication with Mainflux keys](authentication.md). In practical
-terms, we need to create a Mainflux user in order to create digital twin. Every
-twin belongs to exactly one user. One user can have unlimited number of digital
-twins.
+Twin belongs to a Mainflux user, tenant representing physical person or
+organization. User owns Mainflux things and channels as well as twins. Mainflux
+user provides authorization and authentication mechanisms to twins service. For
+more details, please see [Authentication with Mainflux keys](authentication.md).
+In practical terms, we need to create a Mainflux user in order to create digital
+twin. Every twin belongs to exactly one user. One user can have unlimited number
+of digital twins.
 
-### CRUD operations
+### TWIN operations
+
+For the full and up to date Mainflux twins service HTTP API please refer to the
+[twins service swagger
+file](https://github.com/mainflux/mainflux/blob/master/twins/swagger.yaml).
 
 #### Create && Update
 
-Create and update request
+Create and update request use JSON body to initialize and modify, respectively,
+twin. You can omit every piece of data - every key-value pair - from the JSON.
+However, you must send at least an empty JSON body.
+
 
 ```
 {
@@ -276,8 +303,8 @@ Create and update request
       },
       {
         "name": "pressure",
-        "channel": "3b57b952-318e-47b5-b0d7-a14f61ecd03b",
-        "subtopic": "pressure",
+        "channel": "7ef6c61c-f514-402f-af4b-2401b588bfec",
+        "subtopic": "",
         "persist_state": true
       }
     ],
@@ -286,11 +313,27 @@ Create and update request
 }
 ```
 
+##### Create
+
+Create request uses POST HTTP method to create twin:
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" http://localhost:8191/twins -d '<twin_data>'
 ```
 
+If you do not suply the definition, the empty definition of the form
+
+```
+{
+    "id": 0,
+    "created": "2020-05-05T08:41:39.142Z",
+    "attributes": [],
+    "delta": 1000000
+},
+```
+will be created. 
+
+##### Update
 
 ```
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" http://localhost:8191/<twin_id> -d '<twin_data>'
@@ -308,13 +351,21 @@ curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/twins
 ```
 
+List requests accepts `limit` and `offset` query parameters. By default, i.e.
+without these parameters, list requests fetches only first ten twins (or less,
+if there are less then ten twins).
+
+You can fetch twins [10-29) like this:
+
+```
+curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/twins?offset=10&limit=20
+```
 
 #### Delete
 
 ```
 curl -s -S -i -X DELETE -H "Authorization: <user_auth_token>" http://localhost:8191/twins/<twin_id>
 ```
-
 
 ### STATES operations
 
@@ -324,9 +375,57 @@ curl -s -S -i -X DELETE -H "Authorization: <user_auth_token>" http://localhost:8
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/states/<twin_id>
 ```
 
+List requests accepts `limit` and `offset` query parameters. By default, i.e.
+without these parameters, list requests fetches only first ten states (or less,
+if there are less then ten states).
+
+You can fetch states [10-29) like this:
+```
+curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/states/<twin_id>?offset=10&limit=20
+```
 
 ### Notifications
 
+Every twin and states related operation publishes notifications *via* NATS. To
+fully understand what follows, please read about [Mainflux
+messaging](messaging.md) capabilities and utilities.
+
+In order to pick up this notifications, you have to create a Mainflux channel
+before you start the twins service and inform the twins service about the
+channel by means of the environment variable, like this:
+
 ```
-export MF_TWINS_CHANNEL_ID=
+export MF_TWINS_CHANNEL_ID=f6894dfe-a7c9-4eef-a614-637ebeea5b4c
 ```
+
+The twins service will use the this channel to publish notifications related to
+twins creation, update, retrieval and deletion. It will also publish
+notifications related to state saving into the database.
+
+All notifications will be published on the following NATS subject:
+
+```
+channels.<mf_twins_channel_id>.<optional_subtopic>
+```
+where `<optional_subtopic>` is one of the following:
+
+- `create.success` - on successful twin creation,
+- `create.failure` - on twin creation failure,
+- `update.success` - on successful twin update,
+- `update.failure` - on twin update failure,
+- `get.success` - on successful twin retrieval,
+- `get.failure` - on twin retrieval failure,
+- `remove.success` - on successful twin deletion,
+- `remove.failure` - on twin deletion failure,
+- `save.success` - on successful state save
+- `save.failure` - on state save failure.
+
+Normally, you can use NATS wildcards. In order to learn more about Mainflux
+channel topic composition, please read about [subtopics](messaging.md). The
+point is to be able to subscribe to all subjects or any operation pair subject -
+e.g. create.success/failure - by means of one connection and read all messages
+or all operation related messages in the context of the same subscription.
+
+Since messages published on NATS are republished on any other protocol supported
+by Mainflux - HTTP, MQTT, CoAP and WS - you can use any supported protocol
+client to pick up notifications.
