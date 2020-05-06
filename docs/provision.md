@@ -13,40 +13,14 @@ Provision service provides a way of specifying this `provision layout` and creat
 
 ## Configuration
 
-The service is configured using the environment variables presented in the
+The service is configured using the environment [variables][config] presented in the
 following table. Note that any unset variables will be replaced with their
 default values.
 
-| Variable                            | Description                                       | Default                          |
-| ----------------------------------- | ------------------------------------------------- | -------------------------------- |
-| MF_PROVISION_USER                   | User (email) for accessing Mainflux               | user@example.com                 |
-| MF_PROVISION_PASS                   | Mainflux password                                 | user123                          |
-| MF_PROVISION_API_KEY                | Mainflux authentication token                     |                                  |
-| MF_PROVISION_CONFIG_FILE            | Provision config file                             | config.toml                    |
-| MF_PROVISION_HTTP_PORT              | Provision service listening port                  | 8091                             |
-| MF_PROVISION_ENV_CLIENTS_TLS        | Mainflux SDK TLS verification                     | false                            |
-| MF_PROVISION_CA_CERTS               | Mainflux gRPC secure certs                        |                                  |
-| MF_PROVISION_SERVER_CERT            | Mainflux gRPC secure server cert                  |                                  |
-| MF_PROVISION_SERVER_KEY             | Mainflux gRPC secure server key                   |                                  |
-| MF_PROVISION_SERVER_KEY             | Mainflux gRPC secure server key                   |                                  |
-| MF_PROVISION_MQTT_URL               | Mainflux MQTT adapter URL                         | http://localhost:1883          |
-| MF_PROVISION_USERS_LOCATION         | Users service URL                                 | http://locahost                |
-| MF_PROVISION_THINGS_LOCATION        | Things service URL                                | http://localhost               |
-| MF_PROVISION_LOG_LEVEL              | Service log level                                 | http://localhost               |
-| MF_PROVISION_HTTP_PORT              | Service listening port                            | 8091                           |
-| MF_PROVISION_USER                   | Mainflux user username                            | test@example.com               |
-| MF_PROVISION_PASS                   | Mainflux user password                            | password                       |
-| MF_PROVISION_BS_SVC_URL             | Mainflux Bootstrap service URL                    | http://localhost/things/configs |
-| MF_PROVISION_BS_SVC_WHITELIST_URL   | Mainflux Bootstrap service whitelist URL          | http://localhost/things/state  |
-| MF_PROVISION_CERTS_SVC_URL          | Certificats service URL                           | http://localhost/certs         |
-| MF_PROVISION_X509_PROVISIONING      | Should X509 client cert be provisioned            | false                          |
-| MF_PROVISION_BS_CONFIG_PROVISIONING | Should thing config be saved in Bootstrap service | true                           |
-| MF_PROVISION_BS_AUTO_WHITEIST       | Should thing be auto whitelisted                  | true                           |
-| MF_PROVISION_BS_CONTENT             | Bootstrap service content                         | {}                             |
 
 By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it. If there is a requirement for different provision layout we can use [config](docker/configs/config.toml) file in addition to environment variables. 
 
-For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in [.env](.env).  
+For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in [.env][env].  
 
 Configuration can be specified in [config.toml](configs/config.toml). Config file can specify all the settings that environment variables can configure and in addition
 `/mapping` endpoint provision layout can be configured.
@@ -85,13 +59,13 @@ Example of provision layout below
 ```
 
 ## Authentication
-In order to create necessary entities provision service needs to authenticate against Mainflux. To provide authentication credentials to the provision service you can pass it in an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on `/users` or `/keys` endpoint of [authn](../authn/README.md)). 
+In order to create necessary entities provision service needs to authenticate against Mainflux. To provide authentication credentials to the provision service you can pass it in an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on `/users` or `/keys` endpoint of [authn][authn]. 
 
 Additionally users or API token can be passed in Authorization header, this authentication takes precedence over others.
 
-* `username`, `password` - (`MF_PROVISION_USER`, `MF_PROVISION_PASSWORD` in [.env](../.env), `mf_user`, `mf_pass` in [config.toml](../docker/addons/provision/configs/config.toml))
-* API Key - (`MF_PROVISION_API_KEY` in [.env](../.env) or [config.toml](../docker/addons/provision/configs/config.toml))
-* `Authorization: Token|ApiKey` - request authorization header containing either users token or API key. Check [authn](../authn/README.md).
+* `username`, `password` - (`MF_PROVISION_USER`, `MF_PROVISION_PASSWORD` in [.env][env], `mf_user`, `mf_pass` in [config.toml][conftoml]
+* API Key - (`MF_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml]
+* `Authorization: Token|ApiKey` - request authorization header containing either users token or API key. Check [authn][authn].
 
 ## Running
 Provision service can be run as a standalone or in docker composition as addon to the core docker composition.
@@ -112,12 +86,18 @@ docker-compose -f docker/addons/provision/docker-compose.yml up
 
 For the case that credentials or API token is passed in configuration file or environment variables, call to `/mapping` endpoint doesn't require `Authentication` header:
 ```bash
-curl -s -S  -X POST  http://localhost:8888/mapping  -H 'Content-Type: application/json' -d '{ "external_id" : "33:52:77:99:43", "external_key":"223334fw2" }'
+curl -s -S  -X POST  http://localhost:8888/mapping  -H 'Content-Type: application/json' -d '{"external_id": "33:52:77:99:43", "external_key": "223334fw2"}'
 ```
 
 In the case that provision service is not deployed with credentials or API key or you want to use user other than one being set in environment (or config file):
 ```bash
-curl -s -S  -X POST  http://localhost:8091/mapping -H "Authorization: <token|api_key>" -H 'Content-Type: application/json' -d '{ "external_id" : "<external_id>", "external_key":"<external_key>" }'
+curl -s -S  -X POST  http://localhost:8091/mapping -H "Authorization: <token|api_key>" -H 'Content-Type: application/json' -d '{"external_id": "<external_id>", "external_key": "<external_key>"}'
+```
+
+Or if you want to specify a name for thing different than in `config.toml` you can specify post data as:
+
+```json
+{"name": "<name>", "external_id": "<external_id>", "external_key": "<external_key>"}
 ```
 
 Response contains created things, channels and certificates if any:
@@ -160,3 +140,7 @@ Response contains created things, channels and certificates if any:
 [export]: https://github.com/mainflux/export
 [agent]: https://github.com/mainflux/agent
 [mfxui]: https://github.com/mainflux/mainflux/ui
+[config]: https://github.com/mainflux/mainflux/tree/master/provision#configuration
+[env]: https://github.com/mainflux/mainflux/blob/master/.env
+[conftoml]: https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml
+[authn]: https://github.com/mainflux/mainflux/blob/master/authn/README.md
