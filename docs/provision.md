@@ -5,9 +5,8 @@ and sets-up different entities used in the platform - users, channels and things
 It is part of process of setting up IoT application where
 we connect devices on edge with platform in cloud.
 
-For provisioning we can use [Mainflux CLI][cli] creating users 
-and for each node in the edge (eg. gateway) required number of things, channels, 
-(which will be populated with value from [request](#example)) connecting them and creating certificates if needed.
+For provisioning we can use [Mainflux CLI][cli] for creating users 
+and for each node in the edge (eg. gateway) required number of things, channels, connecting them and creating certificates if needed.
 
 Provision service is used to setup initial applications configuration once user is created. 
 Provision service creates  things, channels, connections and certificates. 
@@ -27,14 +26,14 @@ Also you may use provision service to create certificates for each thing.
 Each service running on gateway may require more than one thing and channel for communication. 
 If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one for `Export` and one thing. 
 Additionally if you enabled mtls each service will need its own thing and certificate for access to [Mainflux][mainflux]. 
-Your setup could require any number of things and channels this kind of setup we can call `provision layout`.
+Your setup could require any number of things and channels, this kind of setup we can call `provision layout`.
 
 Provision service provides a way of specifying this `provision layout` and creating a setup according to that layout by serving requests on `/mapping` endpoint. Provision layout is configured in [config.toml](configs/config.toml).
 
 ## Configuration
 
-The service is configured using the environment [variables][config] presented in the
-following table. Note that any unset variables will be replaced with their
+The service is configured using the environment variables presented in the
+following [table][config]. Note that any unset variables will be replaced with their
 default values.
 
 
@@ -110,6 +109,8 @@ Docker composition:
 ```bash
 docker-compose -f docker/addons/provision/docker-compose.yml up
 ```
+
+## Provision
 
 For the case that credentials or API token is passed in configuration file or environment variables, call to `/mapping` endpoint doesn't require `Authentication` header:
 ```bash
