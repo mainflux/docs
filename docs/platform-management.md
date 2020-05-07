@@ -1,5 +1,4 @@
-Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities
-used in the platform - users, channels and things.
+Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things.
 
 ## Users management
 
@@ -11,20 +10,18 @@ Use the Mainflux API to create user account:
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" https://localhost/users -d '{"email":"john.doe@email.com", "password":"12345678"}'
 ```
 
-Note that when using official `docker-compose`, all services are behind `nginx`
-proxy and all traffic is `TLS` encrypted.
+Note that when using official `docker-compose`, all services are behind `nginx` proxy and all traffic is `TLS` encrypted.
 
 ### Obtaining an authorization key
 
-In order for this user to be able to authenticate to the system, you will have
-to create an authorization token for him:
+In order for this user to be able to authenticate to the system, you will have to create an authorization token for him:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" https://localhost/tokens -d '{"email":"john.doe@email.com", "password":"12345678"}'
 ```
 
 Response should look like this:
-```
+```json
 {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjMzODg0NzcsImlhdCI6MTUyMzM1MjQ3NywiaXNzIjoibWFpbmZsdXgiLCJzdWIiOiJqb2huLmRvZUBlbWFpbC5jb20ifQ.cygz9zoqD7Rd8f88hpQNilTCAS1DrLLgLg4PRcH-iAI"
 }
@@ -32,23 +29,19 @@ Response should look like this:
 
 ## System provisioning
 
-Before proceeding, make sure that you have created a new account, and obtained
-an authorization key.
+Before proceeding, make sure that you have created a new account, and obtained an authorization key.
 
 ### Provisioning things
 
 > This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint currently found at /things/bulk.
 
-Things are created by executing request `POST /things` with a JSON payload.
-Note that you will also need `user_auth_token` in order to create things
-that belong to this particular user.
+Things are created by executing request `POST /things` with a JSON payload. Note that you will also need `user_auth_token` in order to create things that belong to this particular user.
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things -d '{"name":"weio"}'
 ```
 
-Response will contain `Location` header whose value represents path to newly
-created thing:
+Response will contain `Location` header whose value represents path to newly created thing:
 
 ```
 HTTP/1.1 201 Created
@@ -68,7 +61,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: applica
 
 The response's body will contain a list of the created things.
 
-```
+```json
 HTTP/2 201
 server: nginx/1.16.0
 date: Tue, 22 Oct 2019 02:19:15 GMT
@@ -81,17 +74,15 @@ access-control-expose-headers: Location
 
 ### Retrieving provisioned things
 
-In order to retrieve data of provisioned things that is written in database, you
-can send following request:
+In order to retrieve data of provisioned things that is written in database, you can send following request:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things
 ```
 
-Notice that you will receive only those things that were provisioned by
-`user_auth_token` owner.
+Notice that you will receive only those things that were provisioned by `user_auth_token` owner.
 
-```
+```json
 HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Tue, 10 Apr 2018 10:50:12 GMT
@@ -116,29 +107,25 @@ Content-Length: 1105
 }
 ```
 
-You can specify `offset` and `limit` parameters in order to fetch specific
-group of things. In that case, your request should look like:
+You can specify `offset` and `limit` parameters in order to fetch specific group of things. In that case, your request should look like:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5
 ```
 
-You can specify `name` and/or `metadata` parameters in order to fetch specific
-group of things. When specifiying metadata you can specify just a part of the metadata json you want to match
+You can specify `name` and/or `metadata` parameters in order to fetch specific group of things. When specifiying metadata you can specify just a part of the metadata json you want to match
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}
 ```
 
-If you don't provide them, default values will be used instead: 0 for `offset`,
-and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing
-invalid values will be considered malformed request.
+If you don't provide them, default values will be used instead: 0 for `offset`, and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
 ### Removing things
 
 In order to remove you own thing you can send following request:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>
 ```
 
@@ -152,8 +139,7 @@ Channels are created by executing request `POST /channels`:
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/channels -d '{"name":"mychan"}'
 ```
 
-After sending request you should receive response with `Location` header that
-contains path to newly created channel:
+After sending request you should receive response with `Location` header that contains path to newly created channel:
 
 ```
 HTTP/1.1 201 Created
@@ -173,7 +159,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: applica
 
 The response's body will contain a list of the created channels.
 
-```
+```json
 HTTP/2 201
 server: nginx/1.16.0
 date: Tue, 22 Oct 2019 02:14:41 GMT
@@ -186,17 +172,15 @@ access-control-expose-headers: Location
 
 ### Retrieving provisioned channels
 
-To retreve provisioned channels you should send request to `/channels` with
-authorization token in `Authorization` header:
+To retreve provisioned channels you should send request to `/channels` with authorization token in `Authorization` header:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels
 ```
 
-Note that you will receive only those channels that were created by authorization
-token's owner.
+Note that you will receive only those channels that were created by authorization token's owner.
 
-```
+```json
 HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Tue, 10 Apr 2018 11:38:06 GMT
@@ -215,35 +199,28 @@ Content-Length: 139
 }
 ```
 
-You can specify  `offset` and  `limit` parameters in order to fetch specific
-group of channels. In that case, your request should look like:
+You can specify  `offset` and  `limit` parameters in order to fetch specific group of channels. In that case, your request should look like:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels?offset=0&limit=5
 ```
 
-If you don't provide them, default values will be used instead: 0 for `offset`,
-and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing
-invalid values will be considered malformed request.
+If you don't provide them, default values will be used instead: 0 for `offset`, and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
 ### Removing channels
 
 In order to remove specific channel you should send following request:
 
-```
+``` bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>
 ```
 
 ## Access control
 
-Channel can be observed as a communication group of things. Only things that
-are connected to the channel can send and receive messages from other things
-in this channel. things that are not connected to this channel are not allowed
-to communicate over it.
+Channel can be observed as a communication group of things. Only things that are connected to the channel can send and receive messages from other things in this channel. 
+Things that are not connected to this channel are not allowed to communicate over it.
 
-Only user, who is the owner of a channel and of the things, can connect the
-things to the channel (which is equivalent of giving permissions to these things
-to communicate over given communication group).
+Only user, who is the owner of a channel and of the things, can connect the things to the channel (which is equivalent of giving permissions to these things to communicate over given communication group).
 
 To connect a thing to the channel you should send following request:
 
@@ -261,13 +238,13 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: applica
 
 You can observe which things are connected to specific channel:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things
 ```
 
 Response that you'll get should look like this:
 
-```
+```json
 {
   "total": 2,
   "offset": 0,
@@ -291,13 +268,13 @@ Response that you'll get should look like this:
 
 You can also observe to which channels is specified thing connected:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>/channels
 ```
 
 Response that you'll get should look like this:
 
-```
+```json
 {
   "total": 2,
   "offset": 0,
@@ -319,6 +296,6 @@ Response that you'll get should look like this:
 
 If you want to disconnect your thing from the channel, send following request:
 
-```
+```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
 ```
