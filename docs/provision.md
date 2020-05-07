@@ -24,7 +24,7 @@ i.e creating bootstrap configuration and as many things and channels that your s
 
 Also you may use provision service to create certificates for each thing. 
 Each service running on gateway may require more than one thing and channel for communication. 
-If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one for `Export` and one thing. 
+If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one thing for `Export`. 
 Additionally if you enabled mtls each service will need its own thing and certificate for access to [Mainflux][mainflux]. 
 Your setup could require any number of things and channels, this kind of setup we can call `provision layout`.
 
