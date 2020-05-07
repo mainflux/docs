@@ -27,7 +27,7 @@ pages:
       - License: LICENSE.txt
   - Architecture: architecture.md
   - Getting Started: getting-started.md
-  - Provision: provisioning.md
+  - Provision:
       - Provisioning: provisioning.md
       - Provision Service: provision.md
   - Messaging: messaging.md
