@@ -28,7 +28,7 @@ pages:
   - Architecture: architecture.md
   - Getting Started: getting-started.md
   - Provision:
-      - Provisioning: provisioning.md
+      - Platform management: platform-management.md
       - Provision Service: provision.md
   - Messaging: messaging.md
   - Storage: storage.md
