@@ -1,4 +1,4 @@
-Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things.
+Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels, and things.
 
 ## Users management
 
@@ -107,13 +107,13 @@ Content-Length: 1105
 }
 ```
 
-You can specify `offset` and `limit` parameters in order to fetch specific group of things. In that case, your request should look like:
+You can specify `offset` and `limit` parameters in order to fetch a specific group of things. In that case, your request should look like:
 
 ```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5
 ```
 
-You can specify `name` and/or `metadata` parameters in order to fetch specific group of things. When specifiying metadata you can specify just a part of the metadata json you want to match
+You can specify `name` and/or `metadata` parameters in order to fetch specific group of things. When specifying metadata you can specify just a part of the metadata JSON you want to match.
 
 ```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}

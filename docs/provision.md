@@ -4,7 +4,7 @@ Provisioning is a process of configuration of an IoT platform in which system op
 
 For provisioning we can use [Mainflux CLI][cli] for creating users and for each node in the edge (eg. gateway) required number of things, channels, connecting them, and creating certificates if needed.
 
-Provision service is used to setup initial application configuration once user is created. Provision service creates  things, channels, connections, and certificates. Once user is created we can use provision to create setup for edge node in one HTTP request instead of issuing several CLI commands. 
+Provision service is used to set up initial application configuration once user is created. Provision service creates  things, channels, connections, and certificates. Once user is created we can use provision to create a setup for edge node in one HTTP request instead of issuing several CLI commands. 
 
 Provision service provides an HTTP API to interact with [Mainflux][mainflux].  
 
@@ -12,7 +12,7 @@ For gateways to communicate with [Mainflux][mainflux] configuration is required 
 
 To create bootstrap configuration you can use [Bootstrap][bootstrap] or `Provision` service. [Mainflux UI][mfxui] uses [Bootstrap][bootstrap] service for creating gateway configurations. `Provision` service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many things and channels that your setup requires.  
 
-Also you may use provision service to create certificates for each thing. Each service running on gateway may require more than one thing and channel for communication. 
+Also, you may use provision service to create certificates for each thing. Each service running on gateway may require more than one thing and channel for communication. 
 If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one thing for `Export`. 
 Additionally, if you enabled mTLS each service will need its own thing and certificate for access to [Mainflux][mainflux]. 
 Your setup could require any number of things and channels, this kind of setup we can call `provision layout`.
@@ -30,7 +30,7 @@ For the purposes of running provision as an add-on in docker composition environ
 
 Configuration can be specified in [config.toml][conftoml]. Config file can specify all the settings that environment variables can configure and in addition `/mapping` endpoint provision layout can be configured.
 
-In `config.toml` we can enlist array of things and channels that we want to create and make connections between them which we call provision layout.
+In `config.toml` we can enlist an array of things and channels that we want to create and make connections between them which we call provision layout.
 
 Things Metadata can be whatever suits your needs. Thing that has metadata with `external_id` will have bootstrap configuration created, `external_id` value will be populated with value from [request](#example)). 
 Bootstrap configuration can be fetched with [Agent][agent]. For channel's metadata `type` is reserved for `control` and `data` which we use with [Agent][agent].
@@ -67,7 +67,7 @@ Example of provision layout below
 In order to create necessary entities provision service needs to authenticate against Mainflux. 
 To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on `/users` or `/keys` endpoint of [authn][authn]. 
 
-Additionally users or API token can be passed in Authorization header, this authentication takes precedence over others.
+Additionally, users or API token can be passed in Authorization header, this authentication takes precedence over others.
 
 * `username`, `password` - (`MF_PROVISION_USER`, `MF_PROVISION_PASSWORD` in [.env][env], `mf_user`, `mf_pass` in [config.toml][conftoml]
 * API Key - (`MF_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml]
