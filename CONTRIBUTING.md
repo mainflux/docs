@@ -38,7 +38,7 @@ Please adhere to the coding conventions used throughout the project. If in doubt
 [Effective Go](https://golang.org/doc/effective_go.html) style guide.
 
 To contribute to the project, [fork](https://help.github.com/articles/fork-a-repo/) it,
-clone your fork repository, and configure the remotes:
+clone your fork repository and configure the remotes:
 
 ```
 git clone https://github.com/<your-username>/docs.git

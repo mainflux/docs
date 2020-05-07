@@ -1,4 +1,4 @@
-Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels, and things.
+Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things.
 
 ## Users management
 
@@ -29,7 +29,7 @@ Response should look like this:
 
 ## System provisioning
 
-Before proceeding, make sure that you have created a new account, and obtained an authorization key.
+Before proceeding, make sure that you have created a new account and obtained an authorization key.
 
 ### Provisioning things
 
@@ -119,7 +119,7 @@ You can specify `name` and/or `metadata` parameters in order to fetch specific g
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}
 ```
 
-If you don't provide them, default values will be used instead: 0 for `offset`, and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
+If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
 ### Removing things
 
@@ -205,7 +205,7 @@ You can specify  `offset` and  `limit` parameters in order to fetch specific gro
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/channels?offset=0&limit=5
 ```
 
-If you don't provide them, default values will be used instead: 0 for `offset`, and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
+If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
 ### Removing channels
 

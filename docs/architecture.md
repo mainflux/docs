@@ -22,7 +22,7 @@ The platform is built around 3 main entities: **users**, **things** and **channe
 `User` represents the real (human) user of the system. It is represented via its
 e-mail and password, which he uses as platform access credentials in order to obtain
 an access token. Once logged into the system, user can manage his resources (i.e.
-things and channels) in CRUD fashion, and define access control policies by
+things and channels) in CRUD fashion and define access control policies by
 connecting them.
 
 `Thing` represents devices (or applications) connected to Mainflux that uses the

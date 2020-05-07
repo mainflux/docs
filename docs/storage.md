@@ -12,7 +12,7 @@ In order to run these services, core services, as well as the network from the c
 
 ## Writers
 
-Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to `SenML` format, and store them in specific data store. Supported message payload formats are SenML+CBOR and SenML+JSON. They are configurable over environment variables in each writer (`MF_CASSANDRA_WRITER_CONTENT_TYPE`, `MF_POSTGRES_WRITER_CONTENT_TYPE`, `MF_INFLUX_WRITER_CONTENT_TYPE` and `MF_MONGO_WRITER_CONTENT_TYPE`) and expect `application/senml+json` or `application/senml+cbor` formats.
+Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to `SenML` format and store them in specific data store. Supported message payload formats are SenML+CBOR and SenML+JSON. They are configurable over environment variables in each writer (`MF_CASSANDRA_WRITER_CONTENT_TYPE`, `MF_POSTGRES_WRITER_CONTENT_TYPE`, `MF_INFLUX_WRITER_CONTENT_TYPE` and `MF_MONGO_WRITER_CONTENT_TYPE`) and expect `application/senml+json` or `application/senml+cbor` formats.
 
 Each writer can filter messages based on subjects list that is set in `subjects.toml` configuration file. If you want to listen on all subjects, just pass one element ["channels.>"], otherwise pass the list of subjects. Here is an example:
 
@@ -118,7 +118,7 @@ You can specify `offset` and `limit` parameters in order to fetch specific group
 curl -s -S -i  -H "Authorization: <thing_token>" http://localhost:<service_port>/channels/<channel_id>/messages?offset=0&limit=5
 ```
 
-If you don't provide these parameters, default values will be used instead: 0 for `offset`, and 10 for `limit`.
+If you don't provide these parameters, default values will be used instead: 0 for `offset` and 10 for `limit`.
 
 ### InfluxDB-reader
 

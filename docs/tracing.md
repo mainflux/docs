@@ -39,13 +39,13 @@ As an example for using Jaeger, we can look at the traces generated after provis
 
 Before getting started with Jaeger, there are a few terms that are important to define.  A `trace` can be thought of as one transaction within the system.  A trace is made up of one or more `spans`.  These are the individual steps that must be taken for a trace to perform its action.  A span has `tags` and `logs` associated with it.  Tags are key-value pairs that provide information such as a database type or http method. Tags are useful when filtering traces in the Jaeger UI.  Logs are structured messages used at specific points in the trace's transaction.  These are typically used to indicate an error.
 
-When first navigating to the Jaeger UI, it will present a search page with an empty results section.  There are multiple fields to search from including service, operation, tags, and time frames.  Clicking `Find Traces` will fill the results section with traces containing the selected fields.
+When first navigating to the Jaeger UI, it will present a search page with an empty results section.  There are multiple fields to search from including service, operation, tags and time frames.  Clicking `Find Traces` will fill the results section with traces containing the selected fields.
 
 ![Search page with results](img/tracing/search.png)
 
 The top of the results page includes a scatter plot of the traces and their durations.  This can be very useful for finding a trace with a prolonged runtime.  Clicking on one of the points will open the trace page of that trace.
 
-Below the graph is a list of all the traces with a summary of its information. Each trace shows a unique identifier, the overall runtime, the spans it is composed of, and when it was ran.  Clicking on one of the traces will open the trace page of that trace.
+Below the graph is a list of all the traces with a summary of its information. Each trace shows a unique identifier, the overall runtime, the spans it is composed of and when it was ran.  Clicking on one of the traces will open the trace page of that trace.
 
 ![Trace page with expanded spans](img/tracing/trace.png)
 

@@ -1,10 +1,10 @@
 # Provision service
 
-Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels, and things. It is part of process of setting up IoT applications where we connect devices on edge with platform in cloud.
+Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things. It is part of process of setting up IoT applications where we connect devices on edge with platform in cloud.
 
-For provisioning we can use [Mainflux CLI][cli] for creating users and for each node in the edge (eg. gateway) required number of things, channels, connecting them, and creating certificates if needed.
+For provisioning we can use [Mainflux CLI][cli] for creating users and for each node in the edge (eg. gateway) required number of things, channels, connecting them and creating certificates if needed.
 
-Provision service is used to set up initial application configuration once user is created. Provision service creates  things, channels, connections, and certificates. Once user is created we can use provision to create a setup for edge node in one HTTP request instead of issuing several CLI commands. 
+Provision service is used to set up initial application configuration once user is created. Provision service creates  things, channels, connections and certificates. Once user is created we can use provision to create a setup for edge node in one HTTP request instead of issuing several CLI commands. 
 
 Provision service provides an HTTP API to interact with [Mainflux][mainflux].  
 

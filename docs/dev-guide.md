@@ -277,7 +277,7 @@ Please assure that MQTT microservice has `node_modules` installed, as explained 
 ## Events
 In order to be easily integratable system, Mainflux is using [Redis Streams](https://redis.io/topics/streams-intro)
 as an event log for event sourcing. Services that are publishing events to Redis Streams
-are `things` service, `bootstrap` service, and `mqtt` adapter.
+are `things` service, `bootstrap` service and `mqtt` adapter.
 
 ### Things Service
 For every operation that has side effects (that is changing service state) `things`
@@ -321,7 +321,7 @@ event will have the following format:
 As you can see from this example, every odd field represents field name while every
 even field represents field value. This is standard event format for Redis Streams.
 If you want to extract `metadata` field from this event, you'll have to read it as
-string first, and then you can deserialize it to some structured format.
+string first and then you can deserialize it to some structured format.
 
 #### Thing update event
 Whenever thing instance is updated, `things` service will generate new `update` event.
