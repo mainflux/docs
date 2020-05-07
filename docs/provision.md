@@ -37,7 +37,7 @@ following [table][config]. Note that any unset variables will be replaced with t
 default values.
 
 
-By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it. If there is a requirement for different provision layout we can use [config](docker/configs/config.toml) file in addition to environment variables. 
+By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it. If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables. 
 
 For the purposes of running provision as an add-on in docker composition 
 environment variables seems more suitable. Environment variables are set in [.env][env].  
