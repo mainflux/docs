@@ -62,9 +62,9 @@ architecture and entities, more precisely, on Mainflux users, things and
 channels. The primary task of the twin service is to handle Mainflux digital
 twins. Mainflux digital twin consists of three parts:
 
-- general data about twin itself, i.e. **twin's metadata**,
-- history of twin's **definitions**, including current definition,
-- history of twin's **states**, including current state.
+- General data about twin itself, i.e. **twin's metadata**,
+- History of twin's **definitions**, including current definition,
+- History of twin's **states**, including current state.
 
 Before we dwell into twin's anatomy, it is important to realize that in order to
 use Mainflux twin service, you have to [provision Mainflux things and
@@ -95,7 +95,7 @@ twins and states persistance is on the roadmap.
 
 When we define our digital twin, its JSON representation might look like this:
 
-```
+```json
 {
     "owner": "john.doe@email.net",
     "id": "a838e608-1c1b-4fea-9c34-def877473a89",
@@ -194,7 +194,7 @@ types](https://tools.ietf.org/html/rfc8428#section-4.3) are supported.
 
 A JSON representation of a partial list of states might look like this:
 
-```
+```json
 {
     "total": 28,
     "offset": 10,
@@ -284,7 +284,7 @@ twin. You can omit every piece of data - every key-value pair - from the JSON.
 However, you must send at least an empty JSON body.
 
 
-```
+```json
 {
   "name": "twin_name",
   "definition": {
@@ -317,13 +317,13 @@ However, you must send at least an empty JSON body.
 
 Create request uses POST HTTP method to create twin:
 
-```
+```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" http://localhost:8191/twins -d '<twin_data>'
 ```
 
 If you do not suply the definition, the empty definition of the form
 
-```
+```json
 {
     "id": 0,
     "created": "2020-05-05T08:41:39.142Z",
@@ -335,19 +335,19 @@ will be created.
 
 ##### Update
 
-```
+```bash
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" http://localhost:8191/<twin_id> -d '<twin_data>'
 ```
 
 #### View
 
-```
+```bash
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/twins/<twin_id>
 ```
 
 #### List
 
-```
+```bash
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/twins
 ```
 
@@ -357,13 +357,13 @@ if there are less then ten twins).
 
 You can fetch twins [10-29) like this:
 
-```
+```bash
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/twins?offset=10&limit=20
 ```
 
 #### Delete
 
-```
+```bash
 curl -s -S -i -X DELETE -H "Authorization: <user_auth_token>" http://localhost:8191/twins/<twin_id>
 ```
 
@@ -371,7 +371,7 @@ curl -s -S -i -X DELETE -H "Authorization: <user_auth_token>" http://localhost:8
 
 #### List
 
-```
+```bash
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/states/<twin_id>
 ```
 
@@ -380,7 +380,7 @@ without these parameters, list requests fetches only first ten states (or less,
 if there are less then ten states).
 
 You can fetch states [10-29) like this:
-```
+```bash
 curl -s -S -i -X GET -H "Authorization: <user_auth_token>" http://localhost:8191/states/<twin_id>?offset=10&limit=20
 ```
 
@@ -394,7 +394,7 @@ In order to pick up this notifications, you have to create a Mainflux channel
 before you start the twins service and inform the twins service about the
 channel by means of the environment variable, like this:
 
-```
+```bash
 export MF_TWINS_CHANNEL_ID=f6894dfe-a7c9-4eef-a614-637ebeea5b4c
 ```
 
