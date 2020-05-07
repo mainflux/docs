@@ -34,8 +34,9 @@ pages:
   - Storage: storage.md
   - LoRa: lora.md
   - OPC-UA: opcua.md
-  - Export: export.md
-  - Agent: agent.md
+  - Edge:
+    - Export: export.md
+    - Agent: agent.md
   - Security: security.md
   - Authentication: authentication.md
   - CLI: cli.md
