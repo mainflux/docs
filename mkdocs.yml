@@ -35,6 +35,7 @@ pages:
   - LoRa: lora.md
   - OPC-UA: opcua.md
   - Edge:
+    - Edge: edge.md
     - Export: export.md
     - Agent: agent.md
   - Security: security.md
