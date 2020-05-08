@@ -1,5 +1,5 @@
-Bridging between two mainflux instances can be done with [export](https://github.com/mainflux/export) service is build to bridge between two Mainflux instances. For example we can run Mainflux on the gateway and
-we want to export the data to cloud instance of Mainflux as well.
+Bridging between two mainflux instances can be done with [export](https://github.com/mainflux/export) service is build to bridge between two Mainflux instances. 
+For example we can run Mainflux on the gateway and we want to export the data to cloud instance of Mainflux as well. Or we can just export any data from local message bus on the gateway to the cloud.
 Export service is listening to the NATS and forwards payload to the specified MQTT channel.
 
 ## Run Export service
@@ -29,7 +29,6 @@ service will pickup config file  `github.com/mainflux/export/configs/config.toml
   cert_path = "thing.crt"
   username= "53a795db-e46c-4d75-8ddc-6d2975337a4f"
   password = "e2032af3-7323-47d6-8e8d-abe9eb0a0a8f"
-  channel = "channels/ace5c9ef-54cf-4d8e-8b4c-2f1908ff2cda/messages"
   host = "tcp://142.93.118.47:18831"
   mtls = false
   priv_key_path = "thing.key"
