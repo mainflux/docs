@@ -17,7 +17,7 @@ If, for example, you are using services [Agent][agent] and [Export][exp] on a ga
 Additionally, if you enabled mTLS each service will need its own thing and certificate for access to [Mainflux][mainflux]. 
 Your setup could require any number of things and channels, this kind of setup we can call `provision layout`.
 
-Provision service provides a way of specifying this `provision layout` and creating a setup according to that layout by serving requests on `/mapping` endpoint. Provision layout is configured in [config.toml](configs/config.toml).
+Provision service provides a way of specifying this `provision layout` and creating a setup according to that layout by serving requests on `/mapping` endpoint. Provision layout is configured in [config.toml][conftoml].
 
 ## Configuration
 
