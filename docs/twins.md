@@ -21,7 +21,7 @@ knifes, etc.
 Digital twin is an abstract - and usually less detailed - digital replica of a
 real world system such as the industrial machine we have just described. It is
 used to create and store information about system's state at any given moment,
-to compare system state over a given period of time - so called diffs or
+to compare system state over a given period of time - so-called diffs or
 deltas - as well as to control agents composing the system.
 
 ### Mainflux digital twin
@@ -38,7 +38,7 @@ representation of any data agent according to your needs.
 
 Although this works well, satisfies the requirements of a wide variety of use
 cases and corresponds to the intended use of Mainlfux IoT platform, this setup
-can be insufficient in two important ways. Firstly, different things, channels
+can be insufficient in two important ways. Firstly, different things, channels,
 and their connections - i.e. Mainflux representations of different data agent
 structures - are unrelated to each other, i.e. they do not form a **meaningful
 whole** and, as a consequence, they do not represent a **single unified
@@ -104,13 +104,14 @@ data sources and consumers (data agents). Each data data agent is represented by
 means of **attribute**. Attribute consists of data agent's name, Mainflux
 channel and subtopic over which it communicates. Nota bene: each attribute is
 uniquely defined by the combination of channel and subtopic and we cannot have
-two or more attributes with a same channel and subtopic in the same definition .
+two or more attributes with the same channel and subtopic in the same
+definition.
 
-Attributes has a state persistance flag that determines whether the messages
-communicated by it's corresponding channel and subtopic trigger the creation of
-a new twin state. Twin states are persisted in the separate collection of the
-same database. Currently, twins service uses the MongoDB. InfluxDB support for
-twins and states persistance is on the roadmap.
+Attributes have a state persistence flag that determines whether the messages
+communicated by its corresponding channel and subtopic trigger the creation of a
+new twin state. Twin states are persisted in the separate collection of the same
+database. Currently, twins service uses the MongoDB. InfluxDB support for twins
+and states persistence is on the roadmap.
 
 When we define our digital twin, its JSON representation might look like this:
 
@@ -192,7 +193,7 @@ When we define our digital twin, its JSON representation might look like this:
 In the case of the upper twin, we begin with an empty definition, the one with
 the `id` **0** - we could have provided the definition immediately - and over
 the course of time, we add two more definitions, so the total number of
-revisions is **2** (revision index is zero based). We decide not to persist the
+revisions is **2** (revision index is zero-based). We decide not to persist the
 number of rotation per second in our digital twin state. We define it, though,
 because the definition and its attributes are used not only to define states of
 a complex data agent system, but also to define the semantic structure of the
@@ -282,13 +283,13 @@ payload consists of three entries.
 
 ### Authentication and authorization
 
-Twin belongs to a Mainflux user, tenant representing physical person or
+Twin belongs to a Mainflux user, tenant representing a physical person or an
 organization. User owns Mainflux things and channels as well as twins. Mainflux
 user provides authorization and authentication mechanisms to twins service. For
 more details, please see [Authentication with Mainflux keys](authentication.md).
-In practical terms, we need to create a Mainflux user in order to create digital
-twin. Every twin belongs to exactly one user. One user can have unlimited number
-of digital twins.
+In practical terms, we need to create a Mainflux user in order to create a
+digital twin. Every twin belongs to exactly one user. One user can have
+unlimited number of digital twins.
 
 ### TWIN operations
 
@@ -298,7 +299,7 @@ file](https://github.com/mainflux/mainflux/blob/master/twins/swagger.yaml).
 
 #### Create && Update
 
-Create and update request use JSON body to initialize and modify, respectively,
+Create and update requests use JSON body to initialize and modify, respectively,
 twin. You can omit every piece of data - every key-value pair - from the JSON.
 However, you must send at least an empty JSON body.
 
@@ -417,7 +418,7 @@ channel by means of the environment variable, like this:
 export MF_TWINS_CHANNEL_ID=f6894dfe-a7c9-4eef-a614-637ebeea5b4c
 ```
 
-The twins service will use the this channel to publish notifications related to
+The twins service will use this channel to publish notifications related to
 twins creation, update, retrieval and deletion. It will also publish
 notifications related to state saving into the database.
 
