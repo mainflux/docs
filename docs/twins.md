@@ -24,7 +24,7 @@ used to create and store information about system's state at any given moment,
 to compare system state over a given period of time - so called diffs or
 deltas - as well as to control agents composing the system.
 
-### What is Mainflux digital twin
+### Mainflux digital twin
 
 Any data producer or data consumer - which we refer to here collectively as data
 agent - or an interrelated system of data agents, can be represented by means of
@@ -65,6 +65,25 @@ twins. Mainflux digital twin consists of three parts:
 - General data about twin itself, i.e. **twin's metadata**,
 - History of twin's **definitions**, including current definition,
 - History of twin's **states**, including current state.
+
+### Mainflux platform and Mainflux Twins service
+
+Mainflux Twins service depends on the Mainflux IoT platform. The following
+diagram shows the place of the twins service in the overall [Mainflux
+architecture](architecture.md):
+
+![Mainflux Twins service architecture](img/twins/architecture.png)
+
+You use an HTTP client to communicate with the twins service. Every request sent
+to the twins service is authenticated by users service. Twins service handles
+CRUD requests and creates, retrieves, updates and deletes twins. The CRUD
+operations depend on the database to persist and fetch already saved twins.
+
+Twins service listens to NATS server and intercepts messages passing *via* NATS
+broker. Every Mainflux message contains information about subchannel and topic
+used to send a message. Twins service compares this info with attribute
+definitions of twins persisted in the database, fetches the corresponding twins
+and updates their respective states.
 
 Before we dwell into twin's anatomy, it is important to realize that in order to
 use Mainflux twin service, you have to [provision Mainflux things and
