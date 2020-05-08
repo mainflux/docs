@@ -31,7 +31,7 @@ mainflux-cli provision test
 This command actually creates a temporary testing user, logs it in, then creates two things and two channels on behalf of this user.
 This quickly provisions a Mainflux system with one simple testing scenario.
 
-You can read more about system provisioning in the dedicated [Provisioning](./provisioning.md) chapter
+You can read more about system provisioning in the dedicated [Provisioning](./platform-management.md) chapter
 
 Output of the command follows this pattern:
 
