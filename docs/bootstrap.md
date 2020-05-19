@@ -11,7 +11,7 @@ Mainflux platform supports bootstrapping process, but some of the preconditions 
 
 Bootstrapping procedure is the following:
 
-![Configure device](https://raw.githubusercontent.com/mainflux/docs/master/docs/img/bootstrap/1.png)
+![Configure device](img/bootstrap/1.png)
 *1) Configure device with Bootstrap service URL, an external key and external ID*
 
 > ![Provision Mainflux channels](img/bootstrap/2.png)
