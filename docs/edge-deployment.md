@@ -1,5 +1,11 @@
-## Edge deployment
+# Edge deployment
 
+Following are steps that are an example usage of Mainflux components to connect edge with cloud.
+We will start Mainflux in the cloud with additional services [Bootstrap](bootstrap) and [Provision](provision).
+Using [Bootstrap](bootstrap) and [Provision](provision) we will create configuration for use in gateway deployment.
+On the gateway we will start services [Agent](agent.md) and [Export](export.md) using previously created configuration.
+
+# Services in the cloud
 Start the Mainflux:
 
 ```bash
@@ -21,6 +27,16 @@ docker-compose -f docker/addons/provision/docker-compose.yml up
 Create user:
 ```bash
 mainflux-cli -m http://localhost:8180 users create test@email.com 12345678
+```
+
+Obtain user token:
+```bash
+mainflux-cli -m http://localhost:8180 users token test@email.com 12345678
+
+created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
+
+TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
+
 ```
 
 Provision a gateway:
@@ -61,6 +77,11 @@ curl -s -S  -X POST  http://localhost:8190/mapping -H "Authorization: $TOK" -H '
   }
 }
 ```
+
+Parameters <external_id> and <external_key> are representing the gateway. `Provision` will use them to create a bootstrap configuration that will make a relation with Mainflux entities used for connection, authentication and authorization `thing` and `channel`.
+These paramaters will be used by `Agent` service on the gateway to retrieve that information and establish a connection with the cloud.
+
+# Services on the Edge
 ## Agent
 
 Start the [NATS][nats] and [Agent][agent] service:
@@ -149,3 +170,5 @@ mainflux-mqtt   | {"level":"info","message":"Publish - client ID export-88529fb2
 [edge]: (https://raw.githubusercontent.com/mainflux/docs/master/docs/img/edge/edge.png)
 [agconf]:(https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml#L2)
 [nats]: (https://github.com/nats-io/nats.go)
+[bootstrap]: (https://github.com/mainflux/mainflux/tree/master/bootstrap)
+[provision]: (https://github.com/mainflux/mainflux/tree/master/provision)
