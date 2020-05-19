@@ -1,5 +1,5 @@
 Agent is application that is used to manage gateways that are connected to Mainflux. It provides a way to send commands to gateway and receive response via mqtt.
-There are two type of channels used for **Agent** `data` and `control`. Over the `control` we are sending commands and receiving response from commands.
+There are two types of channels used for **Agent** `data` and `control`. Over the `control` we are sending commands and receiving response from commands.
 Data collected from sensors connected to gateway are being sent over `data` channel. Agent is able to configure itself provided that [bootstrap server](./bootstrap.md) is running, it will retrieve configuration from bootstrap server provided few arguments - `external_id` and `external_key` see [bootstraping](./bootstrap.md/#bootstraping).
 
 ## Run Agent

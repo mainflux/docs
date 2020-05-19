@@ -1,8 +1,8 @@
 # Edge deployment
 
-Following are steps that are an example usage of Mainflux components to connect edge with cloud.
+The following are steps that are an example usage of Mainflux components to connect edge with cloud.
 We will start Mainflux in the cloud with additional services [Bootstrap](bootstrap) and [Provision](provision).
-Using [Bootstrap](bootstrap) and [Provision](provision) we will create configuration for use in gateway deployment.
+Using [Bootstrap](bootstrap) and [Provision](provision) we will create a configuration for use in gateway deployment.
 On the gateway we will start services [Agent](agent.md) and [Export](export.md) using previously created configuration.
 
 # Services in the cloud
@@ -79,7 +79,7 @@ curl -s -S  -X POST  http://localhost:8190/mapping -H "Authorization: $TOK" -H '
 ```
 
 Parameters <external_id> and <external_key> are representing the gateway. `Provision` will use them to create a bootstrap configuration that will make a relation with Mainflux entities used for connection, authentication and authorization `thing` and `channel`.
-These paramaters will be used by `Agent` service on the gateway to retrieve that information and establish a connection with the cloud.
+These parameters will be used by `Agent` service on the gateway to retrieve that information and establish a connection with the cloud.
 
 # Services on the Edge
 

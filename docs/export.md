@@ -2,7 +2,7 @@
 Mainflux Export service can send message from one Mainflux cloud to another via MQTT, or it can send messages from edge gateway to Mainflux Cloud.
 Export service is subscribed to local message bus and connected to MQTT broker in the cloud.  
 Messages collected on local message bus are redirected to the cloud.
-When connection is lost, messages from local bus are stored into `Redis` stream. Upon connection reestablishment `Export` service consumes messages from `Redis` stream and sends it to the Mainflux cloud.
+When connection is lost, messages from the local bus are stored into `Redis` stream. Upon connection reestablishment `Export` service consumes messages from `Redis` stream and sends it to the Mainflux cloud.
 
 
 ## Install
