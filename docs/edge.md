@@ -8,5 +8,7 @@ Services that can be used on gateway to enable data and control plane for edge:
 * [Agent][agent]
 * [Export][export]
 
-![Edge][edge]
+![Edge](img/edge/edge.png)
 
+[agent]: (https://github.com/mainflux/agent)
+[export]: (https://github.com/mainflux/export)

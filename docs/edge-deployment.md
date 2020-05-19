@@ -6,7 +6,7 @@ Start the Mainflux:
 docker-compose -f docker/docker-compose.yml up
 ```
 
-Start the Boostrap service:
+Start the Bootstrap service:
 
 ```bash
 docker-compose -f docker/addons/bootstrap/docker-compose.yml up
@@ -22,6 +22,8 @@ Create user:
 ```bash
 mainflux-cli -m http://localhost:8180 users create test@email.com 12345678
 ```
+
+Provision a gateway:
 
 ```bash
 curl -s -S  -X POST  http://localhost:8190/mapping -H "Authorization: $TOK" -H 'Content-Type: application/json'   -d '{"name":"testing",  "external_id" : "54:FG:66:DC:43", "external_key":"223334fw2" }' | jq
@@ -83,10 +85,10 @@ git clone https://github.com/mainflux/export
 make
 ```
 Edit the `configs/config.toml` setting 
-- `username` to thing from the results of provision request
-- `password` to key from the results of provision request
-- `mqtt_topic` in routes set to `channels/<channel_data_id>/messages` from results of provision
-- `nats_topic` put whatever you need, export will subscribe to `export.<nats_topic>` and forward messages to MQTT
+- `username` - thing from the results of provision request
+- `password` - key from the results of provision request
+- `mqtt_topic` - in routes set to `channels/<channel_data_id>/messages` from results of provision
+- `nats_topic` - whatever you need, export will subscribe to `export.<nats_topic>` and forward messages to MQTT
   
 ```toml
 [exp]
