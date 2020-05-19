@@ -82,6 +82,7 @@ Parameters <external_id> and <external_key> are representing the gateway. `Provi
 These paramaters will be used by `Agent` service on the gateway to retrieve that information and establish a connection with the cloud.
 
 # Services on the Edge
+
 ## Agent
 
 Start the [NATS][nats] and [Agent][agent] service:
@@ -106,10 +107,11 @@ git clone https://github.com/mainflux/export
 make
 ```
 Edit the `configs/config.toml` setting 
-- `username` - thing from the results of provision request
-- `password` - key from the results of provision request
-- `mqtt_topic` - in routes set to `channels/<channel_data_id>/messages` from results of provision
-- `nats_topic` - whatever you need, export will subscribe to `export.<nats_topic>` and forward messages to MQTT
+- `username` - thing from the results of provision request.
+- `password` - key from the results of provision request.
+- `mqtt_topic` - in routes set to `channels/<channel_data_id>/messages` from results of provision.
+- `nats_topic` - whatever you need, export will subscribe to `export.<nats_topic>` and forward messages to MQTT.
+- `host` - url of MQTT broker.
   
 ```toml
 [exp]
