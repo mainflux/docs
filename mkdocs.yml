@@ -36,8 +36,8 @@ pages:
   - OPC-UA: opcua.md
   - Edge:
     - Edge: edge.md
-    - Export: export.md
     - Agent: agent.md
+    - Export: export.md
     - Example deployment: edge-deployment.md
   - Security: security.md
   - Authentication: authentication.md
