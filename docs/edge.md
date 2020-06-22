@@ -5,10 +5,10 @@ Although most devices could be connected to the Mainflux directly using gateways
 
 Services that can be used on gateway to enable data and control plane for edge:
 
-* [Agent][agent]
-* [Export][export]
+* [Agent][agent.md]
+* [Export][export.md]
 
 ![Edge](img/edge/edge.png)
 
-[agent]: (https://github.com/mainflux/agent)
-[export]: (https://github.com/mainflux/export)
+[agent]: (https://github.com/mainflux/docs/blob/master/docs/agent.md)
+[export]: (https://github.com/mainflux/docs/blob/master/docs/export.md)
