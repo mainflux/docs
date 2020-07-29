@@ -24,9 +24,9 @@ make thing_cert KEY=<thing_key> CRT_FILE_NAME=<cert_name>
 ```
 These commands use [OpenSSL](https://www.openssl.org/) tool, so please make sure that you have it installed and set up before running these commands.
 
-    - Command `make ca` will generate a self-signed certificate that will later be used as a CA to sign other generated certificates. CA will expire in 3 years.
-    - Command `make server_cert` will generate and sign (with previously created CA) server cert, which will expire after 1000 days. This cert is used as a Mainflux server-side certificate in usual TLS flow to establish HTTPS or MQTTS connection.
-    - Command `make thing_cert` will finally generate and sign a client-side certificate and private key for the thing.
+- Command `make ca` will generate a self-signed certificate that will later be used as a CA to sign other generated certificates. CA will expire in 3 years.
+- Command `make server_cert` will generate and sign (with previously created CA) server cert, which will expire after 1000 days. This cert is used as a Mainflux server-side certificate in usual TLS flow to establish HTTPS or MQTTS connection.
+- Command `make thing_cert` will finally generate and sign a client-side certificate and private key for the thing.
 
 In this example `<thing_key>` represents key of the thing and `<cert_name>` represents the name of the certificate and key file which will be saved in `docker/ssl/certs` directory. Generated Certificate will expire after 2 years. The key must be stored in the x.509 certificate `CN` field.  This script is created for testing purposes and is not meant to be used in production. We strongly recommend avoiding self-signed certificates and using a certificate management tool such as [Vault](https://www.vaultproject.io/) for the production.
 
