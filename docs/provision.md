@@ -24,7 +24,7 @@ Provision service provides a way of specifying this `provision layout` and creat
 The service is configured using the environment variables presented in the following [table][config]. Note that any unset variables will be replaced with their default values.
 
 
-By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it. If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables. 
+By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it as this is typical setup required by [Agent](agent.md). If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables. 
 
 For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in [.env][env].  
 
@@ -142,6 +142,60 @@ Response contains created things, channels and certificates if any:
   }
 }
 ```
+
+## Example
+
+Deploy Mainflux UI docker composition as it contains all the required services for provisioning to work ( `certs`, `bootstrap` and Mainflux core)
+
+```
+git clone https://github.com/mainflux/ui
+cd ui
+docker-compose -f docker/docker-compose.yml up
+```
+Create user and obtain access token
+
+```bash
+mainflux-cli -m https://mainflux.com users create john.doe@email.com 12345678
+
+# Retrieve token
+mainflux-cli -m https://mainflux.com users token john.doe@email.com 12345678
+
+created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
+
+```
+Put a value of token into enviroment variable
+
+```
+TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
+```
+
+Make a call to provision endpoint
+
+```
+curl -s -S  -X POST  http://mainflux.com:8190/mapping -H "Authorization: $TOK" -H 'Content-Type: application/json'   -d '{"name":"edge-gw",  "external_id" : "gateway", "external_key":"external_key" }'
+```
+
+To check the results you can make a call to bootstrap endpoint
+
+```
+curl -s -S -X GET http://mainflux.com:8202/things/bootstrap/gateway -H "Authorization: external_key" -H 'Content-Type: application/json'
+```
+
+Or you can start `Agent` with 
+
+```bash
+git clone https://github.com/mainflux/agent
+cd agent
+make
+MF_AGENT_BOOTSTRAP_ID=gateway MF_AGENT_BOOTSTRAP_KEY=external_key MF_AGENT_BOOTSTRAP_URL=http://mainflux.ccom:8202/things/bootstrap build/mainflux-agent
+```
+
+Agent will retrieve connections parameters and connect to Mainflux cloud.
+
+
+
+
+
 
 [mainflux]: https://github.com/mainflux/mainflux
 [bootstrap]: https://github.com/mainflux/mainflux/tree/master/bootstrap
