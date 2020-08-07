@@ -30,6 +30,7 @@ pages:
   - Provision:
       - Platform management: platform-management.md
       - Provision Service: provision.md
+      - Certs Service: certs.md
   - Messaging: messaging.md
   - Storage: storage.md
   - LoRa: lora.md
