@@ -6,6 +6,7 @@ Agent service has following features:
 * Remote execution of commands
 * Remote terminal, remote session to `bash` managed by `Agent`
 * Heartbeat - listening to NATS topic `heartbeat.>` it can remotely provide info on running services, if services are publishing heartbeat ( like [Export](export.md))
+* Proxying commands to other gateway services
 * Edgex SMA - remotely making requests to EdgeX endpoints and fetching results, if EdgeX is deployed.
 
 
@@ -113,6 +114,11 @@ You can get the list of services by sending following mqtt message
 mosquitto_pub -d -u $TH -P $KEY  -t channels/$CH/messages/req -h some-domain-name -p 1883  -m '[{"bn":"1:", "n":"service", "vs":"view"}]'
 ```
 Response can be observed on `channels/$CH/messages/res/#`
+
+## Proxying commands
+
+Agent is subscribed to `channels/<control_channel>/messages/services/#` MQTT topic. Messages published to `channels/<control_channel>/messages/services/<service_name>` will be published to NATS `services.<service_name>` so that service that is subscribed to that NATS subject can be controlled by these messages.
+
 
 ## EdgeX 
 

@@ -37,12 +37,71 @@ Bootstrap configuration can be fetched with [Agent][agent]. For channel's metada
 
 Example of provision layout below
 ```toml
+[bootstrap]
+  [bootstrap.content]
+    [bootstrap.content.agent.edgex]
+      url = "http://localhost:48090/api/v1/"
+
+    [bootstrap.content.agent.log]
+      level = "info"
+
+    [bootstrap.content.agent.mqtt]
+      mtls = false
+      qos = 0
+      retain = false
+      skip_tls_ver = true
+      url = "localhost:1883"
+
+    [bootstrap.content.agent.server]
+      nats_url = "localhost:4222"
+      port = "9000"
+  
+    [bootstrap.content.agent.heartbeat]
+      interval = "30s"
+  
+    [bootstrap.content.agent.terminal]
+      session_timeout = "30s"
+    
+    [bootstrap.content.export.exp]
+      log_level = "debug"
+      nats = "nats://localhost:4222"
+      port = "8172"
+      cache_url = "localhost:6379"
+      cache_pass = ""
+      cache_db = "0"
+
+    [bootstrap.content.export.mqtt]
+      ca_path = "ca.crt"
+      cert_path = "thing.crt"
+      channel = ""
+      host = "tcp://localhost:1883"
+      mtls = false
+      password = ""
+      priv_key_path = "thing.key"
+      qos = 0
+      retain = false
+      skip_tls_ver = false
+      username = ""
+
+    [[bootstrap.content.export.routes]]
+      mqtt_topic = ""
+      nats_topic = "channels"
+      subtopic = ""
+      type = "mfx"
+      workers = 10
+    
+    [[bootstrap.content.export.routes]]
+      mqtt_topic = ""
+      nats_topic = "export"
+      subtopic = ""
+      type = "default"
+      workers = 10
+
 [[things]]
   name = "thing"
 
   [things.metadata]
     external_id = "xxxxxx"
-
 
 [[channels]]
   name = "control-channel"
@@ -60,8 +119,11 @@ Example of provision layout below
   name = "export-channel"
 
   [channels.metadata]
-    type = "data"
+    type = "export"
+
 ```
+
+`[bootstrap.content]` will be marshalled and saved into `content` field in bootstrap configs when request to `/mappings` is made, `content` field from bootstrap config is used to create `Agent` and `Export` configuration files upon `Agent` fetching bootstrap configuration.
 
 ## Authentication
 In order to create necessary entities provision service needs to authenticate against Mainflux. 
@@ -163,7 +225,7 @@ mainflux-cli -m https://mainflux.com users token john.doe@email.com 12345678
 created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
 
 ```
-Put a value of token into enviroment variable
+Put a value of token into environment variable
 
 ```
 TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
@@ -181,7 +243,7 @@ To check the results you can make a call to bootstrap endpoint
 curl -s -S -X GET http://mainflux.com:8202/things/bootstrap/gateway -H "Authorization: external_key" -H 'Content-Type: application/json'
 ```
 
-Or you can start `Agent` with 
+Or you can start `Agent` with:
 
 ```bash
 git clone https://github.com/mainflux/agent
