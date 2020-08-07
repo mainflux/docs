@@ -2,7 +2,7 @@
 Mainflux Export service can send message from one Mainflux cloud to another via MQTT, or it can send messages from edge gateway to Mainflux Cloud.
 Export service is subscribed to local message bus and connected to MQTT broker in the cloud.  
 Messages collected on local message bus are redirected to the cloud.
-When connection is lost, if QoS2 is used messages from the local bus are stored into file or in memory to be resent upon reconnection.
+When connection is lost, if QoS2 is used, messages from the local bus are stored into file or in memory to be resent upon reconnection.
 Additonaly `Export` service publishes liveliness status to `Agent` via NATS subject `heartbeat.export.service`
 
 
@@ -105,7 +105,13 @@ To establish connection to MQTT broker following settings are needed:
 - `password` - Mainflux <thing_key>
 - `url` - url of MQTT broker
 
-Additionally, you will need MQTT client certificates if you enable mTLS. To obtain certificates `ca.crt`, `thing.crt` and key `thing.key` follow instructions [here](https://mainflux.readthedocs.io/en/latest/authentication/#mutual-tls-authentication-with-x509-certificates).
+Additionally, you will need MQTT client certificates if you enable mTLS. To obtain certificates `ca.crt`, `thing.crt` and key `thing.key` follow instructions [here](https://mainflux.readthedocs.io/en/latest/authentication/#mutual-tls-authentication-with-x509-certificates) or [here](certs.md).
+
+### MTLS
+
+To setup `MTLS` connection `Export` service requires client certificate and `mtls` in config or `MF_EXPORT_MQTT_MTLS` must be set to `true`. 
+Client certificate can be provided in a file, `client_cert_path` and `client_cert_key_path` are used for specifying path to certificate files.
+If MTLS is used and no certificate file paths are specified then `Export` will look in `client_cert` and `client_cert_key` of config file expecting certificate content stored as string.
 
 ### Routes 
 
