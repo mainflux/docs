@@ -74,31 +74,70 @@ helm upgrade mainflux -n mf --set ingress.hostname='example.com' --set users.ima
 
 The following table lists the configurable parameters and their default values.
 
-| Parameter                              | Description                                                                | Default        |
-| -------------------------------------- | -------------------------------------------------------------------------- | -------------- |
-| `defaults.logLevel`                    | Log level                                                                  | `debug`        |
-| `defaults.image.pullPolicy`            | Docker Image Pull Policy                                                   | `IfNotPresent` |
-| `defaults.image.repository`            | Docker Image Repository                                                    | `mainflux`     |
-| `defaults.image.tag`                   | Docker Image Tag                                                           | `0.10.0`       |
-| `nginx_internal.mtls.tls`              | TLS secret which contains the server cert/key                              | `''`           |
-| `nginx_internal.mtls.intermediate_crt` | Generic secret which contains the intermediate cert used to verify clients | `''`           |
-| `ingress.enabled`                      | Should the Nginx Ingress be created                                        | `true`         |
-| `ingress.hostname`                     | Hostname for the Nginx Ingress                                             | `''`           |
-| `ingress.tls.hostname`                 | Hostname of the Nginx Ingress certificate                                  | `''`           |
-| `ingress.tls.secret`                   | TLS secret for the Nginx Ingress                                           | `''`           |
-| `mqtt.broker.limits.reqRam`            | VerneMQ memory resource request                                            | `512Mi`        |
-| `mqtt.broker.limits.maxRam`            | VerneMQ memory resource limit                                              | `4Gi`          |
+| Parameter                            | Description                                                                | Default      |
+| ------------------------------------ | -------------------------------------------------------------------------- | ------------ |
+| defaults.logLevel                    | Log level                                                                  | debug        |
+| defaults.image.pullPolicy            | Docker Image Pull Policy                                                   | IfNotPresent |
+| defaults.image.repository            | Docker Image Repository                                                    | mainflux     |
+| defaults.image.tag                   | Docker Image Tag                                                           | 0.11.0       |
+| defaults.replicaCount                | Replicas of MQTT adapter, Things, Envoy and Authn                          | 3            |
+| nginx_internal.mtls.tls              | TLS secret which contains the server cert/key                              |              |
+| nginx_internal.mtls.intermediate_crt | Generic secret which contains the intermediate cert used to verify clients |              |
+| ingress.enabled                      | Should the Nginx Ingress be created                                        | true         |
+| ingress.hostname                     | Hostname for the Nginx Ingress                                             |              |
+| ingress.tls.hostname                 | Hostname of the Nginx Ingress certificate                                  |              |
+| ingress.tls.secret                   | TLS secret for the Nginx Ingress                                           |              |
+| nats.maxPayload                      | Maximum payload size in bytes that the NATS server will accept             | 268435456    |
+| nats.replicaCount                    | NATS replicas                                                              | 3            |
+| mqtt.broker.persistentVolume.size    | data Persistent Volume size                                                | 5Gi          |
+| influxdb.enabled                     | Enable influxdb reader & writer                                            | false        |
+| bootstrap.enabled                    | Enable bootstrap service                                                   | false        |
+| adapter_opcua.enabled                | Enable OPC-UA Adapter                                                      | false        |
+| twins.enabled                        | Enable twins service                                                       | false        |
 
-All Mainflux services can have their `logLevel`, `image.pullPolicy`, `image.repository` and `image.tag` overridden. The names of the services are:
+All Mainflux services (both core and add-ons) can have their `logLevel`, `image.pullPolicy`, `image.repository` and `image.tag` overridden. 
+
+Mainflux Core is a minimalistic set of required Mainflux services. They are all installed by default:
 
 - adapter_coap
 - adapter_http
-- mqtt.broker
-- mqtt.proxy
+- adapter_mqtt
 - adapter_ws
 - things
 - ui
 - users
 - authn
-- influxdb_writer
-- infuxdb_reader
+
+Mainflux Add-ons are optional services that are disabled by default. Find in Configuration table paramaters for enabling them, i.e. to enable influxdb reader & writer you shoud run `helm install` with `--set influxdb=true`.
+List of add-ons services in charts:
+
+- bootstrap
+- influxdb.writer
+- influxdb.reader
+- adapter_opcua
+- twins
+
+By default scale of MQTT adapter, Things, Envoy, Authn and NATS will be set to 3. It's recommended that you set this values to number of your nodes in Kubernetes cluster, i.e. `--set defaults.replicaCount=3 --set nats.replicaCount=3`
+
+### Additional steps to configure Ingress Controller
+
+To send MQTT messages to your host on ports `1883` and `8883` some additional steps are required in configuring NGINX Ingress Controler.
+
+NGINX Ingress Controller uses ConfigMap to expose TCP services. That ConfigMap is included in helm chart in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L141) file assuming that location of ConfigMap should be `ingress-nginx/tcp-services`. If Ingress Controller expects it in some other namespace or with other name you should edit metadata in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L147). This location was set with `--tcp-services-configmap` flag and you can check it in deployment of Ingress Controller or add it there in [args section for nginx-ingress-controller](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) if it's not already specified. This is explained in [NGINX Ingress documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/)
+
+Also, those two ports need to be exposed in the Service defined for the Ingress. You can do that with command that edit your service:
+
+```kubectl edit svc -n ingress-nginx nginx-ingress-ingress-nginx-controller```
+
+and add in spec->ports:
+
+```
+  - name: mqtt
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
+  - name: mqtts
+    port: 8883
+    protocol: TCP
+    targetPort: 8883
+```
