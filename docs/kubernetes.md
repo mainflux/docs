@@ -140,4 +140,51 @@ and add in spec->ports:
     port: 8883
     protocol: TCP
     targetPort: 8883
+
+# TLS & mTLS
+
+For testing purposes you can generate certificates as explained in detail in (authentication)[/authentication] chapter of this document. So, you can use (this script)[https://github.com/mainflux/mainflux/blob/master/docker/ssl/Makefile] and after replacing all `localhost` with your hostname, run:
+
+```
+make ca
+make server_cert
+make thing_cert KEY=<thing_key>
+```
+
+you should get in `certs` folder these certificates that we will use for setting up TLS and mTLS:
+
+```
+ca.crt
+ca.key
+ca.srl
+mainflux-server.crt
+mainflux-server.key
+thing.crt
+thing.key
+```
+
+Create kubernetes secrets using those certificates with running commands from (secrets script)[https://github.com/mainflux/devops/blob/master/charts/mainflux/secrets/secrets.sh]. In this example secrets are created in `mf` namespace:
+
+```
+kubectl -n mf create secret tls mainflux-server \
+    --key mainflux-server.key \
+    --cert mainflux-server.crt
+
+kubectl -n mf create secret generic ca \
+    --from-file=ca.crt
+```
+
+ You can check if they are succesfully created:
+ ```
+ kubectl get secrets -n mf
+ ```
+
+ And now set ingress.hostname, ingress.tls.hostname to your hostname and ingress.tls.secret to `mainflux-server` and after helm update you have secured ingress with TLS certificate.
+
+For mTLS you need to set `nginx_internal.mtls.tls="mainflux-server"` and `nginx_internal.mtls.intermediate_crt="ca"`.
+
+Now you can test sending mqtt message with this parameters:
+
+```
+mosquitto_pub -d -L mqtts://<thing_id>:<thing_key>@example.com:8883/channels/<channel_id>/messages  --cert  thing.crt --key thing.key --cafile ca.crt  -m "test-message"
 ```
