@@ -26,7 +26,7 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
 ### Nginx Ingress Conntroller
-The goal of Ingress controller is the assembly of a configuration file (nginx.conf). The main implication of this requirement is the need to reload NGINX after any change in the configuration file. Follow [this instructions](https://kubernetes.github.io/ingress-nginx/deploy/) to install it.
+Follow [this instructions](https://kubernetes.github.io/ingress-nginx/deploy/) to install it.
 
 ## Deploying Mainflux
 Get Helm charts from [Mainflux DevOps GitHub repository](https://github.com/mainflux/devops):
@@ -51,11 +51,6 @@ helm install mainflux . -n mf
 ```
 
 Mainflux is now deployed on your Kubernetes.
-
-If Nginx Ingress Controller isn't already installed, this would install it in `mf` namespace:
-```bash
-helm install nginx-mainflux stable/nginx-ingress -n mf
-```
 
 ### Customizing installation
 You can override default values while installing with `--set` option. For example, if you want to specify ingress hostname and pull `latest` tag of `users` image:
