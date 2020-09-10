@@ -9,15 +9,15 @@ Mainflux can be easily deployed on Kubernetes platform by using Helm Chart from 
 
 ### Kubernetes
 Kubernetes is an open source container orchestration engine for automating deployment, scaling, and management of containerised applications.
-Install it locally or have access to a cluster. Follow [this instructions](https://kubernetes.io/docs/setup/) if you need more information. 
+Install it locally or have access to a cluster. Follow [these instructions](https://kubernetes.io/docs/setup/) if you need more information. 
 
 ### kubectl
-Kubectl is official Kubernetes command line client. Follow [this instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) to install it.
+Kubectl is official Kubernetes command line client. Follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) to install it.
 
-Regarding the cluster control with `kubectl`, default config `.yaml` file should be `~/.kube/config`, so if you have another one (for example one downloaded from DO), it should be renamed.
+Regarding the cluster control with `kubectl`, default config `.yaml` file should be `~/.kube/config`.
 
 ### Helm v3
-Helm is the package manager for Kubernetes. Follow [this instructions](https://helm.sh/docs/intro/install/) to install it.
+Helm is the package manager for Kubernetes. Follow [these instructions](https://helm.sh/docs/intro/install/) to install it.
 
 ### Stable Helm repository
 Add a stable chart repository:
@@ -26,7 +26,7 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
 ### Nginx Ingress Conntroller
-Follow [this instructions](https://kubernetes.github.io/ingress-nginx/deploy/) to install it.
+Follow [these instructions](https://kubernetes.github.io/ingress-nginx/deploy/) to install it.
 
 ## Deploying Mainflux
 Get Helm charts from [Mainflux DevOps GitHub repository](https://github.com/mainflux/devops):
