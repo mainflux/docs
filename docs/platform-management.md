@@ -116,7 +116,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_tok
 You can specify `name` and/or `metadata` parameters in order to fetch specific group of things. When specifying metadata you can specify just a part of the metadata JSON you want to match.
 
 ```bash
-curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata={"serial":"123456"}
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_token>" https://localhost/things?offset=0&limit=5&metadata="\{\"serial\":\"123456\"\}"
 ```
 
 If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
