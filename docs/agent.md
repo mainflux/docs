@@ -117,7 +117,17 @@ Response can be observed on `channels/$CH/messages/res/#`
 
 ## Proxying commands
 
-Agent is subscribed to `channels/<control_channel>/messages/services/#` MQTT topic. Messages published to `channels/<control_channel>/messages/services/<service_name>` will be published to NATS `services.<service_name>` so that service that is subscribed to that NATS subject can be controlled by these messages.
+You can send commands to other services that are subscribed on the same edge Nats server as Agent.
+
+Service commands are being sent via MQTT to topic:
+
+`channels/<control_channel_id>/messages/services/<service_name>/<subtopic>`
+  
+when messages is received Agent forwards them to Nats on subject:
+
+`commands.<service_name>.<subtopic>`
+
+Payload is up to the application and service itself.
 
 
 ## EdgeX 
