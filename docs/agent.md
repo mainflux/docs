@@ -123,7 +123,7 @@ Service commands are being sent via MQTT to topic:
 
 `channels/<control_channel_id>/messages/services/<service_name>/<subtopic>`
   
-when messages is received Agent forwards them to Nats on subject:
+when messages is received Agent forwards them to NATS on subject:
 
 `commands.<service_name>.<subtopic>`
 
