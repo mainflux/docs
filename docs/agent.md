@@ -117,7 +117,7 @@ Response can be observed on `channels/$CH/messages/res/#`
 
 ## Proxying commands
 
-You can send commands to other services that are subscribed on the same edge Nats server as Agent.
+You can send commands to services running on the same edge gateway as Agent if they are subscribed on same NATS server and correct subject.
 
 Service commands are being sent via MQTT to topic:
 
