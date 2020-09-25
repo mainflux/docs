@@ -40,7 +40,7 @@ to every command.
 CoAP adapter implements CoAP protocol using underlying UDP and according to [RFC 7252](https://tools.ietf.org/html/rfc7252). To send and receive messages over CoAP, you can use [Copper](https://github.com/mkovatsc/Copper) CoAP user-agent. To set the add-on, please follow the installation instructions provided [here](https://github.com/mkovatsc/Copper#how-to-integrate-the-copper-sources-into-firefox). Once the Mozilla Firefox and Copper are ready and CoAP adapter is running locally on the default port (5683), you can navigate to the appropriate URL and start using CoAP. The URL should look like this:
 
 ```
-coap://localhost/channels/<channel_id>/messages?authorization=<thing_auth_key>
+coap://localhost/channels/<channel_id>/messages?auth=<thing_auth_key>
 ```
 
 To send a message, use `POST` request.
