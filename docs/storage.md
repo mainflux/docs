@@ -75,7 +75,7 @@ Readers provide an implementation of various `message readers`.
 Message readers are services that consume normalized (in `SenML` format) Mainflux messages from data storage and opens HTTP API for message consumption.
 Installing corresponding writer before reader is implied.
 
-Each of the Reader services exposes the same [HTTP API](https://github.com/mainflux/mainflux/blob/master/readers/swagger.yml) for fetching messages on its default port.
+Each of the Reader services exposes the same [HTTP API](https://github.com/mainflux/mainflux/blob/master/readers/openapi.yml) for fetching messages on its default port.
 
 To read sent messages on channel with id `channel_id` you should send `GET` request to `/channels/<channel_id>/messages` with thing access token in `Authorization` header. That thing must be connected to  channel with `channel_id`
 

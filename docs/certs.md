@@ -55,3 +55,5 @@ In this mode certificates can also be revoked:
 ```bash
 curl -s -S -X DELETE http://localhost:8204/certs/revoke -H "Authorization: $TOK" -H 'Content-Type: application/json'   -d '{"thing_id":"c30b8842-507c-4bcd-973c-74008cef3be5"}'
 ```
+
+For more information about the Certification service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/certs/openapi.yml).
