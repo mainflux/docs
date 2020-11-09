@@ -197,7 +197,7 @@ Twin belongs to a Mainflux user, tenant representing a physical person or an org
 
 ### TWIN operations
 
-For the full and up to date Mainflux twins service HTTP API please refer to the [twins service swagger file](https://github.com/mainflux/mainflux/blob/master/twins/swagger.yaml).
+For the full and up to date Mainflux twins service HTTP API please refer to the [twins service OpenAPI file](https://github.com/mainflux/mainflux/blob/master/twins/openapi.yml).
 
 #### Create && Update
 
