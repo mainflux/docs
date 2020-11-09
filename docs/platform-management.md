@@ -27,6 +27,8 @@ Response should look like this:
 }
 ```
 
+For more information about the Users service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/users/openapi.yml).
+
 ## System provisioning
 
 Before proceeding, make sure that you have created a new account and obtained an authorization key.
@@ -311,3 +313,5 @@ If you want to disconnect your thing from the channel, send following request:
 ```bash
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>/things/<thing_id>
 ```
+
+For more information about the Things service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/things/openapi.yml).

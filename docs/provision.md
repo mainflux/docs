@@ -270,3 +270,5 @@ Agent will retrieve connections parameters and connect to Mainflux cloud.
 [authn]: https://github.com/mainflux/mainflux/blob/master/authn/README.md
 [exp]: https://github.com/mainflux/export
 [cli]: https://github.com/mainflux/mainflux/tree/master/cli
+
+For more information about the Provision service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/provision/openapi.yml).

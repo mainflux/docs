@@ -13,6 +13,8 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Authorization: <thing
 Note that if you're going to use senml message format, you should always send
 messages as an array.
 
+For more information about the HTTP messaging service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/http/openapi.yml).
+
 ## MQTT
 
 To send and receive messages over MQTT you could use [Mosquitto tools](https://mosquitto.org),

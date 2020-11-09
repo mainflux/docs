@@ -54,3 +54,4 @@ mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<channel_id>/messages -h 
 ```
 mosquitto_sub -u <thing_id> -P <thing_key> --cafile docker/ssl/certs/ca.crt --cert docker/ssl/certs/<thing_cert_name>.crt --key docker/ssl/certs/<thing_cert_key>.key -t channels/<channel_id>/messages -h localhost -p 8883
 ```
+
