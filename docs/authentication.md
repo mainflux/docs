@@ -1,5 +1,27 @@
+## User authentication
+For user authentication Mainflux uses Authentication keys.
+There are three types of authentication keys:
+
+- User key - keys issued to the user upon login request
+- API key - keys issued upon the user request
+- Recovery key - password recovery key
+
+Authentication keys are represented and distributed by the corresponding [JWT](jwt.io).
+User keys are issued when user logs in. Each user request (other than registration and login) contains user key that is used to authenticate the user.
+
+API keys are similar to the User keys. The main difference is that API keys have configurable expiration time. If no time is set, the key will never expire. API keys are the only key type that _can be revoked_. This also means that, despite being used as a JWT, it requires a query to the database to validate the API key. The user with API key can perform all the same actions as the user with login key (can act on behalf of the user for Thing, Channel, or user profile management), *except issuing new API keys*. 
+
+Recovery key is the password recovery key. It's short-lived token used for password recovery process.
+
+The following actions are supported:
+
+- create (all key types)
+- verify (all key types)
+- obtain (API keys only; secret is never obtained)
+- revoke (API keys only)
+
 ## Authentication with Mainflux keys
-By default, Mainflux uses Mainflux keys for authentication. The Мainflux key is a secret key that's generated at the Thing creation. In order to authenticate, the Thing needs to send its key with the message. The way the key is passed depends on the protocol used to send a message and differs from adapter to adapter. For more details on how this key is passed around, please check out [messaging section](https://mainflux.readthedocs.io/en/latest/messaging).
+By default, Mainflux uses Mainflux Thing keys for authentication. The Thing key is a secret key that's generated at the Thing creation. In order to authenticate, the Thing needs to send its key with the message. The way the key is passed depends on the protocol used to send a message and differs from adapter to adapter. For more details on how this key is passed around, please check out [messaging section](https://mainflux.readthedocs.io/en/latest/messaging).
 This is the default Mainflux authentication mechanism and this method is used if the composition is started using the following command:
 
 ```bash
