@@ -40,11 +40,24 @@ Mutual authentication includes client-side certificates. Certificates can be gen
 
 ```bash
 cd docker/ssl
-make ca
-make server_cert
-make thing_cert KEY=<thing_key> CRT_FILE_NAME=<cert_name>
+make ca CN=<common_name> O=<organization> OU=<organizational_unit> emailAddress=<email_address>
+make server_cert CN=<common_name> O=<organization> OU=<organizational_unit> emailAddress=<email_address>
+make thing_cert THING_KEY=<thing_key> CRT_FILE_NAME=<cert_name> O=<organization> OU=<organizational_unit> emailAddress=<email_address>
 ```
-These commands use [OpenSSL](https://www.openssl.org/) tool, so please make sure that you have it installed and set up before running these commands.
+
+These commands use [OpenSSL](https://www.openssl.org/) tool, so please make sure that you have it installed and set up before running these commands. The default values for Makefile variables are
+
+```
+CRT_LOCATION = certs
+THING_KEY = d7cc2964-a48b-4a6e-871a-08da28e7883d
+O = Mainflux
+OU = mainflux
+EA = info@mainflux.com
+CN = localhost
+CRT_FILE_NAME = thing
+```
+
+Normally, in order to get things running, you will need to specify only `THING_KEY`. The other variables are not mandatory and the termination should work with the default values.
 
 - Command `make ca` will generate a self-signed certificate that will later be used as a CA to sign other generated certificates. CA will expire in 3 years.
 - Command `make server_cert` will generate and sign (with previously created CA) server cert, which will expire after 1000 days. This cert is used as a Mainflux server-side certificate in usual TLS flow to establish HTTPS or MQTTS connection.
