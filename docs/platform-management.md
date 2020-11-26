@@ -1,8 +1,8 @@
 Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things.
 
-## Users management
+## Users Management
 
-### Account creation
+### Account Creation
 
 Use the Mainflux API to create user account:
 
@@ -12,7 +12,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: applica
 
 Note that when using official `docker-compose`, all services are behind `nginx` proxy and all traffic is `TLS` encrypted.
 
-### Obtaining an authorization key
+### Obtaining an Authorization Key
 
 In order for this user to be able to authenticate to the system, you will have to create an authorization token for him:
 
@@ -29,11 +29,11 @@ Response should look like this:
 
 For more information about the Users service API, please check out the [API documentation](https://github.com/mainflux/mainflux/blob/master/users/openapi.yml).
 
-## System provisioning
+## System Provisioning
 
 Before proceeding, make sure that you have created a new account and obtained an authorization key.
 
-### Provisioning things
+### Provisioning Things
 
 > This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint currently found at /things/bulk.
 
@@ -53,7 +53,7 @@ Date: Tue, 10 Apr 2018 10:02:59 GMT
 Content-Length: 0
 ```
 
-### Bulk provisioning things
+### Bulk Provisioning Things
 
 Multiple things can be created by executing a `POST /things/bulk` request with a JSON payload.  The payload should contain a JSON array of the things to be created.  If there is an error any of the things, none of the things will be created.
 
@@ -74,7 +74,7 @@ access-control-expose-headers: Location
 {"things":[{"id":"8909adbf-312f-41eb-8cfc-ccc8c4e3655e","name":"weio","key":"4ef103cc-964a-41b5-b75b-b7415c3a3619"},{"id":"2fcd2349-38f7-4b5c-8a29-9607b2ca8ff5","name":"bob","key":"ff0d1490-355c-4dcf-b322-a4c536c8c3bf"}]}
 ```
 
-### Retrieving provisioned things
+### Retrieving Provisioned Things
 
 In order to retrieve data of provisioned things that is written in database, you can send following request:
 
@@ -123,7 +123,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_tok
 
 If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
-### Removing things
+### Removing Things
 
 In order to remove you own thing you can send following request:
 
@@ -131,7 +131,7 @@ In order to remove you own thing you can send following request:
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/things/<thing_id>
 ```
 
-### Provisioning channels
+### Provisioning Channels
 
 > This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint currently found at /channels/bulk.
 
@@ -151,7 +151,7 @@ Date: Tue, 10 Apr 2018 11:30:07 GMT
 Content-Length: 0
 ```
 
-### Bulk provisioning channels
+### Bulk Provisioning Channels
 
 Multiple channels can be created by executing a `POST /things/bulk` request with a JSON payload.  The payload should contain a JSON array of the channels to be created.  If there is an error any of the channels, none of the channels will be created.
 
@@ -172,7 +172,7 @@ access-control-expose-headers: Location
 {"channels":[{"id":"5a21bbcb-4c9a-4bb4-af31-9982d00f7a6e","name":"joe"},{"id":"d74b119b-2eea-4285-a999-9f747869bb45","name":"betty"}]}
 ```
 
-### Retrieving provisioned channels
+### Retrieving Provisioned Channels
 
 To retreve provisioned channels you should send request to `/channels` with authorization token in `Authorization` header:
 
@@ -209,7 +209,7 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_tok
 
 If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
-### Removing channels
+### Removing Channels
 
 In order to remove specific channel you should send following request:
 
@@ -217,7 +217,7 @@ In order to remove specific channel you should send following request:
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H "Authorization: <user_auth_token>" https://localhost/channels/<channel_id>
 ```
 
-## Access control
+## Access Control
 
 Channel can be observed as a communication group of things. Only things that are connected to the channel can send and receive messages from other things in this channel. 
 Things that are not connected to this channel are not allowed to communicate over it.

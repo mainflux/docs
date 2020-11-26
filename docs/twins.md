@@ -1,14 +1,14 @@
-## Twins service
+## Twins Service
 *Mainflux twins service is built on top of the Mainflux platform. In order to fully understand what follows, be sure to get acquainted with [overall Mainflux architecture](architecture.md).*
 
-### What is digital twin
+### What is Digital Twin
 **Twin** refers to a **digital representation** of a **real world data system** consisting of possibly multiple data sources/producers and/or destinations/consumers (data agents).
 
 For example, an industrial machine can use multiple protocols such as MQTT, OPC-UA, a regularly updated machine hosted CSV file etc. to send measurement data - such as flowrate, material temperature, etc. - and state metadata - such as engine and chassis temperature, engine rotations per seconds, identity of the current human operator, etc. - as well as to receive control, i.e. actuation messages - such as, turn on/off light, increment/decrement borer speed, change blades, etc.
 
 Digital twin is an abstract - and usually less detailed - digital replica of a real world system such as the industrial machine we have just described. It is used to create and store information about system's state at any given moment, to compare system state over a given period of time - so-called diffs or deltas - as well as to control agents composing the system.
 
-### Mainflux digital twin
+### Mainflux Digital Twin
 Any data producer or data consumer - which we refer to here collectively as data agent - or an interrelated system of data agents, can be represented by means of possibly multiple [Mainflux things, channels and subtopics](architecture.md). For example, an OPC-UA server can be represented as a Mainflux thing and its nodes can be represented as multiple Mainflux channels or multiple subtopics of a single Mainflux channel. What is more, you can invert the representation: you can represent server as a channel and node as things. Mainflux platform is meant to empower you with the freedom of expression so you can make a digital representation of any data agent according to your needs.
 
 Although this works well, satisfies the requirements of a wide variety of use cases and corresponds to the intended use of Mainlfux IoT platform, this setup can be insufficient in two important ways. Firstly, different things, channels, and their connections - i.e. Mainflux representations of different data agent structures - are unrelated to each other, i.e. they do not form a **meaningful whole** and, as a consequence, they do not represent a **single unified system**. Secondly, the **semantic** aspect, i.e. the **meaning** of different things and channels is not transparent and defined by the sole use of Mainflux platform entities (channels and things).
@@ -21,7 +21,7 @@ To overcome these problems, Mainflux comes with a **digital twin service**. The 
 - History of twin's **definitions**, including current definition,
 - History of twin's **states**, including current state.
 
-### Mainflux platform and Mainflux Twins service
+### Mainflux Platform and Mainflux Twins Service
 Mainflux Twins service depends on the Mainflux IoT platform. The following diagram shows the place of the twins service in the overall [Mainflux architecture](architecture.md):
 
 ![Mainflux Twins service architecture](img/twins/architecture.png)
@@ -32,7 +32,7 @@ Twins service listens to NATS server and intercepts messages passing *via* NATS 
 
 Before we dwell into twin's anatomy, it is important to realize that in order to use Mainflux twin service, you have to [provision Mainflux things and channels](provision.md) and you have to connect things and channels beforehand. As you go, you can modify your things, channels and connections and you can modify your digital twin to reflect these modifications, but you have to have at least a minimal setup in order to use the twin service.
 
-### Twin's anatomy
+### Twin's Anatomy
 Twin's **general information** stores twin's owner email - owner is represented by Mainflux user -, twin's ID (unique) and name (not necessarily unique), twin's creation and update dates as well as twin's revision number. The latter refers to the sequential number of twin's definition.
 
 The twin's **definition** is meant to be a semantic representation of system's data sources and consumers (data agents). Each data data agent is represented by means of **attribute**. Attribute consists of data agent's name, Mainflux channel and subtopic over which it communicates. Nota bene: each attribute is uniquely defined by the combination of channel and subtopic and we cannot have two or more attributes with the same channel and subtopic in the same definition.
@@ -186,13 +186,13 @@ A JSON representation of a partial list of states might look like this:
 
 As you can see, the first two states correspond to the definition **1** and have only two attributes in the payload. The rest of the states is based on the definition **2**, where we persist three attributes and, as a consequence, its payload consists of three entries.
 
-### Authentication and authorization
+### Authentication and Authorization
 Twin belongs to a Mainflux user, tenant representing a physical person or an organization. User owns Mainflux things and channels as well as twins. Mainflux user provides authorization and authentication mechanisms to twins service. For more details, please see [Authentication with Mainflux keys](authentication.md). In practical terms, we need to create a Mainflux user in order to create a digital twin. Every twin belongs to exactly one user. One user can have unlimited number of digital twins.
 
-### TWIN operations
+### Twin Operations
 For more information about the Twins service HTTP API please refer to the [twins service OpenAPI file](https://github.com/mainflux/mainflux/blob/master/twins/openapi.yml).
 
-#### Create && Update
+#### Create and Update
 Create and update requests use JSON body to initialize and modify, respectively, twin. You can omit every piece of data - every key-value pair - from the JSON. However, you must send at least an empty JSON body.
 
 ```json

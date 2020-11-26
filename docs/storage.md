@@ -23,7 +23,7 @@ filter = ["channels.>"]
 
 Regarding the [Subtopics Section](messaging.md#subtopics) in the messaging page, the example `channels/<channel_id>/messages/bedroom/temperature` can be filtered as `"channels.*.bedroom.temperature"`. The formatting of this filtering list is determined by the NATS format ([Subject-Based Messaging](https://docs.nats.io/nats-concepts/subjects) & [Wildcards](https://docs.nats.io/nats-concepts/subjects#wildcards)).
 
-### InfluxDB, InfluxDB-writer and Grafana
+### InfluxDB, InfluxDB Writer and Grafana
 
 From the project root execute the following command:
 
@@ -45,7 +45,7 @@ Those new services will take some additional ports:
 
 To access Grafana, navigate to `http://localhost:3001` and login with: `admin`, password: `admin`
 
-### Cassandra and Cassandra-writer
+### Cassandra and Cassandra Writer
 
 ```bash
 ./docker/addons/cassandra-writer/init.sh
@@ -53,7 +53,7 @@ To access Grafana, navigate to `http://localhost:3001` and login with: `admin`, 
 
 _Please note that Cassandra may not be suitable for your testing environment because of its high system requirements._
 
-### MongoDB and MongoDB-writer
+### MongoDB and MongoDB Writer
 
 ```bash
 docker-compose -f docker/addons/mongodb-writer/docker-compose.yml up -d
@@ -61,7 +61,7 @@ docker-compose -f docker/addons/mongodb-writer/docker-compose.yml up -d
 
 MongoDB default port (27017) is exposed, so you can use various tools for database inspection and data visualization.
 
-### PostgreSQL and PostgreSQL-writer
+### PostgreSQL and PostgreSQL Writer
 
 ```bash
 docker-compose -f docker/addons/postgres-writer/docker-compose.yml up -d
@@ -120,7 +120,7 @@ curl -s -S -i  -H "Authorization: <thing_token>" http://localhost:<service_port>
 
 If you don't provide these parameters, default values will be used instead: 0 for `offset` and 10 for `limit`.
 
-### InfluxDB-reader
+### InfluxDB Reader
 
 To start InfluxDB reader, execute the following command:
 
@@ -128,7 +128,7 @@ To start InfluxDB reader, execute the following command:
 docker-compose -f docker/addons/influxdb-reader/docker-compose.yml up -d
 ```
 
-### Cassandra-reader
+### Cassandra Reader
 
 To start Cassandra reader, execute the following command:
 
@@ -136,7 +136,7 @@ To start Cassandra reader, execute the following command:
 docker-compose -f docker/addons/cassandra-reader/docker-compose.yml up -d
 ```
 
-### MongoDB-reader
+### MongoDB Reader
 
 To start MongoDB reader, execute the following command:
 
@@ -144,7 +144,7 @@ To start MongoDB reader, execute the following command:
 docker-compose -f docker/addons/mongodb-reader/docker-compose.yml up -d
 ```
 
-### PostgreSQL-reader
+### PostgreSQL Reader
 
 To start PostgreSQL reader, execute the following command:
 

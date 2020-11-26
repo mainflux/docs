@@ -1,4 +1,4 @@
-## Server configuration
+## Server Configuration
 
 ### Users
 
@@ -16,11 +16,11 @@ If either the cert or key is not set, the server will use insecure transport.
 
 `MF_THINGS_SERVER_KEY` the path to the server key in pem format.
 
-## Client configuration
+## Client Configuration
 
 If you wish to secure the gRPC connection to `things` and `users` services you must define the CAs that you trust.  This does not support mutual certificate authentication.
 
-### Adapter configuration
+### Adapter Configuration
 
 `MF_HTTP_ADAPTER_CA_CERTS`, `MF_MQTT_ADAPTER_CA_CERTS`, `MF_WS_ADAPTER_CA_CERTS`, `MF_COAP_ADAPTER_CA_CERTS` - the path to a file that contains the CAs in PEM format. If not set, the default connection will be insecure. If it fails to read the file, the adapter will fail to start up.
 
@@ -28,7 +28,7 @@ If you wish to secure the gRPC connection to `things` and `users` services you m
 
 `MF_THINGS_CA_CERTS` - the path to a file that contains the CAs in PEM format. If not set, the default connection will be insecure. If it fails to read the file, the service will fail to start up.
 
-## Securing PostgreSQL connections
+## Securing PostgreSQL Connections
 
 By default, Mainflux will connect to Postgres using insecure transport.
 If a secured connection is required, you can select the SSL mode and set paths to any extra certificates and keys needed.

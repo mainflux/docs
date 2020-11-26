@@ -11,7 +11,7 @@ Mainflux can be easily deployed on Kubernetes platform by using Helm Chart from 
 Kubernetes is an open source container orchestration engine for automating deployment, scaling, and management of containerised applications.
 Install it locally or have access to a cluster. Follow [these instructions](https://kubernetes.io/docs/setup/) if you need more information. 
 
-### kubectl
+### Kubectl
 Kubectl is official Kubernetes command line client. Follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) to install it.
 
 Regarding the cluster control with `kubectl`, default config `.yaml` file should be `~/.kube/config`.
@@ -19,13 +19,13 @@ Regarding the cluster control with `kubectl`, default config `.yaml` file should
 ### Helm v3
 Helm is the package manager for Kubernetes. Follow [these instructions](https://helm.sh/docs/intro/install/) to install it.
 
-### Stable Helm repository
+### Stable Helm Repository
 Add a stable chart repository:
 ```bash
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
-### Nginx Ingress Conntroller
+### Nginx Ingress Controller
 Follow [these instructions](https://kubernetes.github.io/ingress-nginx/deploy/) to install it.
 
 ## Deploying Mainflux
@@ -52,7 +52,7 @@ helm install mainflux . -n mf
 
 Mainflux is now deployed on your Kubernetes.
 
-### Customizing installation
+### Customizing Installation
 You can override default values while installing with `--set` option. For example, if you want to specify ingress hostname and pull `latest` tag of `users` image:
 ```bash
 helm install mainflux -n mf --set ingress.hostname='example.com' --set users.image.tag='latest'
@@ -146,7 +146,7 @@ List of add-ons services in charts:
 
 By default scale of MQTT adapter, Things, Envoy, Authn and NATS will be set to 3. It's recommended that you set this values to number of your nodes in Kubernetes cluster, i.e. `--set defaults.replicaCount=3 --set nats.replicaCount=3`
 
-### Additional steps to configure Ingress Controller
+### Additional Steps to Configure Ingress Controller
 To send MQTT messages to your host on ports `1883` and `8883` some additional steps are required in configuring NGINX Ingress Controller.
 
 NGINX Ingress Controller uses ConfigMap to expose TCP services. That ConfigMap is included in helm chart in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L141) file assuming that location of ConfigMap should be `ingress-nginx/tcp-services`. If Ingress Controller expects it in some other namespace or with other name you should edit metadata in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L147). This location was set with `--tcp-services-configmap` flag and you can check it in deployment of Ingress Controller or add it there in [args section for nginx-ingress-controller](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) if it's not already specified. This is explained in [NGINX Ingress documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/)
