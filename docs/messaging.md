@@ -56,6 +56,79 @@ The most of the notifications received from the Adapter are non-confirmable. By 
 
 CoAP Adapter sends these notifications every 12 hours. To configure this period, please check [adapter documentation](https://www.github.com/mainflux/mainflux/tree/master/coap/README.md) If the client is no longer interested in receiving notifications, the second scenario described above can be used to unsubscribe.
 
+## WS
+Mainflux supports [MQTT-over-WS](https://www.hivemq.com/blog/mqtt-essentials-special-mqtt-over-websockets/#:~:text=In%20MQTT%20over%20WebSockets%2C%20the,(WebSockets%20also%20leverage%20TCP).), rather than pure WS protocol. this bring numerous benefits for IoT applications that are derived from the properties of MQTT - like QoS and PUB/SUB features.
+
+There are 2 reccomended Javascript libraries for implementing browser support for Mainflux MQTT-over-WS connectivity:
+1. [Eclipse Paho JavaScript Client](https://www.eclipse.org/paho/index.php?page=clients/js/index.php)
+2. [MQTT.js](https://github.com/mqttjs/MQTT.js)
+
+As WS is an extension of HTTP protocol, Mainflux exposes it on port `80`, so it's usage is practically transparent.
+Additionally, please notice that since same port as for HTTP is used (`80`), and extension URL `/mqtt` should be used -
+i.e. connection URL should be `ws://<host_addr>/mqtt`.
+
+> For quick testing you can use [HiveMQ UI tool](http://www.hivemq.com/demos/websocket-client/).
+
+Here is an example of a browser application connecting to Mainflux server and sending and receiving messages over WebSocket using MQTT.js library:
+
+```javascript
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+    // Initialize a mqtt variable globally
+    console.log(mqtt)
+
+    // connection option
+    const options = {
+        clean: true, // retain session
+        connectTimeout: 4000, // Timeout period
+        // Authentication information
+        clientId: '14d6c682-fb5a-4d28-b670-ee565ab5866c',
+        username: '14d6c682-fb5a-4d28-b670-ee565ab5866c',
+        password: 'ec82f341-d4b5-4c77-ae05-34877a62428f',
+    }
+
+    var channelId = '08676a76-101d-439c-b62e-d4bb3b014337'
+    var topic = 'channels/' + channelId + '/messages'
+
+    // Connect string, and specify the connection method by the protocol
+    // ws Unencrypted WebSocket connection
+    // wss Encrypted WebSocket connection
+    const connectUrl = 'ws://localhost/mqtt'
+    const client = mqtt.connect(connectUrl, options)
+
+    client.on('reconnect', (error) => {
+        console.log('reconnecting:', error)
+    })
+
+    client.on('error', (error) => {
+        console.log('Connection failed:', error)
+    })
+
+    client.on('connect', function () {
+        console.log('client connected:' + options.clientId)
+        client.subscribe(topic, { qos: 0 })
+        client.publish(topic, 'WS connection demo!', { qos: 0, retain: false })
+    })
+
+    client.on('message', function (topic, message, packet) {
+        console.log('Received Message:= ' + message.toString() + '\nOn topic:= ' + topic)
+    })
+
+    client.on('close', function () {
+        console.log(options.clientId + ' disconnected')
+    })
+</script>
+```
+
+>**N.B.** Eclipse Paho lib adds sub-URL `/mqtt` automaticlly, so procedure for connecting to the server can be something like this:
+>```javascript
+>var loc = { hostname: 'localhost', port: 80 }
+>// Create a client instance
+>client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), "clientId")
+>// Connect the client
+>client.connect({onSuccess:onConnect});
+>```
+
 ## Subtopics
 
 In order to use subtopics and give more meaning to your pub/sub channel, you can simply add any suffix to base `/channels/<channel_id>/messages` topic.
