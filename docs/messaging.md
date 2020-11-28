@@ -67,7 +67,7 @@ As WS is an extension of HTTP protocol, Mainflux exposes it on port `80`, so it'
 Additionally, please notice that since same port as for HTTP is used (`80`), and extension URL `/mqtt` should be used -
 i.e. connection URL should be `ws://<host_addr>/mqtt`.
 
-> For quick testing you can use [HiveMQ UI tool](http://www.hivemq.com/demos/websocket-client/).
+For quick testing you can use [HiveMQ UI tool](http://www.hivemq.com/demos/websocket-client/).
 
 Here is an example of a browser application connecting to Mainflux server and sending and receiving messages over WebSocket using MQTT.js library:
 
@@ -120,14 +120,14 @@ Here is an example of a browser application connecting to Mainflux server and se
 </script>
 ```
 
->**N.B.** Eclipse Paho lib adds sub-URL `/mqtt` automaticlly, so procedure for connecting to the server can be something like this:
->```javascript
->var loc = { hostname: 'localhost', port: 80 }
->// Create a client instance
->client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), "clientId")
->// Connect the client
->client.connect({onSuccess:onConnect});
->```
+**N.B.** Eclipse Paho lib adds sub-URL `/mqtt` automaticlly, so procedure for connecting to the server can be something like this:
+```javascript
+var loc = { hostname: 'localhost', port: 80 }
+// Create a client instance
+client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), "clientId")
+// Connect the client
+client.connect({onSuccess:onConnect});
+```
 
 ## Subtopics
 
