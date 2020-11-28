@@ -60,6 +60,7 @@ CoAP Adapter sends these notifications every 12 hours. To configure this period,
 Mainflux supports [MQTT-over-WS](https://www.hivemq.com/blog/mqtt-essentials-special-mqtt-over-websockets/#:~:text=In%20MQTT%20over%20WebSockets%2C%20the,(WebSockets%20also%20leverage%20TCP).), rather than pure WS protocol. this bring numerous benefits for IoT applications that are derived from the properties of MQTT - like QoS and PUB/SUB features.
 
 There are 2 reccomended Javascript libraries for implementing browser support for Mainflux MQTT-over-WS connectivity:
+
 1. [Eclipse Paho JavaScript Client](https://www.eclipse.org/paho/index.php?page=clients/js/index.php)
 2. [MQTT.js](https://github.com/mqttjs/MQTT.js)
 
