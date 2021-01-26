@@ -127,13 +127,13 @@ Example of provision layout below
 
 ## Authentication
 In order to create necessary entities provision service needs to authenticate against Mainflux.
-To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on `/users` or `/keys` endpoint of [authn][authn].
+To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on `/users` or `/keys` endpoint of [auth][auth].
 
 Additionally, users or API token can be passed in Authorization header, this authentication takes precedence over others.
 
 * `username`, `password` - (`MF_PROVISION_USER`, `MF_PROVISION_PASSWORD` in [.env][env], `mf_user`, `mf_pass` in [config.toml][conftoml]
 * API Key - (`MF_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml]
-* `Authorization: Token|ApiKey` - request authorization header containing either users token or API key. Check [authn][authn].
+* `Authorization: Token|ApiKey` - request authorization header containing either users token or API key. Check [auth][auth].
 
 ## Running
 Provision service can be run as a standalone or in docker composition as addon to the core docker composition.
@@ -267,7 +267,7 @@ Agent will retrieve connections parameters and connect to Mainflux cloud.
 [config]: https://github.com/mainflux/mainflux/tree/master/provision#configuration
 [env]: https://github.com/mainflux/mainflux/blob/master/.env
 [conftoml]: https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml
-[authn]: https://github.com/mainflux/mainflux/blob/master/authn/README.md
+[auth]: https://github.com/mainflux/mainflux/blob/master/auth/README.md
 [exp]: https://github.com/mainflux/export
 [cli]: https://github.com/mainflux/mainflux/tree/master/cli
 
