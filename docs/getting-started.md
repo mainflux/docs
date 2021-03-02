@@ -12,6 +12,14 @@ make run
 
 This will start Mainflux docker composition, which will output the logs from the containers.
 
+Check the containers are up and running before proceeding.
+
+```bash
+docker ps | grep -v Up
+```
+
+> Cleanup the container images and volumes by executing `make cleandocker` if any container is in 'Restarting' to ensure that the previous deployment doesn't affect the new one. This command removes all the data (i.e things, user etc). Please do not try this in the production environment.
+
 ## Step 2 - Install the CLI
 Open a new terminal from which you can interact with the running Mainflux system. The easiest way to do this is by using the Mainflux CLI,
 which can be downloaded as a tarball from GitHub (here we use release `0.9.0` but be sure to use the latest release):
@@ -21,6 +29,9 @@ wget -O- https://github.com/mainflux/mainflux/releases/download/0.9.0/mainflux-c
 ```
 
 > Make sure that `$GOBIN` is added to your `$PATH` so that `mainflux-cli` command can be accessible system-wide
+
+#### Build mainflux-cli
+Build `mainflux-cli` if the pre-built CLI is not compatible with your OS, i.e MacOS. Please see the [CLI](cli.md) for further details.
 
 ## Step 3 - Provision the System
 Once installed, you can use the CLI to quick-provision the system for testing:
