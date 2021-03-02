@@ -22,7 +22,7 @@ Helm is the package manager for Kubernetes. Follow [these instructions](https://
 ### Stable Helm Repository
 Add a stable chart repository:
 ```bash
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 
 ### Nginx Ingress Controller
