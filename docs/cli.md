@@ -4,8 +4,6 @@ Mainflux CLI makes it easy to manage users, things, channels and messages.
 
 CLI can be downloaded as separate asset from [project realeses](https://github.com/mainflux/mainflux/releases) or it can be built with `GNU Make` tool:
 
-The [GOPATH](https://golang.org/doc/gopath_code) should be set and `go get` the `mainflux` code to build the cli successfully.
-
 Get the mainflux code
 
 ```bash
