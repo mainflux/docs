@@ -6,11 +6,15 @@ CLI can be downloaded as separate asset from [project realeses](https://github.c
 
 The [GOPATH](https://golang.org/doc/gopath_code) should be set and `go get` the `mainflux` code to build the cli successfully.
 
-```bash
-# Get the mainflux code
-go get github.com/mainflux/mainflux
+Get the mainflux code
 
-# Build the mainflux-cli
+```bash
+go get github.com/mainflux/mainflux
+```
+
+Build the mainflux-cli
+
+```bash
 make cli
 ```
 
