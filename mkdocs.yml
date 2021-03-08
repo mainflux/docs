@@ -43,6 +43,7 @@ pages:
   - Security: security.md
   - Authentication: authentication.md
   - CLI: cli.md
+  - API: api.md
   - Bootstrap: bootstrap.md
   - Twins: twins.md
   - Tracing: tracing.md
