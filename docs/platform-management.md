@@ -123,6 +123,46 @@ curl -s -S -i --cacert docker/ssl/certs/ca.crt -H "Authorization: <user_auth_tok
 
 If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
+### Searching Provisioned Things
+
+In order to search things with specific name and/or metadata, you can send following request:
+
+```bash
+curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things/search -d '{"metadata":{"foo":"bar"}, "name":"bob", "limit": 10, "offset":0, "order":"name", "dir":"desc"}'
+```
+
+You can specify `offset` and `limit` parameters in order to fetch a specific set of things. Also, you can specify ordering with direction through parameters `order` and `dir`. Ordering is possible by `name` or `id` of things, order direction can be `asc` or `desc`. If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
+
+The response's body will contain a list of the things filtered by name and/or metadata:
+
+```bash
+HTTP/2 200 
+server: nginx/1.16.0
+date: Mon, 15 Mar 2021 18:34:10 GMT
+content-type: application/json
+content-length: 208
+access-control-expose-headers: Location
+
+{
+  "total": 1,
+  "offset": 0,
+  "limit": 10,
+  "order": "name",
+  "direction": "desc",
+  "things": [
+    {
+      "id": "1b86eea5-94b6-41fa-be9f-d10c85a8994d",
+      "name": "bob",
+      "key": "d72de10f-4963-4bf1-a454-874a39bb498e",
+      "metadata": {
+        "foo": "bar"
+      }
+    }
+  ]
+}
+
+```
+
 ### Removing Things
 
 In order to remove you own thing you can send following request:
