@@ -131,7 +131,7 @@ In order to search things with specific name and/or metadata, you can send follo
 curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H "Content-Type: application/json" -H "Authorization: <user_auth_token>" https://localhost/things/search -d '{"metadata":{"foo":"bar"}, "name":"bob", "limit": 10, "offset":0, "order":"name", "dir":"desc"}'
 ```
 
-You can specify `offset` and `limit` parameters in order to fetch a specific set of things. Also, you can specify ordering with direction through parameters `order` and `dir`. Ordering is possible by `name` or `id` of things, order direction can be `asc` or `desc`. If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
+You can specify `offset` and `limit` parameters in order to fetch a specific set of things. Also, you can specify ordering with direction through parameters `order` and `dir`. Ordering values can be `name` or `id` of things, order direction can be `asc` or `desc`. If you don't provide them, default values will be used instead: 0 for `offset` and 10 for `limit`. Note that `limit` cannot be set to values greater than 100. Providing invalid values will be considered malformed request.
 
 The response's body will contain a list of the things filtered by name and/or metadata:
 
@@ -160,7 +160,6 @@ access-control-expose-headers: Location
     }
   ]
 }
-
 ```
 
 ### Removing Things
