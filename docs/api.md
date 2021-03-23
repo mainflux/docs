@@ -8,7 +8,7 @@ To start working with the Mainflux system, you need to create a user account.
 > Must-have: e-mail and password (password must contain at least 8 characters)
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"<test@email.com>", "password":"<12345678>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"<user_email.com>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -34,7 +34,7 @@ To log in to the Mainflux system, you need to create a token.
 > Must-have: registered e-mail and password
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"<test@email.com>", "password":"<12345678>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"<user_email.com>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -117,7 +117,7 @@ Updating user entity
 
 ```
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/users -d 
-'{"email":"<test@email.com>", "password":"<12345678>"}'
+'{"email":"<user_email.com>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -142,7 +142,7 @@ Changing the user password can be done by calling the update password function
 > Must-have: token, old_password and password (new password)
 
 ```
-curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/password -d '{"old_password":"<12345678>", "password":"<87654321>"}'
+curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/password -d '{"old_password":"<old_password>", "password":"<new_password>"}'
 ```
 
 Response:
@@ -166,8 +166,8 @@ Access-Control-Allow-Headers: *
 ### Create thing
 To create a thing, you need the thing and a token
 
-> Must-have: token and thing
-> Nice-to-have: metadata and thing key
+> Must-have: token
+> Nice-to-have: metadata and thing_key
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name>"}]'
@@ -189,8 +189,8 @@ Access-Control-Expose-Headers: Location
 ### Create things
 You can create multiple things at once by entering a series of things structures and a token
 
-> Must-have: token and at least 2 thing with names
-> Nice-to-have: metadata and token (thing key)
+> Must-have: token and at least 2 things
+> Nice-to-have: metadata and thing_key
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name1>"}, {"name": "<thing_name2>"}]'
@@ -462,7 +462,7 @@ Access-Control-Expose-Headers: Location
 ### Access by key
 Checks if thing has access to a channel
 
-> Must-have: channel_id and thing key
+> Must-have: channel_id and thing_key
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-key -d '{"token": "<thing_key>"}'
@@ -484,7 +484,7 @@ Access-Control-Expose-Headers: Location
 ### Access by ID
 Checks if thing has access to a channel
 
-> Must-have: 
+> Must-have: channel_id and thing_id
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-id -d '{"thing_id": "<thing_id>"}'
@@ -504,7 +504,7 @@ Access-Control-Expose-Headers: Location
 ### Identify
 Validates thing's key and returns it's ID if key is valid
 
-> Must-have: token (thing key)
+> Must-have: token and (thing key)
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify -d '{"token": "<thing_key>"}'
 ```
@@ -527,7 +527,7 @@ Access-Control-Expose-Headers: Location
 ### Send messages
 Sends message via HTTP protocol
 
-> Must-have: token and channel_id
+> Must-have: token (thing_key) and channel_id
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
@@ -545,7 +545,7 @@ Connection: keep-alive
 ### Read messages
 Reads messages from database for a given channel
 
-> Must-have: token and channel_id
+> Must-have: token (thing_key) and channel_id
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
@@ -608,7 +608,7 @@ Access-Control-Expose-Headers: Location
 ### Assign
 Assign user,thing or channel to a group
 
-> Must-have: token, member id and member type
+> Must-have: token, group_id, member_id and member_type
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id_>/<channel_id_>"],"type":"<users>/<things>/<channels>"}' 
@@ -627,7 +627,7 @@ Access-Control-Expose-Headers: Location
 ### Unassign
 Unassign user,thing or channel from group
 
-> Must-have: token, id and type
+> Must-have: token, group_id, member_id and member_type
 
 ```
 curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id>/<channel_id>"],"type":"<users>/<things>/<channels>"}'
