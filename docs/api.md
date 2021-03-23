@@ -5,10 +5,10 @@
 ### Create User
 To start working with the Mainflux system, you need to create a user account.
 
-> Must-have: e-mail and password (password must contain at least 8 chars)
+> Must-have: e-mail and password (password must contain at least 8 characters)
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"test@email.com", "password":"12345678"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"<test@email.com>", "password":"<12345678>"}'
 ```
 
 Response:
@@ -34,7 +34,7 @@ To log in to the Mainflux system, you need to create a token.
 > Must-have: registered e-mail and password
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"test@email.com", "password":"12345678"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"<test@email.com>", "password":"<12345678>"}'
 ```
 
 Response:
@@ -58,10 +58,10 @@ Access-Control-Allow-Headers: *
 ### Get user
 You can always check the user entity that is logged in by entering the user ID and token.
 
-> Must-have: userID and token
+> Must-have: user_id and token
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/users/<userID>
+curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/users/<user_id>
 ```
 
 Response:
@@ -79,7 +79,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *
 
-{"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com","groups":null}
+{"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com"}
 ```
 
 ### Get all users
@@ -106,7 +106,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *
 
-{"total":2,"offset":0,"limit":10,"Users":[{"id":"4bf4a13a-e9c3-4207-aa11-fe569986c301","email":"admin@example.com","groups":null},{"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com","groups":null}]}
+{"total":2,"offset":0,"limit":10,"Users":[{"id":"4bf4a13a-e9c3-4207-aa11-fe569986c301","email":"admin@example.com"},{"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com"}]}
 ```
 
 ### Update user
@@ -117,7 +117,7 @@ Updating user entity
 
 ```
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/users -d 
-'{"email":"test@email.com", "password":"12345678"}'
+'{"email":"<test@email.com>", "password":"<12345678>"}'
 ```
 
 Response:
@@ -139,10 +139,10 @@ Access-Control-Allow-Headers: *
 ## Change password
 Changing the user password can be done by calling the update password function
 
-> Must-have: token, old_password and password(new password)
+> Must-have: token, old_password and password (new password)
 
 ```
-curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/password -d '{"old_password":"12345678", "password":"87654321"}'
+curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/password -d '{"old_password":"<12345678>", "password":"<87654321>"}'
 ```
 
 Response:
@@ -159,8 +159,6 @@ X-Content-Type-Options: nosniff
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *
-
-{"msg":""}
 ```
 
 ## Things
@@ -168,12 +166,11 @@ Access-Control-Allow-Headers: *
 ### Create thing
 To create a thing, you need the thing and a token
 
->Must-have: token and thing
->Should-have: thing key
->Nice-to-have: metadata
+> Must-have: token and thing
+> Nice-to-have: metadata and thing key
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "thing123", "key": ""}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name>"}]'
 ```
 
 Response:
@@ -193,11 +190,10 @@ Access-Control-Expose-Headers: Location
 You can create multiple things at once by entering a series of things structures and a token
 
 > Must-have: token and at least 2 thing with names
-> Should-have: thing key
-> Nice-to-have: metadata
+> Nice-to-have: metadata and token (thing key)
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "", "key": ""}, {"name": "", "key": ""}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name1>"}, {"name": "<thing_name2>"}]'
 ```
 
 Response:
@@ -216,10 +212,10 @@ Access-Control-Expose-Headers: Location
 ### Get thing
 You can get thing entity by entering the thing ID and token
 
-> Must-have: token and thingID
+> Must-have: token and thing_id
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/things/<thingID>
+curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/things/<thing_id>
 ```
 
 Response:
@@ -260,10 +256,10 @@ Access-Control-Expose-Headers: Location
 ### Update thing
 Updating a thing entity
 
-> Must-have: token and thingID
+> Must-have: token and thing_id
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<thingID> -d '{"name": "thing"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<thing_id> -d '{"name": "<thing_name>"}'
 ```
 
 Response:
@@ -280,10 +276,10 @@ Access-Control-Expose-Headers: Location
 ### Delete thing
 To delete a thing you need a thing ID and a token
 
-> Must-have: token and thingID
+> Must-have: token and thing_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<ThingID>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<thing_id>
 ```
 
 Response:
@@ -303,7 +299,7 @@ To create a channel, you need a channel and a token
 > Must-have: token and channel
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels -d '{"name": "channel"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels -d '{"name": "<channel_name>"}'
 ```
 
 Response:
@@ -325,7 +321,7 @@ As with things, you can create multiple channels at once
 > Must-have: token and at least 2 channels
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/bulk -d '[{"name": ""}, {"name": ""}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/bulk -d '[{"name": "<channel_name1>"}, {"name": "<channel_name2>"}]'
 ```
 
 Response:
@@ -344,10 +340,10 @@ Access-Control-Expose-Headers: Location
 ### Get channel
 Get a channel entity for a logged in user
 
-> Must-have: token and channelID
+> Must-have: token and channel_id
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/channels/<channelID>
+curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/channels/<channel_id>
 ```
 
 Response:
@@ -388,10 +384,10 @@ Access-Control-Expose-Headers: Location
 ### Update channel
 Update channel entity
 
-> Must-have: token and channelID
+> Must-have: token and channel_id
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channelID> -d '{"name": "channel"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channel_id> -d '{"name": "<channel_name>"}'
 ```
 
 Response:
@@ -408,10 +404,10 @@ Access-Control-Expose-Headers: Location
 ### Delete channel
 Delete a channel entity
 
-> Must-have: token and channelID
+> Must-have: token and channel_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channelID>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channel_id>
 ```
 
 Response:
@@ -427,10 +423,10 @@ Access-Control-Expose-Headers: Location
 ### Connect
 Connect thing to channel
 
-> Must-have: token, channelID and thingID
+> Must-have: token, channel_id and thing_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/connect -d '{"channel_ids": ["<channelID>"], "thing_ids": ["<thingID>"]}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/connect -d '{"channel_ids": ["<channel_id>"], "thing_ids": ["<thing_id>"]}'
 ```
 
 Response:
@@ -447,10 +443,10 @@ Access-Control-Expose-Headers: Location
 ### Disconnect
 Disconnect the thing from the channel
 
-> Must-have: token, channelID and thingID
+> Must-have: token, channel_id and thing_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/<channelID>/things/<thingID>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/<channel_id>/things/<thing_id>
 ```
 
 Response:
@@ -466,10 +462,10 @@ Access-Control-Expose-Headers: Location
 ### Access by key
 Checks if thing has access to a channel
 
-> Must-have: channelID and thing key
+> Must-have: channel_id and thing key
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channelID>/access-by-key -d '{"token": "<thing key>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-key -d '{"token": "<thing_key>"}'
 ```
 
 Response:
@@ -491,7 +487,7 @@ Checks if thing has access to a channel
 > Must-have: 
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channelID>/access-by-id -d '{"thing_id": ""}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-id -d '{"thing_id": "<thing_id>"}'
 ```
 
 Response:
@@ -508,9 +504,9 @@ Access-Control-Expose-Headers: Location
 ### Identify
 Validates thing's key and returns it's ID if key is valid
 
-> Must-have: token(thing key)
+> Must-have: token (thing key)
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify -d '{"token": "<thing key>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify -d '{"token": "<thing_key>"}'
 ```
 
 Response:
@@ -531,10 +527,10 @@ Access-Control-Expose-Headers: Location
 ### Send messages
 Sends message via HTTP protocol
 
-> Must-have: token and channelID
+> Must-have: token and channel_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing key)>" http://localhost/http/channels/<channelID>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
 ```
 
 Response:
@@ -549,10 +545,10 @@ Connection: keep-alive
 ### Read messages
 Reads messages from database for a given channel
 
-> Must-have: token and channelID
+> Must-have: token and channel_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing key)>" http://localhost/http/channels/<channelID>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
 ```
 Response:
 ```
@@ -572,7 +568,7 @@ To create a group, you need the group name and a token
 > Nice-to-have: parent_id, description, metadata
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups -d '{"name": "group", "parent_id": "", "descrition": "", "metadata": {}}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups -d '{"name": "<group_name>", "parent_id": "<previous_group_id>", "descrition": "<group_description>", "metadata": {}}'
 ```
 
 Response:
@@ -590,32 +586,32 @@ Access-Control-Expose-Headers: Location
 ### Members
 Get list of ID's from group
 
-> Must-have: token and groupID
+> Must-have: token and group_id
 
 ```
-curl -s -S -i -X GET -H 'Content-Type: application/json' -H "Authorization: <token>" http://localhost/groups/<groupID>/members  
+curl -s -S -i -X GET -H 'Content-Type: application/json' -H "Authorization: <token>" http://localhost/groups/<group_id>/members  
 ```
 
 Response:
 ```
 HTTP/1.1 200 OK
 Server: nginx/1.16.0
-Date: Wed, 10 Mar 2021 16:59:16 GMT
+Date: Tue, 23 Mar 2021 09:18:10 GMT
 Content-Type: application/json
-Content-Length: 56
+Content-Length: 116
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"limit":10,"total":0,"level":0,"name":"","Members":[]}
+{"limit":10,"total":0,"level":0,"name":"","Members":[{"ID":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","Type":"users"}]}
 ```
 
 ### Assign
 Assign user,thing or channel to a group
 
-> Must-have: token, id and type
+> Must-have: token, member id and member type
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<groupID>/members -d '{"members":["<userID>/<thingID>/<channelID>"],"type":"<users>/<things>/<channels>"}' 
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id_>/<channel_id_>"],"type":"<users>/<things>/<channels>"}' 
 ```
 
 Response:
@@ -634,7 +630,7 @@ Unassign user,thing or channel from group
 > Must-have: token, id and type
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<groupID>/members -d '{"members":["<userID>/<thingID>/<channelID>"],"type":"<users>/<things>/<channels>"}'
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id>/<channel_id>"],"type":"<users>/<things>/<channels>"}'
 ```
 
 Response:
@@ -650,10 +646,10 @@ Access-Control-Expose-Headers: Location
 ### Get group
 Get a group entity for a logged in user
 
-> Must-have: token and groupID
+> Must-have: token and group_id
 
 ```
-curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<groupID>
+curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>
 ```
 
 Response:
@@ -695,11 +691,11 @@ Access-Control-Expose-Headers: Location
 ### Update group
 Update group entity
 
-> Must-have: token and groupID
+> Must-have: token and group_id
 > Nice-to-have: description and metadata
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/groups/<groupID> -d '{"name": "group"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/groups/<group_id> -d '{"name": "<group_name>"}'
 ```
 
 Response:
@@ -716,10 +712,10 @@ Access-Control-Expose-Headers: Location
 ### Delete group
 Delete a group entity
 
-> Must-have: token and groupID
+> Must-have: token and group_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<groupID>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>
 ```
 
 Response:
@@ -731,6 +727,3 @@ Content-Type: application/json
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 ```
-
-
-
