@@ -1,5 +1,3 @@
-# API
-
 ## Users
 
 ### Create User
@@ -28,7 +26,7 @@ Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *
 ```
 
-### Create token
+### Create Token
 To log in to the Mainflux system, you need to create a `user_token`.
 
 > Must-have: registered e-mail and password
@@ -56,7 +54,7 @@ Access-Control-Allow-Headers: *
 {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTU0MjQ4MzgsImlhdCI6MTYxNTM4ODgzOCwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6InRlc3RAZW1haWwuY29tIiwiaXNzdWVyX2lkIjoiZDc4MmI0MmItZTMxNy00Y2Q3LTlkZDAtNGUyZWEwZjM0OWM4IiwidHlwZSI6MH0.TAQxV6TImKw06RsK0J11rOHiWPvexEOA4BNZnhLhtxs"}
 ```
 
-### Get user
+### Get User
 You can always check the user entity that is logged in by entering the user ID and `user_token`.
 
 > Must-have: `user_id` and `user_token`
@@ -83,7 +81,7 @@ Access-Control-Allow-Headers: *
 {"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com"}
 ```
 
-### Get all users
+### Get All Users
 You can get all users in the database by calling the this function
 
 > Must-have: `user_token`
@@ -110,7 +108,7 @@ Access-Control-Allow-Headers: *
 {"total":2,"offset":0,"limit":10,"Users":[{"id":"4bf4a13a-e9c3-4207-aa11-fe569986c301","email":"admin@example.com"},{"id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","email":"test@email.com"}]}
 ```
 
-### Update user
+### Update User
 Updating user entity
 
 > Must-have: `user_token`, e-mail and password
@@ -136,7 +134,7 @@ Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *
 ```
 
-## Change password
+### Change Password
 Changing the user password can be done by calling the update password function
 
 > Must-have: `user_token`, `old_password` and password (`new_password`)
@@ -163,7 +161,7 @@ Access-Control-Allow-Headers: *
 
 ## Things
 
-### Create thing
+### Create Thing
 To create a thing, you need the thing and a `user_token`
 
 > Must-have: `user_token`
@@ -185,7 +183,7 @@ Access-Control-Expose-Headers: Location
 {"things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}]}
 ```
 
-### Create things
+### Create Things
 You can create multiple things at once by entering a series of things structures and a `user_token`
 
 > Must-have: `user_token` and at least two things
@@ -207,7 +205,7 @@ Access-Control-Expose-Headers: Location
 {"things":[{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing_name_1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing_name_2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
 ```
 
-### Get thing
+### Get Thing
 You can get thing entity by entering the thing ID and `user_token`
 
 > Must-have: `user_token` and `thing_id`
@@ -229,7 +227,7 @@ Access-Control-Expose-Headers: Location
 {"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}
 ```
 
-### Get all things
+### Get All Things
 Get all things, list requests accepts limit and offset query parameters
 
 > Must-have: `user_token`
@@ -251,7 +249,7 @@ Access-Control-Expose-Headers: Location
 {"total":3,"offset":0,"limit":10,"order":"","direction":"","things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"},{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing_name_1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing_name_2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
 ```
 
-### Update thing
+### Update Thing
 Updating a thing entity
 
 > Must-have: `user_token` and `thing_id`
@@ -271,7 +269,7 @@ Connection: keep-alive
 Access-Control-Expose-Headers: Location
 ```
 
-### Delete thing
+### Delete Thing
 To delete a thing you need a `thing_id` and a `user_token`
 
 > Must-have: `user_token` and `thing_id`
@@ -291,7 +289,7 @@ Access-Control-Expose-Headers: Location
 
 ## Channels
 
-### Create channel
+### Create Channel
 To create a channel, you need a `user_token`
 
 > Must-have: `user_token`
@@ -313,7 +311,7 @@ Warning-Deprecated: This endpoint will be depreciated in v1.0.0. It will be repl
 Access-Control-Expose-Headers: Location
 ```
 
-### Create channels
+### Create Channels
 As with things, you can create multiple channels at once
 
 > Must-have: `user_token` and at least 2 channels
@@ -335,7 +333,7 @@ Access-Control-Expose-Headers: Location
 {"channels":[{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel_name_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_name_2"}]}
 ```
 
-### Get channel
+### Get Channel
 Get a channel entity for a logged in user
 
 > Must-have: `user_token` and `channel_id`
@@ -357,7 +355,7 @@ Access-Control-Expose-Headers: Location
 {"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel_name"}
 ```
 
-### Get channels
+### Get Channels
 Get all channels, list requests accepts limit and offset query parameters
 
 > Must-have: `user_token`
@@ -379,7 +377,7 @@ Access-Control-Expose-Headers: Location
 {"total":3,"offset":0,"limit":10,"order":"","direction":"","channels":[{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel_name"},{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel_name_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_name_2"}]}
 ```
 
-### Update channel
+### Update Channel
 Update channel entity
 
 > Must-have: `user_token` and `channel_id`
@@ -399,7 +397,7 @@ Connection: keep-alive
 Access-Control-Expose-Headers: Location
 ```
 
-### Delete channel
+### Delete Channel
 Delete a channel entity
 
 > Must-have: `user_token` and `channel_id`
@@ -457,7 +455,7 @@ Connection: keep-alive
 Access-Control-Expose-Headers: Location
 ```
 
-### Access by key
+### Access by Key
 Checks if thing has access to a channel
 
 > Must-have: `channel_id` and `thing_key`
@@ -522,7 +520,7 @@ Access-Control-Expose-Headers: Location
 
 ## Messages
 
-### Send messages
+### Send Message
 Sends message via HTTP protocol
 
 > Must-have: `thing_key` and `channel_id`
@@ -540,14 +538,15 @@ Content-Length: 0
 Connection: keep-alive
 ```
 
-### Read messages
+### Read Messages
 Reads messages from database for a given channel
 
 > Must-have: `thing_key` and `channel_id`
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <thing_key>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09,"bu":"A","bver":5,"n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i -X GET -H "Authorization: <thing_key>" http://localhost/http/channels/<channel_id>/messages
 ```
+
 Response:
 ```
 HTTP/1.1 202 Accepted
@@ -608,11 +607,12 @@ Assign user, thing or channel to a group
 > Must-have: `user_token`, `group_id`, `member_id` and `member_type`
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id_>/<channel_id_>"],"type":"<users>/<things>/<channels>"}' 
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>" | "<thing_id_>" | "<channel_id_>"], "type":["users" | "things" | "channels"]}' 
 ```
 
 Response:
-```HTTP/1.1 200 OK
+```
+HTTP/1.1 200 OK
 Server: nginx/1.16.0
 Date: Wed, 10 Mar 2021 17:04:41 GMT
 Content-Type: application/json
@@ -627,7 +627,7 @@ Unassign user, thing or channel from group
 > Must-have: `user_token`, `group_id`, `member_id` and `member_type`
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id>/<channel_id>"], "type":"<users>/<things>/<channels>"}'
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>" | "<thing_id_>" | "<channel_id_>"], "type":["users" | "things" | "channels"]}'
 ```
 
 Response:
