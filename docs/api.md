@@ -29,7 +29,7 @@ Access-Control-Allow-Headers: *
 ```
 
 ### Create token
-To log in to the Mainflux system, you need to create a token.
+To log in to the Mainflux system, you need to create a user_token.
 
 > Must-have: registered e-mail and password
 
@@ -56,12 +56,12 @@ Access-Control-Allow-Headers: *
 ```
 
 ### Get user
-You can always check the user entity that is logged in by entering the user ID and token.
+You can always check the user entity that is logged in by entering the user ID and user_token.
 
-> Must-have: user_id and token
+> Must-have: user_id and user_token
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/users/<user_id>
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/users/<user_id>
 ```
 
 Response:
@@ -85,10 +85,10 @@ Access-Control-Allow-Headers: *
 ### Get all users
 You can get all users in the database by calling the this function
 
-> Must-have: token
+> Must-have: user_token
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/users
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/users
 ```
 
 Response:
@@ -112,11 +112,10 @@ Access-Control-Allow-Headers: *
 ### Update user
 Updating user entity
 
-> Must-have: token, e-mail and password
-> Nice-to-have: metadata
+> Must-have: user_token, e-mail and password
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/users -d 
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/users -d 
 '{"email":"<user_email>", "password":"<user_password>"}'
 ```
 
@@ -139,10 +138,10 @@ Access-Control-Allow-Headers: *
 ## Change password
 Changing the user password can be done by calling the update password function
 
-> Must-have: token, old_password and password (new password)
+> Must-have: user_token, old_password and password (new_password)
 
 ```
-curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/password -d '{"old_password":"<old_password>", "password":"<new_password>"}'
+curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/password -d '{"old_password":"<old_password>", "password":"<new_password>"}'
 ```
 
 Response:
@@ -164,13 +163,12 @@ Access-Control-Allow-Headers: *
 ## Things
 
 ### Create thing
-To create a thing, you need the thing and a token
+To create a thing, you need the thing and a user_token
 
-> Must-have: token
-> Nice-to-have: metadata
+> Must-have: user_token
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name>"}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/things/bulk -d '[{"name": "<thing_name>"}]'
 ```
 
 Response:
@@ -183,17 +181,16 @@ Content-Length: 119
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}]}
+{"things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}]}
 ```
 
 ### Create things
-You can create multiple things at once by entering a series of things structures and a token
+You can create multiple things at once by entering a series of things structures and a user_token
 
-> Must-have: token and at least two things
-> Nice-to-have: metadata
+> Must-have: user_token and at least two things
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name_1>"}, {"name": "<thing_name_2>"}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/things/bulk -d '[{"name": "<thing_name_1>"}, {"name": "<thing_name_2>"}]'
 ```
 
 Response:
@@ -206,16 +203,16 @@ Content-Length: 227
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"things":[{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
+{"things":[{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing_name_1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing_name_2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
 ```
 
 ### Get thing
-You can get thing entity by entering the thing ID and token
+You can get thing entity by entering the thing ID and user_token
 
-> Must-have: token and thing_id
+> Must-have: user_token and thing_id
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/things/<thing_id>
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/things/<thing_id>
 ```
 
 Response:
@@ -228,16 +225,16 @@ Content-Length: 106
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}
+{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"}
 ```
 
 ### Get all things
 Get all things, list requests accepts limit and offset query parameters
 
-> Must-have: token
+> Must-have: user_token
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/things
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/things
 ```
 
 Response:
@@ -250,16 +247,16 @@ Content-Length: 391
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"total":3,"offset":0,"limit":10,"order":"","direction":"","things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing","key":"659aa6ca-1781-4a69-9a20-689ddb235506"},{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
+{"total":3,"offset":0,"limit":10,"order":"","direction":"","things":[{"id":"64140f0b-6448-41cf-967e-1bbcc703c332","name":"thing_name","key":"659aa6ca-1781-4a69-9a20-689ddb235506"},{"id":"4328f3e4-4c67-40b3-9491-0ab782c48d50","name":"thing_name_1","key":"828c6985-c2d6-419e-a124-ba99147b9920"},{"id":"38aa33fe-39e5-4ee3-97ba-4227cfac63f6","name":"thing_name_2","key":"f73e7342-06c1-499a-9584-35de495aa338"}]}
 ```
 
 ### Update thing
 Updating a thing entity
 
-> Must-have: token and thing_id
+> Must-have: user_token and thing_id
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<thing_id> -d '{"name": "<thing_name>"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <user_token>" http://localhost/things/<thing_id> -d '{"name": "<thing_name>"}'
 ```
 
 Response:
@@ -274,12 +271,12 @@ Access-Control-Expose-Headers: Location
 ```
 
 ### Delete thing
-To delete a thing you need a thing ID and a token
+To delete a thing you need a thing ID and a user_token
 
-> Must-have: token and thing_id
+> Must-have: user_token and thing_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/things/<thing_id>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <user_token>" http://localhost/things/<thing_id>
 ```
 
 Response:
@@ -294,12 +291,12 @@ Access-Control-Expose-Headers: Location
 ## Channels
 
 ### Create channel
-To create a channel, you need a channel and a token
+To create a channel, you need a channel and a user_token
 
-> Must-have: token and channel
+> Must-have: user_token
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels -d '{"name": "<channel_name>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/channels -d '{"name": "<channel_name>"}'
 ```
 
 Response:
@@ -318,10 +315,10 @@ Access-Control-Expose-Headers: Location
 ### Create channels
 As with things, you can create multiple channels at once
 
-> Must-have: token and at least 2 channels
+> Must-have: user_token and at least 2 channels
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/bulk -d '[{"name": "<channel_name_1>"}, {"name": "<channel_name_2>"}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/channels/bulk -d '[{"name": "<channel_name_1>"}, {"name": "<channel_name_2>"}]'
 ```
 
 Response:
@@ -334,16 +331,16 @@ Content-Length: 143
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"channels":[{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel2"}]}
+{"channels":[{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel_name_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_name_2"}]}
 ```
 
 ### Get channel
 Get a channel entity for a logged in user
 
-> Must-have: token and channel_id
+> Must-have: user_token and channel_id
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/channels/<channel_id>
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/channels/<channel_id>
 ```
 
 Response:
@@ -356,16 +353,16 @@ Content-Length: 63
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel"}
+{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel_name"}
 ```
 
 ### Get channels
 Get all channels, list requests accepts limit and offset query parameters
 
-> Must-have: token
+> Must-have: user_token
 
 ```
-curl -s -S -i -X GET -H "Authorization: <token>" http://localhost/channels
+curl -s -S -i -X GET -H "Authorization: <user_token>" http://localhost/channels
 ```
 
 Response:
@@ -378,16 +375,16 @@ Content-Length: 264
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"total":3,"offset":0,"limit":10,"order":"","direction":"","channels":[{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel"},{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channe_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_2"}]}
+{"total":3,"offset":0,"limit":10,"order":"","direction":"","channels":[{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel_name"},{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel_name_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_name_2"}]}
 ```
 
 ### Update channel
 Update channel entity
 
-> Must-have: token and channel_id
+> Must-have: user_token and channel_id
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channel_id> -d '{"name": "<channel_name>"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <user_token>" http://localhost/channels/<channel_id> -d '{"name": "<channel_name>"}'
 ```
 
 Response:
@@ -404,10 +401,10 @@ Access-Control-Expose-Headers: Location
 ### Delete channel
 Delete a channel entity
 
-> Must-have: token and channel_id
+> Must-have: user_token and channel_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/channels/<channel_id>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: <user_token>" http://localhost/channels/<channel_id>
 ```
 
 Response:
@@ -423,10 +420,10 @@ Access-Control-Expose-Headers: Location
 ### Connect
 Connect thing to channel
 
-> Must-have: token, channel_id and thing_id
+> Must-have: user_token, channel_id and thing_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/connect -d '{"channel_ids": ["<channel_id>"], "thing_ids": ["<thing_id>"]}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/connect -d '{"channel_ids": ["<channel_id>"], "thing_ids": ["<thing_id>"]}'
 ```
 
 Response:
@@ -443,10 +440,10 @@ Access-Control-Expose-Headers: Location
 ### Disconnect
 Disconnect the thing from the channel
 
-> Must-have: token, channel_id and thing_id
+> Must-have: user_token, channel_id and thing_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/<channel_id>/things/<thing_id>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/channels/<channel_id>/things/<thing_id>
 ```
 
 Response:
@@ -462,7 +459,7 @@ Access-Control-Expose-Headers: Location
 ### Access by key
 Checks if thing has access to a channel
 
-> Must-have: channel_id and token (thing_key)
+> Must-have: channel_id and thing_key
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-key -d '{"token": "<thing_key>"}'
@@ -504,7 +501,7 @@ Access-Control-Expose-Headers: Location
 ### Identify
 Validates thing's key and returns it's ID if key is valid
 
-> Must-have: token (thing_key)
+> Must-have: thing_key
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify -d '{"token": "<thing_key>"}'
 ```
@@ -527,10 +524,10 @@ Access-Control-Expose-Headers: Location
 ### Send messages
 Sends message via HTTP protocol
 
-> Must-have: token (thing_key) and channel_id
+> Must-have: thing_key and channel_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <thing_key>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
 ```
 
 Response:
@@ -545,10 +542,10 @@ Connection: keep-alive
 ### Read messages
 Reads messages from database for a given channel
 
-> Must-have: token (thing_key) and channel_id
+> Must-have: thing_key and channel_id
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token (thing_key)>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <thing_key>" http://localhost/http/channels/<channel_id>/messages -d '[{"bn":"some-base-name:","bt":1.276020076001e+09, "bu":"A","bver":5, "n":"voltage","u":"V","v":120.1}, {"n":"current","t":-5,"v":1.2}, {"n":"current","t":-4,"v":1.3}]'
 ```
 Response:
 ```
@@ -562,13 +559,12 @@ Connection: keep-alive
 ## Groups
 
 ### Create group
-To create a group, you need the group name and a token 
+To create a group, you need the group name and a user_token 
 
-> Must-have: token and group name
-> Nice-to-have: parent_id, description, metadata
+> Must-have: user_token
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups -d '{"name": "<group_name>", "parent_id": "<previous_group_id>", "descrition": "<group_description>", "metadata": {}}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups -d '{"name": "<group_name>", "parent_id": "<previous_group_id>", "descrition": "<group_description>", "metadata": {}}'
 ```
 
 Response:
@@ -586,10 +582,10 @@ Access-Control-Expose-Headers: Location
 ### Members
 Get list of ID's from group
 
-> Must-have: token and group_id
+> Must-have: user_token and group_id
 
 ```
-curl -s -S -i -X GET -H 'Content-Type: application/json' -H "Authorization: <token>" http://localhost/groups/<group_id>/members  
+curl -s -S -i -X GET -H 'Content-Type: application/json' -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members  
 ```
 
 Response:
@@ -608,10 +604,10 @@ Access-Control-Expose-Headers: Location
 ### Assign
 Assign user,thing or channel to a group
 
-> Must-have: token, group_id, member_id and member_type
+> Must-have: user_token, group_id, member_id and member_type
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id_>/<channel_id_>"],"type":"<users>/<things>/<channels>"}' 
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id_>/<channel_id_>"],"type":"<users>/<things>/<channels>"}' 
 ```
 
 Response:
@@ -627,10 +623,10 @@ Access-Control-Expose-Headers: Location
 ### Unassign
 Unassign user,thing or channel from group
 
-> Must-have: token, group_id, member_id and member_type
+> Must-have: user_token, group_id, member_id and member_type
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id>/<channel_id>"],"type":"<users>/<things>/<channels>"}'
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>/members -d '{"members":["<user_id>/<thing_id>/<channel_id>"],"type":"<users>/<things>/<channels>"}'
 ```
 
 Response:
@@ -646,10 +642,10 @@ Access-Control-Expose-Headers: Location
 ### Get group
 Get a group entity for a logged in user
 
-> Must-have: token and group_id
+> Must-have: user_token and group_id
 
 ```
-curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>
+curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>
 ```
 
 Response:
@@ -662,17 +658,16 @@ Content-Length: 201
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"id":"01F0EH61SA7C7NDKWYCXVG7PWD","name":"group","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":0,"path":"","created_at":"2021-03-10T16:58:09.579Z","updated_at":"2021-03-10T16:58:09.579Z"}
+{"id":"01F0EH61SA7C7NDKWYCXVG7PWD","name":"group_name","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":0,"path":"","created_at":"2021-03-10T16:58:09.579Z","updated_at":"2021-03-10T16:58:09.579Z"}
 ```
 
 ### Get groups
 Get all groups, list requests accepts limit and offset query parameters
 
-> Must-have: token
-> Nice-to-have: query parameters
+> Must-have: user_token
 
 ```
-curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups
+curl -s -S -i -X GET -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups
 ```
 
 Response:
@@ -685,17 +680,16 @@ Content-Length: 496
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"total":2,"level":0,"name":"","groups":[{"id":"01F0EH61SA7C7NDKWYCXVG7PWD","name":"group","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":1,"path":"01F0EH61SA7C7NDKWYCXVG7PWD","created_at":"2021-03-10T16:58:09.579Z","updated_at":"2021-03-10T16:58:09.579Z"},{"id":"01F0EHQTP2HQ7JTWZNMVJ0JJCN","name":"group1","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":1,"path":"01F0EHQTP2HQ7JTWZNMVJ0JJCN","created_at":"2021-03-10T17:07:52.13Z","updated_at":"2021-03-10T17:07:52.13Z"}]}
+{"total":2,"level":0,"name":"","groups":[{"id":"01F0EH61SA7C7NDKWYCXVG7PWD","name":"group_name","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":1,"path":"01F0EH61SA7C7NDKWYCXVG7PWD","created_at":"2021-03-10T16:58:09.579Z","updated_at":"2021-03-10T16:58:09.579Z"},{"id":"01F0EHQTP2HQ7JTWZNMVJ0JJCN","name":"group_name_1","owner_id":"d782b42b-e317-4cd7-9dd0-4e2ea0f349c8","level":1,"path":"01F0EHQTP2HQ7JTWZNMVJ0JJCN","created_at":"2021-03-10T17:07:52.13Z","updated_at":"2021-03-10T17:07:52.13Z"}]}
 ```
 
 ### Update group
 Update group entity
 
-> Must-have: token and group_id
-> Nice-to-have: description and metadata
+> Must-have: user_token and group_id
 
 ```
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <token>" http://localhost/groups/<group_id> -d '{"name": "<group_name>"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H  "Authorization: <user_token>" http://localhost/groups/<group_id> -d '{"name": "<group_name>"}'
 ```
 
 Response:
@@ -712,10 +706,10 @@ Access-Control-Expose-Headers: Location
 ### Delete group
 Delete a group entity
 
-> Must-have: token and group_id
+> Must-have: user_token and group_id
 
 ```
-curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/groups/<group_id>
+curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/groups/<group_id>
 ```
 
 Response:
