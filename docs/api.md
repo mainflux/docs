@@ -189,11 +189,11 @@ Access-Control-Expose-Headers: Location
 ### Create things
 You can create multiple things at once by entering a series of things structures and a token
 
-> Must-have: token and at least 2 things
+> Must-have: token and at least two things
 > Nice-to-have: metadata
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name1>"}, {"name": "<thing_name2>"}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name_1>"}, {"name": "<thing_name_2>"}]'
 ```
 
 Response:
@@ -321,7 +321,7 @@ As with things, you can create multiple channels at once
 > Must-have: token and at least 2 channels
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/bulk -d '[{"name": "<channel_name1>"}, {"name": "<channel_name2>"}]'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/channels/bulk -d '[{"name": "<channel_name_1>"}, {"name": "<channel_name_2>"}]'
 ```
 
 Response:
@@ -378,7 +378,7 @@ Content-Length: 264
 Connection: keep-alive
 Access-Control-Expose-Headers: Location
 
-{"total":3,"offset":0,"limit":10,"order":"","direction":"","channels":[{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel"},{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channel1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel2"}]}
+{"total":3,"offset":0,"limit":10,"order":"","direction":"","channels":[{"id":"db4b7428-e278-4fe3-b85a-d65554d6abe9","name":"channel"},{"id":"b8073d41-01dc-46ad-bb26-cfecc596c6c1","name":"channe_1"},{"id":"2200527a-f590-4fe5-b9d6-892fc6f825c3","name":"channel_2"}]}
 ```
 
 ### Update channel
