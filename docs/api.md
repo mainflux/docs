@@ -8,7 +8,7 @@ To start working with the Mainflux system, you need to create a user account.
 > Must-have: e-mail and password (password must contain at least 8 characters)
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"<user_email.com>", "password":"<user_password>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/users -d '{"email":"<user_email>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -34,7 +34,7 @@ To log in to the Mainflux system, you need to create a token.
 > Must-have: registered e-mail and password
 
 ```
-curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"<user_email.com>", "password":"<user_password>"}'
+curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/tokens -d '{"email":"<user_email>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -117,7 +117,7 @@ Updating user entity
 
 ```
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/users -d 
-'{"email":"<user_email.com>", "password":"<user_password>"}'
+'{"email":"<user_email>", "password":"<user_password>"}'
 ```
 
 Response:
@@ -167,7 +167,7 @@ Access-Control-Allow-Headers: *
 To create a thing, you need the thing and a token
 
 > Must-have: token
-> Nice-to-have: metadata and thing_key
+> Nice-to-have: metadata
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name>"}]'
@@ -190,7 +190,7 @@ Access-Control-Expose-Headers: Location
 You can create multiple things at once by entering a series of things structures and a token
 
 > Must-have: token and at least 2 things
-> Nice-to-have: metadata and thing_key
+> Nice-to-have: metadata
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <token>" http://localhost/things/bulk -d '[{"name": "<thing_name1>"}, {"name": "<thing_name2>"}]'
@@ -462,7 +462,7 @@ Access-Control-Expose-Headers: Location
 ### Access by key
 Checks if thing has access to a channel
 
-> Must-have: channel_id and thing_key
+> Must-have: channel_id and token (thing_key)
 
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify/channels/<channel_id>/access-by-key -d '{"token": "<thing_key>"}'
@@ -504,7 +504,7 @@ Access-Control-Expose-Headers: Location
 ### Identify
 Validates thing's key and returns it's ID if key is valid
 
-> Must-have: token and (thing key)
+> Must-have: token (thing_key)
 ```
 curl -s -S -i -X POST -H "Content-Type: application/json" http://localhost/identify -d '{"token": "<thing_key>"}'
 ```
