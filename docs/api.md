@@ -544,16 +544,17 @@ Reads messages from database for a given channel
 > Must-have: `thing_key` and `channel_id`
 
 ```
-curl -s -S -i -X GET -H "Authorization: <thing_key>" http://localhost/http/channels/<channel_id>/messages
+curl -s -S -i -H "Authorization: <thing_key>" http://localhost:<service_port>/channels/<channel_id>/messages?offset=0&limit=5
 ```
 
 Response:
 ```
-HTTP/1.1 202 Accepted
-Server: nginx/1.16.0
-Date: Wed, 10 Mar 2021 16:56:59 GMT
-Content-Length: 0
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Wed, 10 Mar 2021 16:54:58 GMT
+Content-Length: 660
+
+{"offset":0,"limit":10,"format":"messages","total":3,"messages":[{"channel_name":"1a0cde06-8e5c-4f07-aac5-95aff4a19ea0","publisher":"33eb28c3-4ca2-45c3-b1c5-d5d049c6c24e","protocol":"http","name":"some-base-name:voltage","unit":"V","time":1276020076.001,"value":120.1},{"channel_name":"1a0cde06-8e5c-4f07-aac5-95aff4a19ea0","publisher":"33eb28c3-4ca2-45c3-b1c5-d5d049c6c24e","protocol":"http","name":"some-base-name:current","unit":"A","time":1276020072.001,"value":1.3},{"channel_name":"1a0cde06-8e5c-4f07-aac5-95aff4a19ea0","publisher":"33eb28c3-4ca2-45c3-b1c5-d5d049c6c24e","protocol":"http","name":"some-base-name:current","unit":"A","time":1276020071.001,"value":1.2}]}
 ```
 
 ## Groups
