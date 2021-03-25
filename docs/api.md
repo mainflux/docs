@@ -520,7 +520,7 @@ Access-Control-Expose-Headers: Location
 
 ## Messages
 
-### Send Message
+### Send Messages
 Sends message via HTTP protocol
 
 > Must-have: `thing_key` and `channel_id`
