@@ -1,3 +1,5 @@
+# API
+
 ## Users
 
 ### Create User
@@ -279,7 +281,8 @@ curl -s -S -i -X DELETE -H "Content-Type: application/json" -H  "Authorization: 
 ```
 
 Response:
-```HTTP/1.1 204 No Content
+```
+HTTP/1.1 204 No Content
 Server: nginx/1.16.0
 Date: Wed, 10 Mar 2021 15:24:44 GMT
 Content-Type: application/json
