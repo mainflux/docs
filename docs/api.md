@@ -1,5 +1,3 @@
-# API
-
 ## Users
 
 ### Create User
