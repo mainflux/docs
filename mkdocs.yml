@@ -21,25 +21,15 @@ markdown_extensions:
       permalink: "#"
 
 pages:
-  - Overview:
-      - About: index.md
-      - Contributing: CONTRIBUTING.md
-      - License: LICENSE.txt
+  - Overview: overview.md
   - Architecture: architecture.md
   - Getting Started: getting-started.md
-  - Provision:
-      - Platform management: platform-management.md
-      - Provision Service: provision.md
-      - Certs Service: certs.md
+  - Provision: provision.md
   - Messaging: messaging.md
   - Storage: storage.md
   - LoRa: lora.md
   - OPC-UA: opcua.md
-  - Edge:
-    - Edge: edge.md
-    - Agent: agent.md
-    - Export: export.md
-    - Example deployment: edge-deployment.md
+  - Edge: edge1.md
   - Security: security.md
   - Authentication: authentication.md
   - CLI: cli.md
