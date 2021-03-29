@@ -29,7 +29,7 @@ pages:
   - Storage: storage.md
   - LoRa: lora.md
   - OPC-UA: opcua.md
-  - Edge: edge1.md
+  - Edge: edge.md
   - Security: security.md
   - Authentication: authentication.md
   - CLI: cli.md
