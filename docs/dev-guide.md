@@ -1,3 +1,5 @@
+# Developer's guide
+
 ## Getting Mainflux
 
 Mainflux source can be found in the official [Mainflux GitHub repository](https://github.com/Mainflux/mainflux). You should fork this repository in order to make changes to the project. The forked version of the repository should be cloned using the following:

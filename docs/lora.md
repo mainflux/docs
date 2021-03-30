@@ -1,3 +1,5 @@
+# Lora
+
 Bridging with LoRaWAN Networks can be done over the [lora-adapter](https://github.com/mainflux/mainflux/tree/master/lora). This service sits between Mainflux and [LoRa Server](https://www.loraserver.io) and just forwards the messages from one system to another via MQTT protocol, using the adequate MQTT topics and in the good message format (JSON and SenML), i.e. respecting the APIs of both systems.
 
 LoRa Server is used for connectivity layer. Specially for the [LoRa Gateway Bridge](https://www.loraserver.io/lora-gateway-bridge/overview/) service, which abstracts the [SemTech packet-forwarder UDP protocol](https://github.com/Lora-net/packet_forwarder/blob/master/PROTOCOL.TXT) into JSON over MQTT. But also for the [LoRa Server](https://www.loraserver.io/loraserver/overview) service,  responsible of the de-duplication and handling of uplink frames received by the gateway(s), handling of the LoRaWAN mac-layer and scheduling of downlink data transmissions. Finally the [Lora App Server](https://www.loraserver.io/lora-app-server/overview/) services is used to interact with the system.

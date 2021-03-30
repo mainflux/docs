@@ -1,3 +1,5 @@
+# Kuberbetes
+
 Mainflux can be easily deployed on Kubernetes platform by using Helm Chart from official [Mainflux DevOps GitHub repository](https://github.com/mainflux/devops).
 
 ## Prerequisites
@@ -173,7 +175,7 @@ and add in spec->ports:
     targetPort: 8883
 ```    
 
-# TLS & mTLS
+## TLS & mTLS
 
 For testing purposes you can generate certificates as explained in detail in (authentication)[/authentication] chapter of this document. So, you can use (this script)[https://github.com/mainflux/mainflux/blob/master/docker/ssl/Makefile] and after replacing all `localhost` with your hostname, run:
 

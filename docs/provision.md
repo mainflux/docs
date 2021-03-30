@@ -385,7 +385,7 @@ Provision service provides a way of specifying this `provision layout` and creat
 The service is configured using the environment variables presented in the following [table][config]. Note that any unset variables will be replaced with their default values.
 
 
-By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it as this is typical setup required by [Agent](agent.md). If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables.
+By default, call to `/mapping` endpoint will create one thing and two channels (`control` and `data`) and connect it as this is typical setup required by [Agent](/edge/#agent). If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables.
 
 For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in [.env][env].
 

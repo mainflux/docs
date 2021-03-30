@@ -1,3 +1,5 @@
+# OPC-CA
+
 Bridging with an OPC-UA Server can be done over the [opcua-adapter](https://github.com/mainflux/mainflux/tree/master/opcua). This service sits between Mainflux and an [OPC-UA Server](https://en.wikipedia.org/wiki/OPC_Unified_Architecture) and just forwards the messages from one system to another.
 
 ## Run OPC-UA Server

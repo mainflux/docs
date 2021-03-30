@@ -1,3 +1,5 @@
+# Authentication
+
 ## User authentication
 For user authentication Mainflux uses Authentication keys.
 There are three types of authentication keys:
@@ -6,7 +8,7 @@ There are three types of authentication keys:
 - API key - keys issued upon the user request
 - Recovery key - password recovery key
 
-Authentication keys are represented and distributed by the corresponding [JWT](jwt.io).
+Authentication keys are represented and distributed by the corresponding [JWT](https://jwt.io/).
 User keys are issued when user logs in. Each user request (other than registration and login) contains user key that is used to authenticate the user.
 
 API keys are similar to the User keys. The main difference is that API keys have configurable expiration time. If no time is set, the key will never expire. API keys are the only key type that _can be revoked_. This also means that, despite being used as a JWT, it requires a query to the database to validate the API key. The user with API key can perform all the same actions as the user with login key (can act on behalf of the user for Thing, Channel, or user profile management), *except issuing new API keys*. 

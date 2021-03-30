@@ -5,9 +5,9 @@ Although most devices could be connected to the Mainflux directly, using gateway
 
 Services that can be used on gateway to enable data and control plane for edge:
 
-* [Agent](agent.md)
-* [Export](export.md)
-* [Mainflux](architecture.md)
+* [Agent](/edge/#agent)
+* [Export](/edge/#export)
+* [Mainflux](/architecture/)
 
 ![Edge](img/edge/edge.png)
 
@@ -20,12 +20,12 @@ Agent can be used to control deployed services as well as to monitor their livel
 
 Agent is service that is used to manage gateways that are connected to Mainflux in cloud. It provides a way to send commands to gateway and receive response via mqtt.
 There are two types of channels used for **Agent** `data` and `control`. Over the `control` we are sending commands and receiving response from commands.
-Data collected from sensors connected to gateway are being sent over `data` channel. Agent is able to configure itself provided that [bootstrap server](./bootstrap.md) is running, it will retrieve configuration from bootstrap server provided few arguments - `external_id` and `external_key` see [bootstraping](./bootstrap.md/#bootstraping).
+Data collected from sensors connected to gateway are being sent over `data` channel. Agent is able to configure itself provided that [bootstrap server](/bootstrap/) is running, it will retrieve configuration from bootstrap server provided few arguments - `external_id` and `external_key` see [bootstraping](/bootstrap/#bootstrapping).
 
 Agent service has following features:
 * Remote execution of commands
 * Remote terminal, remote session to `bash` managed by `Agent`
-* Heartbeat - listening to NATS topic `heartbeat.>` it can remotely provide info on running services, if services are publishing heartbeat ( like [Export](export.md))
+* Heartbeat - listening to NATS topic `heartbeat.>` it can remotely provide info on running services, if services are publishing heartbeat ( like [Export](/edge/#export))
 * Proxying commands to other gateway services
 * Edgex SMA - remotely making requests to EdgeX endpoints and fetching results, if EdgeX is deployed.
 
@@ -34,9 +34,9 @@ Agent service has following features:
 
 Before running agent we need to provision a thing and DATA and CONTROL channel. Thing that will be used as gateway representation and make bootstrap configuration.
 If using Mainflux UI this is done automatically when adding gateway through UI.
-Gateway can be provisioned with [`provision`](provision.md) service.
+Gateway can be provisioned with [`provision`](/provision/) service.
 
-When you provisioned gateway as described in [provision](provision.md) you can check results
+When you provisioned gateway as described in [provision](/provision/) you can check results
 
 ```bash
 curl -s -S -X GET http://mainflux-domain.com:8202/things/bootstrap/<external_id> -H "Authorization: <external_key>" -H 'Content-Type: application/json' |jq
@@ -302,7 +302,7 @@ To establish connection to MQTT broker following settings are needed:
 - `password` - Mainflux <thing_key>
 - `url` - url of MQTT broker
 
-Additionally, you will need MQTT client certificates if you enable mTLS. To obtain certificates `ca.crt`, `thing.crt` and key `thing.key` follow instructions [here](https://mainflux.readthedocs.io/en/latest/authentication/#mutual-tls-authentication-with-x509-certificates) or [here](certs.md).
+Additionally, you will need MQTT client certificates if you enable mTLS. To obtain certificates `ca.crt`, `thing.crt` and key `thing.key` follow instructions [here](https://mainflux.readthedocs.io/en/latest/authentication/#mutual-tls-authentication-with-x509-certificates) or [here](/provision/#certs-service).
 
 #### MTLS
 
@@ -373,10 +373,10 @@ MAINFLUX_USER_PASSWORD='12345678'
 
 `EXTERNAL_KEY` and `EXTERNAL_ID` are parameters posted to `/mapping` endpoint of `provision` service, `MAINFLUX_HOST` is location of cloud instance of Mainflux that `export` should connect to and `MAINFLUX_USER_EMAIL` and `MAINFLUX_USER_PASSWORD` are users credentials in the cloud.
 
-[conftoml]: (https://github.com/mainflux/export/blob/master/configs/config.toml)
-[docker-compose]: (https://github.com/mainflux/mainflux/docker/docker-compose.yml)
-[env]: (https://github.com/mainflux/export#environmet-variables)
-[agent]: (https://github.com/mainflux/agent)
+[conftoml](https://github.com/mainflux/export/blob/master/configs/config.toml)
+[docker-compose](https://github.com/mainflux/mainflux/docker/docker-compose.yml)
+[env](https://github.com/mainflux/export#environmet-variables)
+[agent](https://github.com/mainflux/agent)
 
 ## Example deployment
 
@@ -385,7 +385,7 @@ MAINFLUX_USER_PASSWORD='12345678'
 The following are steps that are an example usage of Mainflux components to connect edge with cloud.
 We will start Mainflux in the cloud with additional services [Bootstrap](bootstrap) and [Provision](provision).
 Using [Bootstrap](bootstrap) and [Provision](provision) we will create a configuration for use in gateway deployment.
-On the gateway we will start services [Agent](agent.md) and [Export](export.md) using previously created configuration.
+On the gateway we will start services [Agent](/edge/#agent) and [Export](/edge/#export) using previously created configuration.
 
 ## Services in the cloud
 Start the Mainflux:
@@ -547,11 +547,3 @@ In Mainflux `mqtt` service:
 ```log
 mainflux-mqtt   | {"level":"info","message":"Publish - client ID export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 to the topic: channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages/export/test","ts":"2020-05-08T15:16:02.999684791Z"}
 ```
-
-[export]: (https://github.com/mainflux/docs/blob/master/docs/export.md)
-[agent]: (https://github.com/mainflux/docs/blob/master/docs/agent.md)
-[edge]: (https://raw.githubusercontent.com/mainflux/docs/master/docs/img/edge/edge.png)
-[agconf]:(https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml#L2)
-[nats]: (https://github.com/nats-io/nats.go)
-[bootstrap]: (https://github.com/mainflux/mainflux/tree/master/bootstrap)
-[provision]: (https://github.com/mainflux/mainflux/tree/master/provision)
