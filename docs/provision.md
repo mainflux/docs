@@ -481,7 +481,6 @@ Example of provision layout below
 
   [channels.metadata]
     type = "export"
-
 ```
 
 `[bootstrap.content]` will be marshalled and saved into `content` field in bootstrap configs when request to `/mappings` is made, `content` field from bootstrap config is used to create `Agent` and `Export` configuration files upon `Agent` fetching bootstrap configuration.
@@ -584,7 +583,6 @@ mainflux-cli -m https://mainflux.com users create john.doe@email.com 12345678
 mainflux-cli -m https://mainflux.com users token john.doe@email.com 12345678
 
 created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
-
 ```
 Put a value of token into environment variable
 

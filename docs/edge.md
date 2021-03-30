@@ -70,7 +70,8 @@ curl -s -S -X GET http://mainflux-domain.com:8202/things/bootstrap/<external_id>
     }
   ],
   "content": "{\"agent\":{\"edgex\":{\"url\":\"http://localhost:48090/api/v1/\"},\"heartbeat\":{\"interval\":\"30s\"},\"log\":{\"level\":\"debug\"},\"mqtt\":{\"mtls\":false,\"qos\":0,\"retain\":false,\"skip_tls_ver\":true,\"url\":\"tcp://mainflux-domain.com:1883\"},\"server\":{\"nats_url\":\"localhost:4222\",\"port\":\"9000\"},\"terminal\":{\"session_timeout\":\"30s\"}},\"export\":{\"exp\":{\"cache_db\":\"0\",\"cache_pass\":\"\",\"cache_url\":\"localhost:6379\",\"log_level\":\"debug\",\"nats\":\"nats://localhost:4222\",\"port\":\"8172\"},\"mqtt\":{\"ca_path\":\"ca.crt\",\"cert_path\":\"thing.crt\",\"channel\":\"\",\"host\":\"tcp://mainflux-domain.com:1883\",\"mtls\":false,\"password\":\"\",\"priv_key_path\":\"thing.key\",\"qos\":0,\"retain\":false,\"skip_tls_ver\":false,\"username\":\"\"},\"routes\":[{\"mqtt_topic\":\"\",\"nats_topic\":\"channels\",\"subtopic\":\"\",\"type\":\"mfx\",\"workers\":10},{\"mqtt_topic\":\"\",\"nats_topic\":\"export\",\"subtopic\":\"\",\"type\":\"default\",\"workers\":10}]}}"
-}```
+}
+```
 
 
 - `external_id` is usually MAC address, but anything that suits applications requirements can be used
@@ -96,7 +97,6 @@ MF_AGENT_BOOTSTRAP_ID=34:e1:2d:e6:cf:03 ./mainflux-agent
 {"level":"info","message":"Connected to MQTT broker","ts":"2019-12-05T04:47:25.009645082Z"}
 {"level":"info","message":"Agent service started, exposed port 9000","ts":"2019-12-05T04:47:25.009755345Z"}
 {"level":"info","message":"Subscribed to MQTT broker","ts":"2019-12-05T04:47:25.012930443Z"}
-
 ```
 
  - `MF_AGENT_BOOTSTRAP_KEY` - is `external_key` in bootstrap configuration.
@@ -115,8 +115,6 @@ mosquitto_sub -d -u $TH -P $KEY  -t channels/$CH/messages/res/# -h some-domain-n
 
 # Publish command e.g `ls`
 mosquitto_pub -d -u $TH -P $KEY  -t channels/$CH/messages/req -h some-domain-name -p 1883  -m '[{"bn":"1:", "n":"exec", "vs":"ls, -l"}]'
-
-
 ```
 
 #### Remote terminal 
@@ -126,8 +124,8 @@ This can be checked from the UI, click on the details for gateway and below the 
 #### Heartbeat 
 If there are services that are running on same gateway as `agent` and they are publishing heartbeat to NATS subject `heartbeat.service_name.service`
 You can get the list of services by sending following mqtt message
-```
 
+```
 # View services that are sending heartbeat
 mosquitto_pub -d -u $TH -P $KEY  -t channels/$CH/messages/req -h some-domain-name -p 1883  -m '[{"bn":"1:", "n":"service", "vs":"view"}]'
 ```
@@ -420,7 +418,6 @@ mainflux-cli -m http://localhost:8180 users token test@email.com 12345678
 created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
 
 TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
-
 ```
 
 Provision a gateway:
