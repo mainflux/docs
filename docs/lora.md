@@ -1,4 +1,4 @@
-# Lora
+# LoRa
 
 Bridging with LoRaWAN Networks can be done over the [lora-adapter](https://github.com/mainflux/mainflux/tree/master/lora). This service sits between Mainflux and [LoRa Server](https://www.loraserver.io) and just forwards the messages from one system to another via MQTT protocol, using the adequate MQTT topics and in the good message format (JSON and SenML), i.e. respecting the APIs of both systems.
 
