@@ -38,7 +38,7 @@ In most of the cases, HTTPS, MQTTS or secure CoAP are secure enough. However, so
 AUTH=x509 docker-compose -f docker/docker-compose.yml up -d
 ```
 
-Mutual authentication includes client-side certificates. Certificates can be generated using the simple script provided [here](http://www.github.com/mainflux/mainflux/tree/master/docker/ssl/Makefile). In order to create a valid certificate, you need to create Mainflux thing using the process described in the [provisioning section](platform-management.md). After that, you need to fetch created thing key. Thing key will be used to create x.509 certificate for the corresponding thing. To create a certificate, execute the following commands:
+Mutual authentication includes client-side certificates. Certificates can be generated using the simple script provided [here](http://www.github.com/mainflux/mainflux/tree/master/docker/ssl/Makefile). In order to create a valid certificate, you need to create Mainflux thing using the process described in the [provisioning section](/provision/#platform-management). After that, you need to fetch created thing key. Thing key will be used to create x.509 certificate for the corresponding thing. To create a certificate, execute the following commands:
 
 ```bash
 cd docker/ssl
