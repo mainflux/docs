@@ -1,3 +1,5 @@
+# Architecture
+
 ## Components
 
 Mainflux IoT platform is comprised of the following services:
@@ -47,8 +49,8 @@ messages should be formatted using [SenML](https://tools.ietf.org/html/draft-iet
 Mainflux platform can be run on the edge as well. Deploying Mainflux on a gateway makes it able to collect, store and analyze data, organize and authenticate devices.
 To connect Mainflux instances running on a gateway with Mainflux in a cloud we can use two gateway services developed for that purpose:
 
-* [Agent](agent.md)
-* [Export](export.md)
+* [Agent](/edge/#agent)
+* [Export](/edge/#export)
 
 ## Unified IoT Platform
 Running Mainflux on gateway moves computation from cloud towards the edge thus decentralizing IoT system. 

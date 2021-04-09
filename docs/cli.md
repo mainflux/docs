@@ -1,4 +1,4 @@
-## CLI
+# CLI
 
 Mainflux CLI makes it easy to manage users, things, channels and messages.
 

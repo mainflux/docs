@@ -1,3 +1,5 @@
+# Messaging
+
 Once a channel is provisioned and thing is connected to it, it can start to
 publish messages on the channel. The following sections will provide an example
 of message publishing for each of the supported protocols.
