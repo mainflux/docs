@@ -117,7 +117,7 @@ Updating user entity
 
 ```
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <user_token>" http://localhost/users -d 
-'{"email":"<user_email>", "password":"<user_password>"}'
+'{"metadata":{"foo":"bar"}}'
 ```
 
 Response:
