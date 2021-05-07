@@ -37,6 +37,7 @@ nav:
   - Bootstrap: bootstrap.md
   - Twins: twins.md
   - Tracing: tracing.md
+  - Rules: rules.md
   - Developer's Guide: dev-guide.md
   - Kubernetes: kubernetes.md
   - Benchmark: benchmark.md
