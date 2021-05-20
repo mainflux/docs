@@ -15,7 +15,54 @@ In order to run these services, core services, as well as the network from the c
 
 ## Writers
 
-Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to `SenML` format and store them in specific data store. Supported message payload formats are SenML+CBOR and SenML+JSON. They are configurable over environment variables in each writer (`MF_CASSANDRA_WRITER_CONTENT_TYPE`, `MF_POSTGRES_WRITER_CONTENT_TYPE`, `MF_INFLUX_WRITER_CONTENT_TYPE` and `MF_MONGO_WRITER_CONTENT_TYPE`) and expect `application/senml+json` or `application/senml+cbor` formats.
+Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to desired format and store them in specific data store. There are two types of transformers: JSON and SenML. transformer type is set using the following environment variables: `MF_CASSANDRA_WRITER_TRANSFORMER`, `MF_POSTGRES_WRITER_TRANSFORMER`, `MF_INFLUX_WRITER_TRANSFORMER` and `MF_MONGO_WRITER_TRANSFORMER`. The default value is `SenML` Transformer.
+
+JSON transformer can be used for any JSON payload. For the messages that contain _JSON array as the root element_, JSON Transformer does normalization of the data: it creates a separate JSON message for each JSON object in the root. In order to be processed and stored properly, JSON messages need to contain message format information. For the sake of simplicity, nested JSON objects are flatten to a single JSON object, using composite keys with the default separator `/`. This implies that the separator character (`/`) _is not allowed in the JSON object key_. For example, the following JSON object:
+```json
+{
+    "name": "name",
+    "id":8659456789564231564,
+    "in": 3.145,
+    "alarm": true,
+    "ts": 1571259850000,
+    "d": {
+        "tmp": 2.564,
+        "hmd": 87,
+        "loc": {
+            "x": 1,
+            "y": 2
+        }
+    }
+}
+```
+
+will be transformed to:
+
+```json
+
+{
+    "name": "name",
+    "id":8659456789564231564,
+    "in": 3.145,
+    "alarm": true,
+    "ts": 1571259850000,
+    "d/tmp": 2.564,
+    "d/hmd": 87,
+    "d/loc/x": 1,
+    "d/loc/y": 2
+}
+```
+
+The message format is stored in *the subtopic*. It's the last part of the subtopic. In the example:
+
+```
+http://localhost:8185/channels/<channelID>/messages/home/temperature/myFormat
+```
+
+the message format is `myFormat`. It can be any valid subtopic name, JSON transformer is format-agnostic. The format is used by the JSON message consumers so that they can process the message properly. If the format is not present (i.e. message subtopic is empty), JSON Transformer will report an error.  Message writers will store the message(s) in the table/collection/measurement (depending on the underlying database) with the name of the format (which in the example is `myFormat`). Mainflux writers will try to save any format received (whether it will be successful depends on the writer implementation and the underlying database), but it's recommended that publishers don't send different formats to the same subtopic.
+
+
+For SenML transformer, supported message payload formats are SenML+CBOR and SenML+JSON. They are configurable over environment variables in each writer (`MF_CASSANDRA_WRITER_CONTENT_TYPE`, `MF_POSTGRES_WRITER_CONTENT_TYPE`, `MF_INFLUX_WRITER_CONTENT_TYPE` and `MF_MONGO_WRITER_CONTENT_TYPE`) and expect `application/senml+json` or `application/senml+cbor` formats.
 
 Each writer can filter messages based on subjects list that is set in `subjects.toml` configuration file. If you want to listen on all subjects, just pass one element ["channels.>"], otherwise pass the list of subjects. Here is an example:
 
