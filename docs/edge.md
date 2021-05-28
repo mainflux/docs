@@ -375,10 +375,10 @@ MAINFLUX_USER_PASSWORD='12345678'
 
 `EXTERNAL_KEY` and `EXTERNAL_ID` are parameters posted to `/mapping` endpoint of `provision` service, `MAINFLUX_HOST` is location of cloud instance of Mainflux that `export` should connect to and `MAINFLUX_USER_EMAIL` and `MAINFLUX_USER_PASSWORD` are users credentials in the cloud.
 
-[conftoml]: (https://github.com/mainflux/export/blob/master/configs/config.toml)
-[docker-compose]: (https://github.com/mainflux/mainflux/docker/docker-compose.yml)
-[env]: (https://github.com/mainflux/export#environmet-variables)
-[agent]: (https://github.com/mainflux/agent)
+[conftoml]:(https://github.com/mainflux/export/blob/master/configs/config.toml)
+[docker-compose]:(https://github.com/mainflux/mainflux/docker/docker-compose.yml)
+[env]:(https://github.com/mainflux/export#environmet-variables)
+[agent]:(https://github.com/mainflux/agent)
 
 ## Example deployment
 
