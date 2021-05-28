@@ -9,7 +9,9 @@ Services that can be used on gateway to enable data and control plane for edge:
 * [Export](/edge/#export)
 * [Mainflux](/architecture/)
 
-![Edge](img/edge/edge.png)
+![Edge1](img/edge/edge.png)
+*Fig. 1*
+
 
 Figure shows edge gateway that is running Agent, Export and minimal deployment of Mainflux services.
 Mainflux services enable device management and MQTT protocol, NATS being a central message bus in Mainflux becomes also central message bus for other services like `Agent` and `Export` as well as for any new custom developed service that can be built to interface with devices with any of hardware supported interfaces on the gateway, those services would publish data to NATS where `Export` service can pick them up and send to cloud.
@@ -321,8 +323,8 @@ To match Mainflux requirements `mqtt_topic` must contain `channel/<channel_id>/m
 - `subtopic` - messages will be published to MQTT topic `<mqtt_topic>/<subtopic>/<nats_subject>`, where dots in nats_subject are replaced with '/'
 - `workers` - specifies number of workers that will be used for message forwarding.
 - `type` - specifies message transformation:
-  - `default` is for sending messages as they are received on NATS with no transformation (so they should be in SenML format for successful exporting to Mainflux cloud) 
-  - `mfx` is for messages that are being picked up on internal Mainflux NATS bus, messages that are published to local running Mainflux via MQTT will end on NATS, before sending, SenML must be extracted from Mainflux Message and then sent via MQTT to cloud. `nats_topic` in this case must be `channels` , or if you want a specific channel on local instance of Mainflux to export to cloud you can put `channels.<local_mainflux_channel_id>`
+    - `default` is for sending messages as they are received on NATS with no transformation (so they should be in SenML or JSON format if we want to persist them in Mainflux in cloud). If you don't want to persist messages in Mainflux or you are not exporting to Mainflux cloud - message format can be anything that suits your application as message passes untransformed.
+    - `mfx` is for messages that are being picked up on internal Mainflux NATS bus. When using `Export` along with Mainflux deployed on gateway ([Fig. 1](#edge)) messages coming from MQTT broker that are published to NATS bus are [Mainflux message](https://github.com/mainflux/mainflux/blob/master/pkg/messaging/message.proto). Using `mfx` type will extract payload and `export` will publish it to `mqtt_topic`. Extracted payload is SenML or JSON if we want to persist messages. `nats_topic` in this case must be `channels`, or if you want to pick messages from a specific channel in local Mainflux instance to be exported to cloud you can put `channels.<local_mainflux_channel_id>`.
 
 Before running `Export` service edit `configs/config.toml` and provide `username`, `password` and `url`
  * `username` - matches `thing_id` in Mainflux cloud instance
