@@ -34,6 +34,7 @@ nav:
   - Authentication: authentication.md
   - CLI: cli.md
   - API: api.md
+  - GROUPS: groups.md
   - Bootstrap: bootstrap.md
   - Twins: twins.md
   - Tracing: tracing.md
