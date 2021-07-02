@@ -15,9 +15,9 @@ In order to run these services, core services, as well as the network from the c
 
 ## Writers
 
-Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to desired format and store them in specific data store. There are two types of transformers: JSON and SenML. Transformer type is set using the following environment variables: `MF_CASSANDRA_WRITER_TRANSFORMER`, `MF_POSTGRES_WRITER_TRANSFORMER`, `MF_INFLUX_WRITER_TRANSFORMER` and `MF_MONGO_WRITER_TRANSFORMER`. The default value is `SenML` Transformer.
+Writers provide an implementation of various `message writers`. Message writers are services that consume Mainflux messages, transform them to desired format and store them in specific data store. There are two types of transformers: JSON and SenML. Transformer type is set using the following environment variables: `MF_CASSANDRA_WRITER_TRANSFORMER`, `MF_POSTGRES_WRITER_TRANSFORMER`, `MF_INFLUX_WRITER_TRANSFORMER` and `MF_MONGO_WRITER_TRANSFORMER`. Valid options for this environment variable are `JSON` and `SenML` and those values are not case sensitive. The default Transformer is `SenML`.
 
-JSON transformer can be used for any JSON payload. For the messages that contain _JSON array as the root element_, JSON Transformer does normalization of the data: it creates a separate JSON message for each JSON object in the root. In order to be processed and stored properly, JSON messages need to contain message format information. For the sake of simplicity, nested JSON objects are flatten to a single JSON object in InfluxDB, using composite keys with the default separator `/`. This implies that the separator character (`/`) _is not allowed in the JSON object key_ while using InfluxDB. Apart from InfluxDB, separator character (`/`) usage in the JSON object key is permitted, since other [Writer](storage.md#writers) types do not flat the nested JSON objects. For example, the following JSON object:
+JSON transformer can be used for any JSON payload. For the messages that contain _JSON array as the root element_, JSON Transformer does normalization of the data: it creates a separate JSON message for each JSON object in the root. In order to be processed and stored properly, JSON messages need to contain message format information. For the sake of simplicity, nested JSON objects are flatten to a single JSON object in InfluxDB, using composite keys separated by the `/` separator. This implies that the separator character (`/`) _is not allowed in the JSON object key_ while using InfluxDB. Apart from InfluxDB, separator character (`/`) usage in the JSON object key is permitted, since other [Writer](storage.md#writers) types do not flat the nested JSON objects. For example, the following JSON object:
 ```json
 {
     "name": "name",
@@ -36,10 +36,9 @@ JSON transformer can be used for any JSON payload. For the messages that contain
 }
 ```
 
-will be transformed to:
+for InfluxDB will be transformed to:
 
 ```json
-
 {
     "name": "name",
     "id":8659456789564231564,
@@ -52,6 +51,7 @@ will be transformed to:
     "d/loc/y": 2
 }
 ```
+while for other Writers it will preserve its original format.
 
 The message format is stored in *the subtopic*. It's the last part of the subtopic. In the example:
 
