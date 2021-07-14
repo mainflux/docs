@@ -1,0 +1,1172 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/twins/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Twins - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#twins-service" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Twins
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provision/" class="md-nav__link">
+        Provision
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        Messaging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edge/" class="md-nav__link">
+        Edge
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        Groups
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Twins
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Twins
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#twins-service" class="md-nav__link">
+    Twins Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Twins Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-digital-twin" class="md-nav__link">
+    What is Digital Twin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainflux-digital-twin" class="md-nav__link">
+    Mainflux Digital Twin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainflux-platform-and-mainflux-twins-service" class="md-nav__link">
+    Mainflux Platform and Mainflux Twins Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twins-anatomy" class="md-nav__link">
+    Twin's Anatomy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-and-authorization" class="md-nav__link">
+    Authentication and Authorization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twin-operations" class="md-nav__link">
+    Twin Operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Twin Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-update" class="md-nav__link">
+    Create and Update
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and Update">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view" class="md-nav__link">
+    View
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#states-operations" class="md-nav__link">
+    STATES operations
+  </a>
+  
+    <nav class="md-nav" aria-label="STATES operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_1" class="md-nav__link">
+    List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications" class="md-nav__link">
+    Notifications
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#twins-service" class="md-nav__link">
+    Twins Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Twins Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-digital-twin" class="md-nav__link">
+    What is Digital Twin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainflux-digital-twin" class="md-nav__link">
+    Mainflux Digital Twin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainflux-platform-and-mainflux-twins-service" class="md-nav__link">
+    Mainflux Platform and Mainflux Twins Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twins-anatomy" class="md-nav__link">
+    Twin's Anatomy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-and-authorization" class="md-nav__link">
+    Authentication and Authorization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twin-operations" class="md-nav__link">
+    Twin Operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Twin Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-update" class="md-nav__link">
+    Create and Update
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and Update">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view" class="md-nav__link">
+    View
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#states-operations" class="md-nav__link">
+    STATES operations
+  </a>
+  
+    <nav class="md-nav" aria-label="STATES operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_1" class="md-nav__link">
+    List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications" class="md-nav__link">
+    Notifications
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Twins</h1>
+                
+                <h2 id="twins-service">Twins Service<a class="headerlink" href="#twins-service" title="Permanent link">#</a></h2>
+<p><em>Mainflux twins service is built on top of the Mainflux platform. In order to fully understand what follows, be sure to get acquainted with <a href="../architecture/">overall Mainflux architecture</a>.</em></p>
+<h3 id="what-is-digital-twin">What is Digital Twin<a class="headerlink" href="#what-is-digital-twin" title="Permanent link">#</a></h3>
+<p><strong>Twin</strong> refers to a <strong>digital representation</strong> of a <strong>real world data system</strong> consisting of possibly multiple data sources/producers and/or destinations/consumers (data agents).</p>
+<p>For example, an industrial machine can use multiple protocols such as MQTT, OPC-UA, a regularly updated machine hosted CSV file etc. to send measurement data - such as flowrate, material temperature, etc. - and state metadata - such as engine and chassis temperature, engine rotations per seconds, identity of the current human operator, etc. - as well as to receive control, i.e. actuation messages - such as, turn on/off light, increment/decrement borer speed, change blades, etc.</p>
+<p>Digital twin is an abstract - and usually less detailed - digital replica of a real world system such as the industrial machine we have just described. It is used to create and store information about system's state at any given moment, to compare system state over a given period of time - so-called diffs or deltas - as well as to control agents composing the system.</p>
+<h3 id="mainflux-digital-twin">Mainflux Digital Twin<a class="headerlink" href="#mainflux-digital-twin" title="Permanent link">#</a></h3>
+<p>Any data producer or data consumer - which we refer to here collectively as data agent - or an interrelated system of data agents, can be represented by means of possibly multiple <a href="../architecture/">Mainflux things, channels and subtopics</a>. For example, an OPC-UA server can be represented as a Mainflux thing and its nodes can be represented as multiple Mainflux channels or multiple subtopics of a single Mainflux channel. What is more, you can invert the representation: you can represent server as a channel and node as things. Mainflux platform is meant to empower you with the freedom of expression so you can make a digital representation of any data agent according to your needs.</p>
+<p>Although this works well, satisfies the requirements of a wide variety of use cases and corresponds to the intended use of Mainlfux IoT platform, this setup can be insufficient in two important ways. Firstly, different things, channels, and their connections - i.e. Mainflux representations of different data agent structures - are unrelated to each other, i.e. they do not form a <strong>meaningful whole</strong> and, as a consequence, they do not represent a <strong>single unified system</strong>. Secondly, the <strong>semantic</strong> aspect, i.e. the <strong>meaning</strong> of different things and channels is not transparent and defined by the sole use of Mainflux platform entities (channels and things).</p>
+<p>Certainly, we can try to describe things and channels connections and relations as well as their meaning - i.e. their role, position, function in the overall system - by means of their <a href="../provision/">metadata</a>. Although this might work well - with a proviso of a lot of additional effort of writing the relatively complex code to create and parse metadata - it is not a practical approach and we still don't get - at least not out of the box - a readable and useful overview of the system as a whole. Also, this approach does not enable us to answer a simple but very important question, i.e. what was the detailed state of a complete system at a certain moment in time.</p>
+<p>To overcome these problems, Mainflux comes with a <strong>digital twin service</strong>. The twins service is built on top of the Mainflux platform and relies on its architecture and entities, more precisely, on Mainflux users, things and channels. The primary task of the twin service is to handle Mainflux digital twins. Mainflux digital twin consists of three parts:</p>
+<ul>
+<li>General data about twin itself, i.e. <strong>twin's metadata</strong>,</li>
+<li>History of twin's <strong>definitions</strong>, including current definition,</li>
+<li>History of twin's <strong>states</strong>, including current state.</li>
+</ul>
+<h3 id="mainflux-platform-and-mainflux-twins-service">Mainflux Platform and Mainflux Twins Service<a class="headerlink" href="#mainflux-platform-and-mainflux-twins-service" title="Permanent link">#</a></h3>
+<p>Mainflux Twins service depends on the Mainflux IoT platform. The following diagram shows the place of the twins service in the overall <a href="../architecture/">Mainflux architecture</a>:</p>
+<p><img alt="Mainflux Twins service architecture" src="../img/twins/architecture.png" /></p>
+<p>You use an HTTP client to communicate with the twins service. Every request sent to the twins service is authenticated by users service. Twins service handles CRUD requests and creates, retrieves, updates and deletes twins. The CRUD operations depend on the database to persist and fetch already saved twins.</p>
+<p>Twins service listens to NATS server and intercepts messages passing <em>via</em> NATS broker. Every Mainflux message contains information about subchannel and topic used to send a message. Twins service compares this info with attribute definitions of twins persisted in the database, fetches the corresponding twins and updates their respective states.</p>
+<p>Before we dwell into twin's anatomy, it is important to realize that in order to use Mainflux twin service, you have to <a href="../provision/">provision Mainflux things and channels</a> and you have to connect things and channels beforehand. As you go, you can modify your things, channels and connections and you can modify your digital twin to reflect these modifications, but you have to have at least a minimal setup in order to use the twin service.</p>
+<h3 id="twins-anatomy">Twin's Anatomy<a class="headerlink" href="#twins-anatomy" title="Permanent link">#</a></h3>
+<p>Twin's <strong>general information</strong> stores twin's owner email - owner is represented by Mainflux user -, twin's ID (unique) and name (not necessarily unique), twin's creation and update dates as well as twin's revision number. The latter refers to the sequential number of twin's definition.</p>
+<p>The twin's <strong>definition</strong> is meant to be a semantic representation of system's data sources and consumers (data agents). Each data data agent is represented by means of <strong>attribute</strong>. Attribute consists of data agent's name, Mainflux channel and subtopic over which it communicates. Nota bene: each attribute is uniquely defined by the combination of channel and subtopic and we cannot have two or more attributes with the same channel and subtopic in the same definition.</p>
+<p>Attributes have a state persistence flag that determines whether the messages communicated by its corresponding channel and subtopic trigger the creation of a new twin state. Twin states are persisted in the separate collection of the same database. Currently, twins service uses the MongoDB. InfluxDB support for twins and states persistence is on the roadmap.</p>
+<p>When we define our digital twin, its JSON representation might look like this:</p>
+<pre><code class="language-json">{
+    &quot;owner&quot;: &quot;john.doe@email.net&quot;,
+    &quot;id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+    &quot;name&quot;: &quot;grinding machine 2&quot;,
+    &quot;revision&quot;: 2,
+    &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+    &quot;updated&quot;: &quot;2020-05-05T08:49:12.638Z&quot;,
+    &quot;definitions&quot;: [
+        {
+            &quot;id&quot;: 0,
+            &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+            &quot;attributes&quot;: [],
+            &quot;delta&quot;: 1000000
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:46:23.207Z&quot;,
+            &quot;attributes&quot;: [
+                {
+                    &quot;name&quot;: &quot;engine temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;engine&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;chassis temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;chassis&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;rotations per sec&quot;,
+                    &quot;channel&quot;: &quot;a254032a-8bb6-4973-a2a1-dbf80f181a86&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: false
+                }
+            ],
+            &quot;delta&quot;: 1000000
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:12.638Z&quot;,
+            &quot;attributes&quot;: [
+                {
+                    &quot;name&quot;: &quot;engine temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;engine&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;chassis temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;chassis&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;rotations per sec&quot;,
+                    &quot;channel&quot;: &quot;a254032a-8bb6-4973-a2a1-dbf80f181a86&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: false
+                },
+                {
+                    &quot;name&quot;: &quot;precision&quot;,
+                    &quot;channel&quot;: &quot;aed0fbca-0d1d-4b07-834c-c62f31526569&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: true
+                }
+            ],
+            &quot;delta&quot;: 1000000
+        }
+    ]
+}
+</code></pre>
+<p>In the case of the upper twin, we begin with an empty definition, the one with the <code>id</code> <strong>0</strong> - we could have provided the definition immediately - and over the course of time, we add two more definitions, so the total number of revisions is <strong>2</strong> (revision index is zero-based). We decide not to persist the number of rotation per second in our digital twin state. We define it, though, because the definition and its attributes are used not only to define states of a complex data agent system, but also to define the semantic structure of the system. <code>delta</code> is the number of nanoseconds used to determine whether the received attribute value should trigger the generation of the new state or the same state should be updated. The reason for this is to enable state sampling over the regular intervals of time. Discarded values are written to the database of choice by Mainflux <a href="../storage/">writers</a>, so you can always retrieve intermediate values if need be.</p>
+<p><strong>states</strong> are created according to the twin's current definition. A state stores twin's ID - every state belongs to a single twin -, its own ID, twin's definition number, creation date and the actual payload. <strong>Payload</strong> is a set of key-value pairs where a key corresponds to the attribute name and a value is the actual value of the attribute. All <a href="https://tools.ietf.org/html/rfc8428#section-4.3">SenML value types</a> are supported.</p>
+<p>A JSON representation of a partial list of states might look like this:</p>
+<pre><code class="language-json">{
+    &quot;total&quot;: 28,
+    &quot;offset&quot;: 10,
+    &quot;limit&quot;: 5,
+    &quot;states&quot;: [
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 11,
+            &quot;definition&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:49:06.167Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 0.3394171011161684,
+                &quot;engine temperature&quot;: 0.3814079472715233
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 12,
+            &quot;definition&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:49:12.168Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 1.8116442194724147,
+                &quot;engine temperature&quot;: 0.3814079472715233
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 13,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:18.174Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 1.8116442194724147,
+                &quot;engine temperature&quot;: 3.2410616702795814
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 14,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:19.145Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 3.2410616702795814,
+                &quot;engine temperature&quot;: 3.2410616702795814,
+                &quot;precision&quot;: 8.922156489392854
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 15,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:24.178Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 0.8694383878692546,
+                &quot;engine temperature&quot;: 3.2410616702795814,
+                &quot;precision&quot;: 8.922156489392854
+            }
+        }
+    ]
+}
+</code></pre>
+<p>As you can see, the first two states correspond to the definition <strong>1</strong> and have only two attributes in the payload. The rest of the states is based on the definition <strong>2</strong>, where we persist three attributes and, as a consequence, its payload consists of three entries.</p>
+<h3 id="authentication-and-authorization">Authentication and Authorization<a class="headerlink" href="#authentication-and-authorization" title="Permanent link">#</a></h3>
+<p>Twin belongs to a Mainflux user, tenant representing a physical person or an organization. User owns Mainflux things and channels as well as twins. Mainflux user provides authorization and authentication mechanisms to twins service. For more details, please see <a href="../authentication/">Authentication with Mainflux keys</a>. In practical terms, we need to create a Mainflux user in order to create a digital twin. Every twin belongs to exactly one user. One user can have unlimited number of digital twins.</p>
+<h3 id="twin-operations">Twin Operations<a class="headerlink" href="#twin-operations" title="Permanent link">#</a></h3>
+<p>For more information about the Twins service HTTP API please refer to the <a href="https://github.com/mainflux/mainflux/blob/master/twins/openapi.yml">twins service OpenAPI file</a>.</p>
+<h4 id="create-and-update">Create and Update<a class="headerlink" href="#create-and-update" title="Permanent link">#</a></h4>
+<p>Create and update requests use JSON body to initialize and modify, respectively, twin. You can omit every piece of data - every key-value pair - from the JSON. However, you must send at least an empty JSON body.</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;twin_name&quot;,
+  &quot;definition&quot;: {
+    &quot;attributes&quot;: [
+      {
+        &quot;name&quot;: &quot;temperature&quot;,
+        &quot;channel&quot;: &quot;3b57b952-318e-47b5-b0d7-a14f61ecd03b&quot;,
+        &quot;subtopic&quot;: &quot;temperature&quot;,
+        &quot;persist_state&quot;: true
+      },
+      {
+        &quot;name&quot;: &quot;humidity&quot;,
+        &quot;channel&quot;: &quot;3b57b952-318e-47b5-b0d7-a14f61ecd03b&quot;,
+        &quot;subtopic&quot;: &quot;humidity&quot;,
+        &quot;persist_state&quot;: false
+      },
+      {
+        &quot;name&quot;: &quot;pressure&quot;,
+        &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+        &quot;subtopic&quot;: &quot;&quot;,
+        &quot;persist_state&quot;: true
+      }
+    ],
+    &quot;delta&quot;: 1
+  }
+}
+</code></pre>
+<h5 id="create">Create<a class="headerlink" href="#create" title="Permanent link">#</a></h5>
+<p>Create request uses POST HTTP method to create twin:</p>
+<pre><code class="language-bash">curl -s -S -i -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins -d '&lt;twin_data&gt;'
+</code></pre>
+<p>If you do not suply the definition, the empty definition of the form</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+    &quot;attributes&quot;: [],
+    &quot;delta&quot;: 1000000
+}
+</code></pre>
+<p>will be created.</p>
+<h5 id="update">Update<a class="headerlink" href="#update" title="Permanent link">#</a></h5>
+<pre><code class="language-bash">curl -s -S -i -X PUT -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/&lt;twin_id&gt; -d '&lt;twin_data&gt;'
+</code></pre>
+<h4 id="view">View<a class="headerlink" href="#view" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins/&lt;twin_id&gt;
+</code></pre>
+<h4 id="list">List<a class="headerlink" href="#list" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins
+</code></pre>
+<p>List requests accepts <code>limit</code> and <code>offset</code> query parameters. By default, i.e. without these parameters, list requests fetches only first ten twins (or less, if there are less then ten twins).</p>
+<p>You can fetch twins [10-29) like this:</p>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins?offset=10&amp;limit=20
+</code></pre>
+<h4 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X DELETE -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins/&lt;twin_id&gt;
+</code></pre>
+<h3 id="states-operations">STATES operations<a class="headerlink" href="#states-operations" title="Permanent link">#</a></h3>
+<h4 id="list_1">List<a class="headerlink" href="#list_1" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/states/&lt;twin_id&gt;
+</code></pre>
+<p>List requests accepts <code>limit</code> and <code>offset</code> query parameters. By default, i.e. without these parameters, list requests fetches only first ten states (or less, if there are less then ten states).</p>
+<p>You can fetch states [10-29) like this:</p>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/states/&lt;twin_id&gt;?offset=10&amp;limit=20
+</code></pre>
+<h3 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">#</a></h3>
+<p>Every twin and states related operation publishes notifications <em>via</em> NATS. To fully understand what follows, please read about <a href="../messaging/">Mainflux messaging</a> capabilities and utilities.</p>
+<p>In order to pick up this notifications, you have to create a Mainflux channel before you start the twins service and inform the twins service about the channel by means of the environment variable, like this:</p>
+<pre><code class="language-bash">export MF_TWINS_CHANNEL_ID=f6894dfe-a7c9-4eef-a614-637ebeea5b4c
+</code></pre>
+<p>The twins service will use this channel to publish notifications related to twins creation, update, retrieval and deletion. It will also publish notifications related to state saving into the database.</p>
+<p>All notifications will be published on the following NATS subject:</p>
+<pre><code>channels.&lt;mf_twins_channel_id&gt;.&lt;optional_subtopic&gt;
+</code></pre>
+<p>where <code>&lt;optional_subtopic&gt;</code> is one of the following:</p>
+<ul>
+<li><code>create.success</code> - on successful twin creation,</li>
+<li><code>create.failure</code> - on twin creation failure,</li>
+<li><code>update.success</code> - on successful twin update,</li>
+<li><code>update.failure</code> - on twin update failure,</li>
+<li><code>get.success</code> - on successful twin retrieval,</li>
+<li><code>get.failure</code> - on twin retrieval failure,</li>
+<li><code>remove.success</code> - on successful twin deletion,</li>
+<li><code>remove.failure</code> - on twin deletion failure,</li>
+<li><code>save.success</code> - on successful state save</li>
+<li><code>save.failure</code> - on state save failure.</li>
+</ul>
+<p>Normally, you can use NATS wildcards. In order to learn more about Mainflux channel topic composition, please read about <a href="../messaging/">subtopics</a>. The point is to be able to subscribe to all subjects or any operation pair subject - e.g. create.success/failure - by means of one connection and read all messages or all operation related messages in the context of the same subscription.</p>
+<p>Since messages published on NATS are republished on any other protocol supported by Mainflux - HTTP, MQTT, CoAP and WS - you can use any supported protocol client to pick up notifications.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../bootstrap/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Bootstrap" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Bootstrap
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../tracing/" class="md-footer__link md-footer__link--next" aria-label="Next: Tracing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Tracing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>

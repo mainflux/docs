@@ -1,0 +1,1514 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/edge/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Edge - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#edge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Edge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provision/" class="md-nav__link">
+        Provision
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        Messaging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Edge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Edge
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    Agent
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-agent" class="md-nav__link">
+    Run Agent
+  </a>
+  
+    <nav class="md-nav" aria-label="Run Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-execution-of-commands-via-agent" class="md-nav__link">
+    Remote execution of commands via Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-terminal" class="md-nav__link">
+    Remote terminal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat" class="md-nav__link">
+    Heartbeat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxying-commands" class="md-nav__link">
+    Proxying commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgex" class="md-nav__link">
+    EdgeX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-commands" class="md-nav__link">
+    Remote Commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    Environment variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-port" class="md-nav__link">
+    Http port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection" class="md-nav__link">
+    MQTT connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls" class="md-nav__link">
+    MTLS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes" class="md-nav__link">
+    Routes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-save-config-via-agent" class="md-nav__link">
+    How to save config via agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-configure-script" class="md-nav__link">
+    Using configure script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-deployment" class="md-nav__link">
+    Example deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="Example deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-deployment" class="md-nav__link">
+    Edge deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-in-the-cloud" class="md-nav__link">
+    Services in the cloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-on-the-edge" class="md-nav__link">
+    Services on the Edge
+  </a>
+  
+    <nav class="md-nav" aria-label="Services on the Edge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_1" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-export" class="md-nav__link">
+    Testing Export
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        Groups
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twins/" class="md-nav__link">
+        Twins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    Agent
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-agent" class="md-nav__link">
+    Run Agent
+  </a>
+  
+    <nav class="md-nav" aria-label="Run Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-execution-of-commands-via-agent" class="md-nav__link">
+    Remote execution of commands via Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-terminal" class="md-nav__link">
+    Remote terminal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat" class="md-nav__link">
+    Heartbeat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxying-commands" class="md-nav__link">
+    Proxying commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgex" class="md-nav__link">
+    EdgeX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-commands" class="md-nav__link">
+    Remote Commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    Environment variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-port" class="md-nav__link">
+    Http port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection" class="md-nav__link">
+    MQTT connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls" class="md-nav__link">
+    MTLS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes" class="md-nav__link">
+    Routes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-save-config-via-agent" class="md-nav__link">
+    How to save config via agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-configure-script" class="md-nav__link">
+    Using configure script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-deployment" class="md-nav__link">
+    Example deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="Example deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-deployment" class="md-nav__link">
+    Edge deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-in-the-cloud" class="md-nav__link">
+    Services in the cloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-on-the-edge" class="md-nav__link">
+    Services on the Edge
+  </a>
+  
+    <nav class="md-nav" aria-label="Services on the Edge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_1" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-export" class="md-nav__link">
+    Testing Export
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="edge">Edge<a class="headerlink" href="#edge" title="Permanent link">#</a></h1>
+<p>Mainflux IoT platform provides services for supporting management of devices on the edge. Typically, IoT solution includes devices (sensors/actuators) deployed in far edge and connected through some proxy gateway. 
+Although most devices could be connected to the Mainflux directly, using gateways decentralizes system, decreases load on the cloud and makes setup less difficult. Also, gateways can provide additional data processing, filtering and storage.</p>
+<p>Services that can be used on gateway to enable data and control plane for edge:</p>
+<ul>
+<li><a href="/edge/#agent">Agent</a></li>
+<li><a href="/edge/#export">Export</a></li>
+<li><a href="/architecture/">Mainflux</a></li>
+</ul>
+<p><img alt="Edge" src="../img/edge/edge.png" /></p>
+<p>Figure shows edge gateway that is running Agent, Export and minimal deployment of Mainflux services.
+Mainflux services enable device management and MQTT protocol, NATS being a central message bus in Mainflux becomes also central message bus for other services like <code>Agent</code> and <code>Export</code> as well as for any new custom developed service that can be built to interface with devices with any of hardware supported interfaces on the gateway, those services would publish data to NATS where <code>Export</code> service can pick them up and send to cloud.</p>
+<p>Agent can be used to control deployed services as well as to monitor their liveliness through subcribing to <code>heartbeat</code> NATS subject where services should publish their liveliness status, like <code>Export</code> service does.</p>
+<h2 id="agent">Agent<a class="headerlink" href="#agent" title="Permanent link">#</a></h2>
+<p>Agent is service that is used to manage gateways that are connected to Mainflux in cloud. It provides a way to send commands to gateway and receive response via mqtt.
+There are two types of channels used for <strong>Agent</strong> <code>data</code> and <code>control</code>. Over the <code>control</code> we are sending commands and receiving response from commands.
+Data collected from sensors connected to gateway are being sent over <code>data</code> channel. Agent is able to configure itself provided that <a href="/bootstrap/">bootstrap server</a> is running, it will retrieve configuration from bootstrap server provided few arguments - <code>external_id</code> and <code>external_key</code> see <a href="/bootstrap/#bootstrapping">bootstraping</a>.</p>
+<p>Agent service has following features:
+* Remote execution of commands
+* Remote terminal, remote session to <code>bash</code> managed by <code>Agent</code>
+* Heartbeat - listening to NATS topic <code>heartbeat.&gt;</code> it can remotely provide info on running services, if services are publishing heartbeat ( like <a href="/edge/#export">Export</a>)
+* Proxying commands to other gateway services
+* Edgex SMA - remotely making requests to EdgeX endpoints and fetching results, if EdgeX is deployed.</p>
+<h3 id="run-agent">Run Agent<a class="headerlink" href="#run-agent" title="Permanent link">#</a></h3>
+<p>Before running agent we need to provision a thing and DATA and CONTROL channel. Thing that will be used as gateway representation and make bootstrap configuration.
+If using Mainflux UI this is done automatically when adding gateway through UI.
+Gateway can be provisioned with <a href="/provision/"><code>provision</code></a> service.</p>
+<p>When you provisioned gateway as described in <a href="/provision/">provision</a> you can check results</p>
+<pre><code class="language-bash">curl -s -S -X GET http://mainflux-domain.com:8202/things/bootstrap/&lt;external_id&gt; -H &quot;Authorization: &lt;external_key&gt;&quot; -H 'Content-Type: application/json' |jq
+</code></pre>
+<pre><code class="language-json">{
+  &quot;mainflux_id&quot;: &quot;e22c383a-d2ab-47c1-89cd-903955da993d&quot;,
+  &quot;mainflux_key&quot;: &quot;fc987711-1828-461b-aa4b-16d5b2c642fe&quot;,
+  &quot;mainflux_channels&quot;: [
+    {
+      &quot;id&quot;: &quot;fa5f9ba8-a1fc-4380-9edb-d0c23eaa24ec&quot;,
+      &quot;name&quot;: &quot;control-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;control&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;24e5473e-3cbe-43d9-8a8b-a725ff918c0e&quot;,
+      &quot;name&quot;: &quot;data-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;data&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;1eac45c2-0f72-4089-b255-ebd2e5732bbb&quot;,
+      &quot;name&quot;: &quot;export-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;export&quot;
+      }
+    }
+  ],
+  &quot;content&quot;: &quot;{\&quot;agent\&quot;:{\&quot;edgex\&quot;:{\&quot;url\&quot;:\&quot;http://localhost:48090/api/v1/\&quot;},\&quot;heartbeat\&quot;:{\&quot;interval\&quot;:\&quot;30s\&quot;},\&quot;log\&quot;:{\&quot;level\&quot;:\&quot;debug\&quot;},\&quot;mqtt\&quot;:{\&quot;mtls\&quot;:false,\&quot;qos\&quot;:0,\&quot;retain\&quot;:false,\&quot;skip_tls_ver\&quot;:true,\&quot;url\&quot;:\&quot;tcp://mainflux-domain.com:1883\&quot;},\&quot;server\&quot;:{\&quot;nats_url\&quot;:\&quot;localhost:4222\&quot;,\&quot;port\&quot;:\&quot;9000\&quot;},\&quot;terminal\&quot;:{\&quot;session_timeout\&quot;:\&quot;30s\&quot;}},\&quot;export\&quot;:{\&quot;exp\&quot;:{\&quot;cache_db\&quot;:\&quot;0\&quot;,\&quot;cache_pass\&quot;:\&quot;\&quot;,\&quot;cache_url\&quot;:\&quot;localhost:6379\&quot;,\&quot;log_level\&quot;:\&quot;debug\&quot;,\&quot;nats\&quot;:\&quot;nats://localhost:4222\&quot;,\&quot;port\&quot;:\&quot;8172\&quot;},\&quot;mqtt\&quot;:{\&quot;ca_path\&quot;:\&quot;ca.crt\&quot;,\&quot;cert_path\&quot;:\&quot;thing.crt\&quot;,\&quot;channel\&quot;:\&quot;\&quot;,\&quot;host\&quot;:\&quot;tcp://mainflux-domain.com:1883\&quot;,\&quot;mtls\&quot;:false,\&quot;password\&quot;:\&quot;\&quot;,\&quot;priv_key_path\&quot;:\&quot;thing.key\&quot;,\&quot;qos\&quot;:0,\&quot;retain\&quot;:false,\&quot;skip_tls_ver\&quot;:false,\&quot;username\&quot;:\&quot;\&quot;},\&quot;routes\&quot;:[{\&quot;mqtt_topic\&quot;:\&quot;\&quot;,\&quot;nats_topic\&quot;:\&quot;channels\&quot;,\&quot;subtopic\&quot;:\&quot;\&quot;,\&quot;type\&quot;:\&quot;mfx\&quot;,\&quot;workers\&quot;:10},{\&quot;mqtt_topic\&quot;:\&quot;\&quot;,\&quot;nats_topic\&quot;:\&quot;export\&quot;,\&quot;subtopic\&quot;:\&quot;\&quot;,\&quot;type\&quot;:\&quot;default\&quot;,\&quot;workers\&quot;:10}]}}&quot;
+}
+</code></pre>
+<ul>
+<li><code>external_id</code> is usually MAC address, but anything that suits applications requirements can be used</li>
+<li><code>external_key</code> is key that will be provided to agent process</li>
+<li><code>thing_id</code> is mainflux thing id </li>
+<li><code>channels</code> is 2-element array where first channel is CONTROL and second is DATA, both channels should be assigned to thing</li>
+<li><code>content</code> is used for configuring parameters of agent and export service.</li>
+</ul>
+<p>Then to start the agent service you can do it like this</p>
+<pre><code>git clone https://github.com/mainflux/agent
+make
+cd build
+
+MF_AGENT_LOG_LEVEL=debug \
+MF_AGENT_BOOTSTRAP_KEY=edged \
+MF_AGENT_BOOTSTRAP_ID=34:e1:2d:e6:cf:03 ./mainflux-agent
+
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Requesting config for 34:e1:2d:e6:cf:03 from http://localhost:8202/things/bootstrap&quot;,&quot;ts&quot;:&quot;2019-12-05T04:47:24.98411512Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Getting config for 34:e1:2d:e6:cf:03 from http://localhost:8202/things/bootstrap succeeded&quot;,&quot;ts&quot;:&quot;2019-12-05T04:47:24.995465239Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Connected to MQTT broker&quot;,&quot;ts&quot;:&quot;2019-12-05T04:47:25.009645082Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Agent service started, exposed port 9000&quot;,&quot;ts&quot;:&quot;2019-12-05T04:47:25.009755345Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Subscribed to MQTT broker&quot;,&quot;ts&quot;:&quot;2019-12-05T04:47:25.012930443Z&quot;}
+</code></pre>
+<ul>
+<li><code>MF_AGENT_BOOTSTRAP_KEY</code> - is <code>external_key</code> in bootstrap configuration.</li>
+<li><code>MF_AGENT_BOOSTRAP_ID</code> - is <code>external_id</code> in bootstrap configuration.</li>
+</ul>
+<h4 id="remote-execution-of-commands-via-agent">Remote execution of commands via Agent<a class="headerlink" href="#remote-execution-of-commands-via-agent" title="Permanent link">#</a></h4>
+<pre><code class="language-bash"># Set connection parameters as environment variables in shell
+CH=`curl -s -S -X GET http://some-domain-name:8202/things/bootstrap/34:e1:2d:e6:cf:03 -H &quot;Authorization: edged&quot; -H 'Content-Type: application/json' | jq -r '.mainflux_channels[0].id'`
+TH=`curl -s  -S -X GET http://some-domain-name:8202/things/bootstrap/34:e1:2d:e6:cf:03 -H &quot;Authorization: edged&quot; -H 'Content-Type: application/json' | jq -r .mainflux_id`
+KEY=`curl -s  -S -X GET http://some-domain-name:8202/things/bootstrap/34:e1:2d:e6:cf:03 -H &quot;Authorization: edged&quot; -H 'Content-Type: application/json' | jq -r .mainflux_key`
+
+# Subscribe for response
+mosquitto_sub -d -u $TH -P $KEY  -t channels/$CH/messages/res/# -h some-domain-name -p 1883
+
+# Publish command e.g `ls`
+mosquitto_pub -d -u $TH -P $KEY  -t channels/$CH/messages/req -h some-domain-name -p 1883  -m '[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;exec&quot;, &quot;vs&quot;:&quot;ls, -l&quot;}]'
+</code></pre>
+<h4 id="remote-terminal">Remote terminal<a class="headerlink" href="#remote-terminal" title="Permanent link">#</a></h4>
+<p>This can be checked from the UI, click on the details for gateway and below the gateway parameters you will se box with prompt, if <code>agent</code> is running and it is properly connected you should be able to execute commands remotely.</p>
+<h4 id="heartbeat">Heartbeat<a class="headerlink" href="#heartbeat" title="Permanent link">#</a></h4>
+<p>If there are services that are running on same gateway as <code>agent</code> and they are publishing heartbeat to NATS subject <code>heartbeat.service_name.service</code>
+You can get the list of services by sending following mqtt message</p>
+<pre><code># View services that are sending heartbeat
+mosquitto_pub -d -u $TH -P $KEY  -t channels/$CH/messages/req -h some-domain-name -p 1883  -m '[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;service&quot;, &quot;vs&quot;:&quot;view&quot;}]'
+</code></pre>
+<p>Response can be observed on <code>channels/$CH/messages/res/#</code></p>
+<h3 id="proxying-commands">Proxying commands<a class="headerlink" href="#proxying-commands" title="Permanent link">#</a></h3>
+<p>You can send commands to services running on the same edge gateway as Agent if they are subscribed on same NATS server and correct subject.</p>
+<p>Service commands are being sent via MQTT to topic:</p>
+<p><code>channels/&lt;control_channel_id&gt;/messages/services/&lt;service_name&gt;/&lt;subtopic&gt;</code></p>
+<p>when messages is received Agent forwards them to NATS on subject:</p>
+<p><code>commands.&lt;service_name&gt;.&lt;subtopic&gt;</code></p>
+<p>Payload is up to the application and service itself.</p>
+<h3 id="edgex">EdgeX<a class="headerlink" href="#edgex" title="Permanent link">#</a></h3>
+<p><a href="https://github.com/edgexfoundry/edgex-go">Edgex</a> control messages are sent and received over control channel. MF sends a control SenML of the following form:</p>
+<pre><code>[{&quot;bn&quot;:&quot;&lt;uuid&gt;:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;&lt;cmd&gt;, &lt;param&gt;, edgexsvc1, edgexsvc2, …, edgexsvcN&quot;}}]
+</code></pre>
+<p>For example,</p>
+<pre><code>[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;operation, stop, edgex-support-notifications, edgex-core-data&quot;}]
+</code></pre>
+<p>Agent, on the other hand, returns a response SenML of the following form:</p>
+<pre><code>[{&quot;bn&quot;:&quot;&lt;uuid&gt;:&quot;, &quot;n&quot;:&quot;&lt;&gt;&quot;, &quot;v&quot;:&quot;&lt;RESP&gt;&quot;}]
+</code></pre>
+<h3 id="remote-commands">Remote Commands<a class="headerlink" href="#remote-commands" title="Permanent link">#</a></h3>
+<p>EdgeX defines SMA commands in the following <a href="https://github.com/edgexfoundry/edgex-go/blob/master/api/raml/system-agent.raml">RAML file</a></p>
+<p>Commands are:</p>
+<ul>
+<li>OPERATION</li>
+<li>CONFIG</li>
+<li>METRICS</li>
+<li>PING</li>
+</ul>
+<p><strong>Operation</strong></p>
+<pre><code>mosquitto_pub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages/req -h localhost -m '[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;edgex-operation, start, edgex-support-notifications, edgex-core-data&quot;}]'
+</code></pre>
+<p><strong>Config</strong></p>
+<pre><code>mosquitto_pub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages/req -h localhost -m '[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;edgex-config, edgex-support-notifications, edgex-core-data&quot;}]'
+</code></pre>
+<p><strong>Metrics</strong></p>
+<pre><code>mosquitto_pub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages/req -h localhost -m '[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;edgex-metrics, edgex-support-notifications, edgex-core-data&quot;}]'
+</code></pre>
+<p>If you subscribe to</p>
+<pre><code>mosquitto_sub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages/#
+</code></pre>
+<p>You can observe commands and response from commands executed against edgex</p>
+<pre><code>[{&quot;bn&quot;:&quot;1:&quot;, &quot;n&quot;:&quot;control&quot;, &quot;vs&quot;:&quot;edgex-metrics, edgex-support-notifications, edgex-core-data&quot;}]                                                                            
+[{&quot;bn&quot;:&quot;1&quot;,&quot;n&quot;:&quot;edgex-metrics&quot;,&quot;vs&quot;:&quot;{\&quot;Metrics\&quot;:{\&quot;edgex-core-data\&quot;:{\&quot;CpuBusyAvg\&quot;:15.568632467698606,\&quot;Memory\&quot;:{\&quot;Alloc\&quot;:2040136,\&quot;Frees\&quot;:876344,\&quot;LiveObjects\&quot;:15134,\&quot;Mallocs\&quot;:891478,\&quot;Sys\&quot;:73332984,\&quot;TotalAlloc\&quot;:80657464}},\&quot;edgex-support-notifications\&quot;:{\&quot;CpuBusyAvg\&quot;:14.65381169745318,\&quot;Memory\&quot;:{\&quot;Alloc\&quot;:961784,\&quot;Frees\&quot;:127430,\&quot;LiveObjects\&quot;:6095,\&quot;Mallocs\&quot;:133525,\&quot;Sys\&quot;:72808696,\&quot;TotalAlloc\&quot;:11665416}}}}\n&quot;}] 
+</code></pre>
+<h2 id="export">Export<a class="headerlink" href="#export" title="Permanent link">#</a></h2>
+<p>Mainflux Export service can send message from one Mainflux cloud to another via MQTT, or it can send messages from edge gateway to Mainflux Cloud.
+Export service is subscribed to local message bus and connected to MQTT broker in the cloud.<br />
+Messages collected on local message bus are redirected to the cloud.
+When connection is lost, if QoS2 is used, messages from the local bus are stored into file or in memory to be resent upon reconnection.
+Additonaly <code>Export</code> service publishes liveliness status to <code>Agent</code> via NATS subject <code>heartbeat.export.service</code></p>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">#</a></h3>
+<p>Get the code:</p>
+<pre><code class="language-bash">go get github.com/mainflux/export
+cd $GOPATH/github.com/mainflux/export
+</code></pre>
+<p>Make:</p>
+<pre><code class="language-bash">make
+</code></pre>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">cd build
+./mainflux-export
+</code></pre>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h3>
+<p>By default <code>Export</code> service looks for config file at [<code>../configs/config.toml</code>][conftoml] if no env vars are specified.  </p>
+<pre><code class="language-toml">[exp]
+  log_level = &quot;debug&quot;
+  nats = &quot;localhost:4222&quot;
+  port = &quot;8170&quot;
+
+[mqtt]
+  username = &quot;&lt;thing_id&gt;&quot;
+  password = &quot;&lt;thing_password&gt;&quot;
+  ca_path = &quot;ca.crt&quot;
+  client_cert = &quot;&quot;
+  client_cert_key = &quot;&quot;
+  client_cert_path = &quot;thing.crt&quot;
+  client_priv_key_path = &quot;thing.key&quot;
+  mtls = &quot;false&quot;
+  priv_key = &quot;thing.key&quot;
+  retain = &quot;false&quot;
+  skip_tls_ver = &quot;false&quot;
+  url = &quot;tcp://mainflux.com:1883&quot;
+
+[[routes]]
+  mqtt_topic = &quot;channel/&lt;channel_id&gt;/messages&quot;
+  subtopic = &quot;subtopic&quot;
+  nats_topic = &quot;export&quot;
+  type = &quot;default&quot;
+  workers = 10
+
+[[routes]]
+  mqtt_topic = &quot;channel/&lt;channel_id&gt;/messages&quot;
+  subtopic = &quot;subtopic&quot;
+  nats_topic = &quot;channels&quot;
+  type = &quot;mfx&quot;
+  workers = 10
+</code></pre>
+<h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">#</a></h3>
+<p>Service will first look for <code>MF_EXPORT_CONFIG_FILE</code> for configuration and if not found it will be configured with env variables and new config file specified with <code>MF_EXPORT_CONFIG_FILE</code> (default value will be used if none specified) will be saved with values populated from env vars.<br />
+The service is configured using the <a href="env">environment variables</a> as presented in the table. Note that any unset variables will be replaced with their default values.</p>
+<p>For values in environment variables to take effect make sure that there is no <code>MF_EXPORT_CONFIG_FILE</code> file.</p>
+<p>If you run with environment variables you can create config file:</p>
+<pre><code class="language-bash">MF_EXPORT_PORT=8178 \
+MF_EXPORT_LOG_LEVEL=debug \
+MF_EXPORT_MQTT_HOST=tcp://localhost:1883 \
+MF_EXPORT_MQTT_USERNAME=&lt;thing_id&gt; \
+MF_EXPORT_MQTT_PASSWORD=&lt;thing_key&gt; \
+MF_EXPORT_MQTT_CHANNEL=&lt;channel_id&gt; \
+MF_EXPORT_MQTT_SKIP_TLS=true \
+MF_EXPORT_MQTT_MTLS=false \
+MF_EXPORT_MQTT_CA=ca.crt \
+MF_EXPORT_MQTT_CLIENT_CERT=thing.crt \
+MF_EXPORT_MQTT_CLIENT_PK=thing.key \
+MF_EXPORT_CONFIG_FILE=export.toml \
+../build/mainflux-export&amp;
+</code></pre>
+<p>Values from environment variables will be used to populate export.toml</p>
+<h4 id="http-port">Http port<a class="headerlink" href="#http-port" title="Permanent link">#</a></h4>
+<ul>
+<li><code>port</code> - HTTP port where status of <code>Export</code> service can be fetched.</li>
+</ul>
+<pre><code class="language-bash">curl -X GET http://localhost:8170/version
+{&quot;service&quot;:&quot;export&quot;,&quot;version&quot;:&quot;0.0.1&quot;}%
+</code></pre>
+<h4 id="mqtt-connection">MQTT connection<a class="headerlink" href="#mqtt-connection" title="Permanent link">#</a></h4>
+<p>To establish connection to MQTT broker following settings are needed:
+- <code>username</code> - Mainflux <thing_id>
+- <code>password</code> - Mainflux <thing_key>
+- <code>url</code> - url of MQTT broker</p>
+<p>Additionally, you will need MQTT client certificates if you enable mTLS. To obtain certificates <code>ca.crt</code>, <code>thing.crt</code> and key <code>thing.key</code> follow instructions <a href="https://mainflux.readthedocs.io/en/latest/authentication/#mutual-tls-authentication-with-x509-certificates">here</a> or <a href="/provision/#certs-service">here</a>.</p>
+<h4 id="mtls">MTLS<a class="headerlink" href="#mtls" title="Permanent link">#</a></h4>
+<p>To setup <code>MTLS</code> connection <code>Export</code> service requires client certificate and <code>mtls</code> in config or <code>MF_EXPORT_MQTT_MTLS</code> must be set to <code>true</code>. 
+Client certificate can be provided in a file, <code>client_cert_path</code> and <code>client_cert_key_path</code> are used for specifying path to certificate files.
+If MTLS is used and no certificate file paths are specified then <code>Export</code> will look in <code>client_cert</code> and <code>client_cert_key</code> of config file expecting certificate content stored as string.</p>
+<h4 id="routes">Routes<a class="headerlink" href="#routes" title="Permanent link">#</a></h4>
+<p>Routes are being used for specifying which subscriber's topic(subject) goes to which publishing topic.
+Currently only MQTT is supported for publishing.
+To match Mainflux requirements <code>mqtt_topic</code> must contain <code>channel/&lt;channel_id&gt;/messages</code>, additional subtopics can be appended.</p>
+<ul>
+<li><code>mqtt_topic</code> - <code>channel/&lt;channel_id&gt;/messages/&lt;custom_subtopic&gt;</code></li>
+<li><code>nats_topic</code> - <code>Export</code> service will be subscribed to NATS subject <code>&lt;nats_topic&gt;.&gt;</code></li>
+<li><code>subtopic</code> - messages will be published to MQTT topic <code>&lt;mqtt_topic&gt;/&lt;subtopic&gt;/&lt;nats_subject&gt;</code>, where dots in nats_subject are replaced with '/'</li>
+<li><code>workers</code> - specifies number of workers that will be used for message forwarding.</li>
+<li><code>type</code> - specifies message transformation:</li>
+<li><code>default</code> is for sending messages as they are received on NATS with no transformation (so they should be in SenML format for successful exporting to Mainflux cloud) </li>
+<li><code>mfx</code> is for messages that are being picked up on internal Mainflux NATS bus, messages that are published to local running Mainflux via MQTT will end on NATS, before sending, SenML must be extracted from Mainflux Message and then sent via MQTT to cloud. <code>nats_topic</code> in this case must be <code>channels</code> , or if you want a specific channel on local instance of Mainflux to export to cloud you can put <code>channels.&lt;local_mainflux_channel_id&gt;</code></li>
+</ul>
+<p>Before running <code>Export</code> service edit <code>configs/config.toml</code> and provide <code>username</code>, <code>password</code> and <code>url</code>
+ * <code>username</code> - matches <code>thing_id</code> in Mainflux cloud instance
+ * <code>password</code> - matches <code>thing_key</code>
+ * <code>channel</code> - MQTT part of the topic where to publish MQTT data (<code>channel/&lt;channel_id&gt;/messages</code> is format of mainflux MQTT topic) and plays a part in authorization.</p>
+<p>If Mainflux and Export service are deployed on same gateway <code>Export</code> can be configured to send messages from Mainflux internal NATS bus to Mainflux in a cloud.
+In order for <code>Export</code> service to listen on Mainflux NATS deployed on the same machine NATS port must be exposed.
+Edit Mainflux [docker-compose.yml][docker-compose]. NATS section must look like below:</p>
+<pre><code>  nats:
+    image: nats:1.3.0
+    container_name: mainflux-nats
+    restart: on-failure
+    networks:
+      - mainflux-base-net
+    ports:
+      - 4222:4222
+</code></pre>
+<h3 id="how-to-save-config-via-agent">How to save config via agent<a class="headerlink" href="#how-to-save-config-via-agent" title="Permanent link">#</a></h3>
+<p>Configuration file for <code>Export</code> service can be sent over MQTT using [Agent][agent] service.</p>
+<pre><code>mosquitto_pub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;control_ch_id&gt;/messages/req -h localhost -p 18831  -m  &quot;[{\&quot;bn\&quot;:\&quot;1:\&quot;, \&quot;n\&quot;:\&quot;config\&quot;, \&quot;vs\&quot;:\&quot;save, export, &lt;config_file_path&gt;, &lt;file_content_base64&gt;\&quot;}]&quot;
+</code></pre>
+<p><code>vs="save, export, config_file_path, file_content_base64"</code> - vs determines where to save file and contains file content in base64 encoding payload:</p>
+<pre><code>b,_ := toml.Marshal(export.Config)
+payload := base64.StdEncoding.EncodeToString(b)
+</code></pre>
+<h3 id="using-configure-script">Using configure script<a class="headerlink" href="#using-configure-script" title="Permanent link">#</a></h3>
+<p>There is a <code>configuration.sh</code> script in a <code>scripts</code> directory that can be used for automatic configuration and start up of remotely deployed <code>export</code>. For this to work it is presumed that <code>mainflux-export</code> and <code>scripts/export_start</code> are placed in executable path on remote device. Additionally this script requires that remote device is provisioned following the steps described for <a href="../provision/">provision</a> service.</p>
+<p>To run it first edit script to set parameters</p>
+<pre><code>MTLS=false
+EXTERNAL_KEY='raspberry'
+EXTERNAL_ID='pi'
+MAINFLUX_HOST='mainflux.com'
+MAINFLUX_USER_EMAIL='edge@email.com'
+MAINFLUX_USER_PASSWORD='12345678'
+</code></pre>
+<p><code>EXTERNAL_KEY</code> and <code>EXTERNAL_ID</code> are parameters posted to <code>/mapping</code> endpoint of <code>provision</code> service, <code>MAINFLUX_HOST</code> is location of cloud instance of Mainflux that <code>export</code> should connect to and <code>MAINFLUX_USER_EMAIL</code> and <code>MAINFLUX_USER_PASSWORD</code> are users credentials in the cloud.</p>
+<p><a href="https://github.com/mainflux/export/blob/master/configs/config.toml">conftoml</a>
+<a href="https://github.com/mainflux/mainflux/docker/docker-compose.yml">docker-compose</a>
+<a href="https://github.com/mainflux/export#environmet-variables">env</a>
+<a href="https://github.com/mainflux/agent">agent</a></p>
+<h2 id="example-deployment">Example deployment<a class="headerlink" href="#example-deployment" title="Permanent link">#</a></h2>
+<h3 id="edge-deployment">Edge deployment<a class="headerlink" href="#edge-deployment" title="Permanent link">#</a></h3>
+<p>The following are steps that are an example usage of Mainflux components to connect edge with cloud.
+We will start Mainflux in the cloud with additional services <a href="bootstrap">Bootstrap</a> and <a href="provision">Provision</a>.
+Using <a href="bootstrap">Bootstrap</a> and <a href="provision">Provision</a> we will create a configuration for use in gateway deployment.
+On the gateway we will start services <a href="/edge/#agent">Agent</a> and <a href="/edge/#export">Export</a> using previously created configuration.</p>
+<h2 id="services-in-the-cloud">Services in the cloud<a class="headerlink" href="#services-in-the-cloud" title="Permanent link">#</a></h2>
+<p>Start the Mainflux:</p>
+<pre><code class="language-bash">docker-compose -f docker/docker-compose.yml up
+</code></pre>
+<p>Start the Bootstrap service:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/bootstrap/docker-compose.yml up
+</code></pre>
+<p>Start the Provision service</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/provision/docker-compose.yml up
+</code></pre>
+<p>Create user:</p>
+<pre><code class="language-bash">mainflux-cli -m http://localhost:8180 users create test@email.com 12345678
+</code></pre>
+<p>Obtain user token:</p>
+<pre><code class="language-bash">mainflux-cli -m http://localhost:8180 users token test@email.com 12345678
+
+created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
+
+TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDQ4MDQsImlhdCI6MTU4OTg2ODgwNCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInR5cGUiOjB9.VSwpGoflOLqrHlCGoVVFPBdnnvsAhv2gc3EomXg9yM0
+</code></pre>
+<p>Provision a gateway:</p>
+<pre><code class="language-bash">curl -s -S  -X POST  http://localhost:8190/mapping -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'   -d '{&quot;name&quot;:&quot;testing&quot;,  &quot;external_id&quot; : &quot;54:FG:66:DC:43&quot;, &quot;external_key&quot;:&quot;223334fw2&quot; }' | jq
+</code></pre>
+<pre><code class="language-json">{
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;88529fb2-6c1e-4b60-b9ab-73b5d89f7404&quot;,
+      &quot;name&quot;: &quot;thing&quot;,
+      &quot;key&quot;: &quot;3529c1bb-7211-4d40-9cd8-b05833196093&quot;,
+      &quot;metadata&quot;: {
+        &quot;external_id&quot;: &quot;54:FG:66:DC:43&quot;
+      }
+    }
+  ],
+  &quot;channels&quot;: [
+    {
+      &quot;id&quot;: &quot;1aa3f736-0bd3-44b5-a917-a72cc743f633&quot;,
+      &quot;name&quot;: &quot;control-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;control&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce&quot;,
+      &quot;name&quot;: &quot;data-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;data&quot;
+      }
+    }
+  ],
+  &quot;whitelisted&quot;: {
+    &quot;88529fb2-6c1e-4b60-b9ab-73b5d89f7404&quot;: true
+  }
+}
+</code></pre>
+<p>Parameters <external_id> and <external_key> are representing the gateway. <code>Provision</code> will use them to create a bootstrap configuration that will make a relation with Mainflux entities used for connection, authentication and authorization <code>thing</code> and <code>channel</code>.
+These parameters will be used by <code>Agent</code> service on the gateway to retrieve that information and establish a connection with the cloud.</p>
+<h2 id="services-on-the-edge">Services on the Edge<a class="headerlink" href="#services-on-the-edge" title="Permanent link">#</a></h2>
+<h3 id="agent_1">Agent<a class="headerlink" href="#agent_1" title="Permanent link">#</a></h3>
+<p>Start the [NATS][nats] and [Agent][agent] service:</p>
+<pre><code class="language-bash">gnatsd
+MF_AGENT_BOOTSTRAP_ID=54:FG:66:DC:43 \
+MF_AGENT_BOOTSTRAP_KEY=&quot;223334fw2&quot; \
+MF_AGENT_BOOTSTRAP_URL=http://localhost:8202/things/bootstrap \
+build/mainflux-agent
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Requesting config for 54:FG:66:DC:43 from http://localhost:8202/things/bootstrap&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.041145096Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Getting config for 54:FG:66:DC:43 from http://localhost:8202/things/bootstrap succeeded&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.120779415Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Saving export config file /configs/export/config.toml&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.121602229Z&quot;}
+{&quot;level&quot;:&quot;warn&quot;,&quot;message&quot;:&quot;Failed to save export config file Error writing config file: open /configs/export/config.toml: no such file or directory&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.121752142Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Client agent-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 connected&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.128500603Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Agent service started, exposed port 9003&quot;,&quot;ts&quot;:&quot;2020-05-07T15:50:58.128531057Z&quot;}
+</code></pre>
+<h3 id="export_1">Export<a class="headerlink" href="#export_1" title="Permanent link">#</a></h3>
+<pre><code>git clone https://github.com/mainflux/export
+make
+</code></pre>
+<p>Edit the <code>configs/config.toml</code> setting 
+- <code>username</code> - thing from the results of provision request.
+- <code>password</code> - key from the results of provision request.
+- <code>mqtt_topic</code> - in routes set to <code>channels/&lt;channel_data_id&gt;/messages</code> from results of provision.
+- <code>nats_topic</code> - whatever you need, export will subscribe to <code>export.&lt;nats_topic&gt;</code> and forward messages to MQTT.
+- <code>host</code> - url of MQTT broker.</p>
+<pre><code class="language-toml">[exp]
+  cache_pass = &quot;&quot;
+  cache_url = &quot;&quot;
+  log_level = &quot;debug&quot;
+  nats = &quot;localhost:4222&quot;
+  port = &quot;8170&quot;
+
+[mqtt]
+  ca_path = &quot;&quot;
+  cert_path = &quot;&quot;
+  host = &quot;tcp://localhost:1883&quot;
+  mtls = false
+  password = &quot;3529c1bb-7211-4d40-9cd8-b05833196093&quot;
+  priv_key_path = &quot;&quot;
+  qos = 0
+  retain = false
+  skip_tls_ver = false
+  username = &quot;88529fb2-6c1e-4b60-b9ab-73b5d89f7404&quot;
+
+[[routes]]
+  mqtt_topic = &quot;channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages&quot;
+  nats_topic = &quot;&gt;&quot;
+  workers = 10
+</code></pre>
+<pre><code class="language-bash">cd build
+./mainflux-export
+2020/05/07 17:36:57 Configuration loaded from file ../configs/config.toml
+{&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Export service started, exposed port :8170&quot;,&quot;ts&quot;:&quot;2020-05-07T15:36:57.528398548Z&quot;}
+{&quot;level&quot;:&quot;debug&quot;,&quot;message&quot;:&quot;Client export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 connected&quot;,&quot;ts&quot;:&quot;2020-05-07T15:36:57.528405818Z&quot;}
+</code></pre>
+<h4 id="testing-export">Testing Export<a class="headerlink" href="#testing-export" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">git clone https://github.com/nats-io/nats.go
+cd github.com/nats-io/nats.go/examples/nats-pub
+go run main.go -s http://localhost:4222 export.test &quot;[{\&quot;bn\&quot;:\&quot;test\&quot;}]&quot;;
+</code></pre>
+<p>We have configured route for export, <code>nats_topic = "&gt;"</code> means that it will listen to <code>NATS</code> subject <code>export.&gt;</code> and <code>mqtt_topic</code> is configured so that data will be sent to MQTT broker on topic <code>channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages</code> with appended <code>NATS</code> subject.</p>
+<p>In terminal where export is started you should see following message:</p>
+<pre><code class="language-log">{&quot;level&quot;:&quot;debug&quot;,&quot;message&quot;:&quot;Published to: export.test, payload: [{\&quot;bn\&quot;:\&quot;test\&quot;}]&quot;,&quot;ts&quot;:&quot;2020-05-08T15:14:15.757298992Z&quot;}
+</code></pre>
+<p>In Mainflux <code>mqtt</code> service:</p>
+<pre><code class="language-log">mainflux-mqtt   | {&quot;level&quot;:&quot;info&quot;,&quot;message&quot;:&quot;Publish - client ID export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 to the topic: channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages/export/test&quot;,&quot;ts&quot;:&quot;2020-05-08T15:16:02.999684791Z&quot;}
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../opcua/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OPC-UA" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              OPC-UA
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../security/" class="md-footer__link md-footer__link--next" aria-label="Next: Security" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Security
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>

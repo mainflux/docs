@@ -1,0 +1,1530 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/provision/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Provision - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#provision" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Provision
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Provision
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Provision
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platform-management" class="md-nav__link">
+    Platform management
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users-management" class="md-nav__link">
+    Users Management
+  </a>
+  
+    <nav class="md-nav" aria-label="Users Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-creation" class="md-nav__link">
+    Account Creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-an-authorization-key" class="md-nav__link">
+    Obtaining an Authorization Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-provisioning" class="md-nav__link">
+    System Provisioning
+  </a>
+  
+    <nav class="md-nav" aria-label="System Provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-things" class="md-nav__link">
+    Provisioning Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-provisioning-things" class="md-nav__link">
+    Bulk Provisioning Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-provisioned-things" class="md-nav__link">
+    Retrieving Provisioned Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-provisioned-things" class="md-nav__link">
+    Searching Provisioned Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-things" class="md-nav__link">
+    Removing Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-channels" class="md-nav__link">
+    Provisioning Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-provisioning-channels" class="md-nav__link">
+    Bulk Provisioning Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-provisioned-channels" class="md-nav__link">
+    Retrieving Provisioned Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-channels" class="md-nav__link">
+    Removing Channels
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    Access Control
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provision-service" class="md-nav__link">
+    Provision Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Provision Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    Running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provision_1" class="md-nav__link">
+    Provision
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certs-service" class="md-nav__link">
+    Certs Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Certs Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-mode" class="md-nav__link">
+    Development mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pki-mode" class="md-nav__link">
+    PKI mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        Messaging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edge/" class="md-nav__link">
+        Edge
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        Groups
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twins/" class="md-nav__link">
+        Twins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platform-management" class="md-nav__link">
+    Platform management
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users-management" class="md-nav__link">
+    Users Management
+  </a>
+  
+    <nav class="md-nav" aria-label="Users Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-creation" class="md-nav__link">
+    Account Creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-an-authorization-key" class="md-nav__link">
+    Obtaining an Authorization Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-provisioning" class="md-nav__link">
+    System Provisioning
+  </a>
+  
+    <nav class="md-nav" aria-label="System Provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-things" class="md-nav__link">
+    Provisioning Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-provisioning-things" class="md-nav__link">
+    Bulk Provisioning Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-provisioned-things" class="md-nav__link">
+    Retrieving Provisioned Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-provisioned-things" class="md-nav__link">
+    Searching Provisioned Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-things" class="md-nav__link">
+    Removing Things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provisioning-channels" class="md-nav__link">
+    Provisioning Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-provisioning-channels" class="md-nav__link">
+    Bulk Provisioning Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-provisioned-channels" class="md-nav__link">
+    Retrieving Provisioned Channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-channels" class="md-nav__link">
+    Removing Channels
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    Access Control
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provision-service" class="md-nav__link">
+    Provision Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Provision Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    Running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provision_1" class="md-nav__link">
+    Provision
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certs-service" class="md-nav__link">
+    Certs Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Certs Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-mode" class="md-nav__link">
+    Development mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pki-mode" class="md-nav__link">
+    PKI mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="provision">Provision<a class="headerlink" href="#provision" title="Permanent link">#</a></h1>
+<p>Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things.</p>
+<h2 id="platform-management">Platform management<a class="headerlink" href="#platform-management" title="Permanent link">#</a></h2>
+<h3 id="users-management">Users Management<a class="headerlink" href="#users-management" title="Permanent link">#</a></h3>
+<h4 id="account-creation">Account Creation<a class="headerlink" href="#account-creation" title="Permanent link">#</a></h4>
+<p>Use the Mainflux API to create user account:</p>
+<pre><code>curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; https://localhost/users -d '{&quot;email&quot;:&quot;john.doe@email.com&quot;, &quot;password&quot;:&quot;12345678&quot;}'
+</code></pre>
+<p>Note that when using official <code>docker-compose</code>, all services are behind <code>nginx</code> proxy and all traffic is <code>TLS</code> encrypted.</p>
+<h4 id="obtaining-an-authorization-key">Obtaining an Authorization Key<a class="headerlink" href="#obtaining-an-authorization-key" title="Permanent link">#</a></h4>
+<p>In order for this user to be able to authenticate to the system, you will have to create an authorization token for him:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; https://localhost/tokens -d '{&quot;email&quot;:&quot;john.doe@email.com&quot;, &quot;password&quot;:&quot;12345678&quot;}'
+</code></pre>
+<p>Response should look like this:</p>
+<pre><code class="language-json">{
+      &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjMzODg0NzcsImlhdCI6MTUyMzM1MjQ3NywiaXNzIjoibWFpbmZsdXgiLCJzdWIiOiJqb2huLmRvZUBlbWFpbC5jb20ifQ.cygz9zoqD7Rd8f88hpQNilTCAS1DrLLgLg4PRcH-iAI&quot;
+}
+</code></pre>
+<p>For more information about the Users service API, please check out the <a href="https://github.com/mainflux/mainflux/blob/master/users/openapi.yml">API documentation</a>.</p>
+<h3 id="system-provisioning">System Provisioning<a class="headerlink" href="#system-provisioning" title="Permanent link">#</a></h3>
+<p>Before proceeding, make sure that you have created a new account and obtained an authorization key.</p>
+<h4 id="provisioning-things">Provisioning Things<a class="headerlink" href="#provisioning-things" title="Permanent link">#</a></h4>
+<blockquote>
+<p>This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint currently found at /things/bulk.</p>
+</blockquote>
+<p>Things are created by executing request <code>POST /things</code> with a JSON payload. Note that you will also need <code>user_auth_token</code> in order to create things that belong to this particular user.</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things -d '{&quot;name&quot;:&quot;weio&quot;}'
+</code></pre>
+<p>Response will contain <code>Location</code> header whose value represents path to newly created thing:</p>
+<pre><code>HTTP/1.1 201 Created
+Content-Type: application/json
+Location: /things/81380742-7116-4f6f-9800-14fe464f6773
+Date: Tue, 10 Apr 2018 10:02:59 GMT
+Content-Length: 0
+</code></pre>
+<h4 id="bulk-provisioning-things">Bulk Provisioning Things<a class="headerlink" href="#bulk-provisioning-things" title="Permanent link">#</a></h4>
+<p>Multiple things can be created by executing a <code>POST /things/bulk</code> request with a JSON payload.  The payload should contain a JSON array of the things to be created.  If there is an error any of the things, none of the things will be created.</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things/bulk -d '[{&quot;name&quot;:&quot;weio&quot;},{&quot;name&quot;:&quot;bob&quot;}]'
+</code></pre>
+<p>The response's body will contain a list of the created things.</p>
+<pre><code class="language-json">HTTP/2 201
+server: nginx/1.16.0
+date: Tue, 22 Oct 2019 02:19:15 GMT
+content-type: application/json
+content-length: 222
+access-control-expose-headers: Location
+
+{&quot;things&quot;:[{&quot;id&quot;:&quot;8909adbf-312f-41eb-8cfc-ccc8c4e3655e&quot;,&quot;name&quot;:&quot;weio&quot;,&quot;key&quot;:&quot;4ef103cc-964a-41b5-b75b-b7415c3a3619&quot;},{&quot;id&quot;:&quot;2fcd2349-38f7-4b5c-8a29-9607b2ca8ff5&quot;,&quot;name&quot;:&quot;bob&quot;,&quot;key&quot;:&quot;ff0d1490-355c-4dcf-b322-a4c536c8c3bf&quot;}]}
+</code></pre>
+<h4 id="retrieving-provisioned-things">Retrieving Provisioned Things<a class="headerlink" href="#retrieving-provisioned-things" title="Permanent link">#</a></h4>
+<p>In order to retrieve data of provisioned things that is written in database, you can send following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things
+</code></pre>
+<p>Notice that you will receive only those things that were provisioned by <code>user_auth_token</code> owner.</p>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 10 Apr 2018 10:50:12 GMT
+Content-Length: 1105
+
+{
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;81380742-7116-4f6f-9800-14fe464f6773&quot;,
+      &quot;name&quot;: &quot;weio&quot;,
+      &quot;key&quot;: &quot;7aa91f7a-cbea-4fed-b427-07e029577590&quot;
+    },
+    {
+      &quot;id&quot;: &quot;cb63f852-2d48-44f0-a0cf-e450496c6c92&quot;,
+      &quot;name&quot;: &quot;myapp&quot;,
+      &quot;key&quot;: &quot;cbf02d60-72f2-4180-9f82-2c957db929d1&quot;
+    }
+  ]
+}
+</code></pre>
+<p>You can specify <code>offset</code> and <code>limit</code> parameters in order to fetch a specific group of things. In that case, your request should look like:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things?offset=0&amp;limit=5
+</code></pre>
+<p>You can specify <code>name</code> and/or <code>metadata</code> parameters in order to fetch specific group of things. When specifying metadata you can specify just a part of the metadata JSON you want to match.</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things?offset=0&amp;limit=5&amp;metadata=&quot;\{\&quot;serial\&quot;:\&quot;123456\&quot;\}&quot;
+</code></pre>
+<p>If you don't provide them, default values will be used instead: 0 for <code>offset</code> and 10 for <code>limit</code>. Note that <code>limit</code> cannot be set to values greater than 100. Providing invalid values will be considered malformed request.</p>
+<h4 id="searching-provisioned-things">Searching Provisioned Things<a class="headerlink" href="#searching-provisioned-things" title="Permanent link">#</a></h4>
+<p>In order to search things with specific name and/or metadata, you can send following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things/search -d '{&quot;metadata&quot;:{&quot;foo&quot;:&quot;bar&quot;}, &quot;name&quot;:&quot;bob&quot;, &quot;limit&quot;: 10, &quot;offset&quot;:0, &quot;order&quot;:&quot;name&quot;, &quot;dir&quot;:&quot;desc&quot;}'
+</code></pre>
+<p>You can specify <code>offset</code> and <code>limit</code> parameters in order to fetch a specific set of things. Also, you can specify ordering with direction through parameters <code>order</code> and <code>dir</code>. Ordering values can be <code>name</code> or <code>id</code> of things, order direction can be <code>asc</code> or <code>desc</code>. If you don't provide them, default values will be used instead: 0 for <code>offset</code> and 10 for <code>limit</code>. Note that <code>limit</code> cannot be set to values greater than 100. Providing invalid values will be considered malformed request.</p>
+<p>The response's body will contain a list of the things filtered by name and/or metadata:</p>
+<pre><code class="language-bash">HTTP/2 200 
+server: nginx/1.16.0
+date: Mon, 15 Mar 2021 18:34:10 GMT
+content-type: application/json
+content-length: 208
+access-control-expose-headers: Location
+
+{
+  &quot;total&quot;: 1,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;order&quot;: &quot;name&quot;,
+  &quot;direction&quot;: &quot;desc&quot;,
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;1b86eea5-94b6-41fa-be9f-d10c85a8994d&quot;,
+      &quot;name&quot;: &quot;bob&quot;,
+      &quot;key&quot;: &quot;d72de10f-4963-4bf1-a454-874a39bb498e&quot;,
+      &quot;metadata&quot;: {
+        &quot;foo&quot;: &quot;bar&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<h4 id="removing-things">Removing Things<a class="headerlink" href="#removing-things" title="Permanent link">#</a></h4>
+<p>In order to remove you own thing you can send following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things/&lt;thing_id&gt;
+</code></pre>
+<h4 id="provisioning-channels">Provisioning Channels<a class="headerlink" href="#provisioning-channels" title="Permanent link">#</a></h4>
+<blockquote>
+<p>This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint currently found at /channels/bulk.</p>
+</blockquote>
+<p>Channels are created by executing request <code>POST /channels</code>:</p>
+<pre><code>curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels -d '{&quot;name&quot;:&quot;mychan&quot;}'
+</code></pre>
+<p>After sending request you should receive response with <code>Location</code> header that contains path to newly created channel:</p>
+<pre><code>HTTP/1.1 201 Created
+Content-Type: application/json
+Location: /channels/19daa7a8-a489-4571-8714-ef1a214ed914
+Date: Tue, 10 Apr 2018 11:30:07 GMT
+Content-Length: 0
+</code></pre>
+<h4 id="bulk-provisioning-channels">Bulk Provisioning Channels<a class="headerlink" href="#bulk-provisioning-channels" title="Permanent link">#</a></h4>
+<p>Multiple channels can be created by executing a <code>POST /things/bulk</code> request with a JSON payload.  The payload should contain a JSON array of the channels to be created.  If there is an error any of the channels, none of the channels will be created.</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/bulk -d '[{&quot;name&quot;:&quot;joe&quot;},{&quot;name&quot;:&quot;betty&quot;}]'
+</code></pre>
+<p>The response's body will contain a list of the created channels.</p>
+<pre><code class="language-json">HTTP/2 201
+server: nginx/1.16.0
+date: Tue, 22 Oct 2019 02:14:41 GMT
+content-type: application/json
+content-length: 135
+access-control-expose-headers: Location
+
+{&quot;channels&quot;:[{&quot;id&quot;:&quot;5a21bbcb-4c9a-4bb4-af31-9982d00f7a6e&quot;,&quot;name&quot;:&quot;joe&quot;},{&quot;id&quot;:&quot;d74b119b-2eea-4285-a999-9f747869bb45&quot;,&quot;name&quot;:&quot;betty&quot;}]}
+</code></pre>
+<h4 id="retrieving-provisioned-channels">Retrieving Provisioned Channels<a class="headerlink" href="#retrieving-provisioned-channels" title="Permanent link">#</a></h4>
+<p>To retreve provisioned channels you should send request to <code>/channels</code> with authorization token in <code>Authorization</code> header:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels
+</code></pre>
+<p>Note that you will receive only those channels that were created by authorization token's owner.</p>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 10 Apr 2018 11:38:06 GMT
+Content-Length: 139
+
+{
+  &quot;total&quot;: 1,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;channels&quot;: [
+    {
+      &quot;id&quot;: &quot;19daa7a8-a489-4571-8714-ef1a214ed914&quot;,
+      &quot;name&quot;: &quot;mychan&quot;
+    }
+  ]
+}
+</code></pre>
+<p>You can specify  <code>offset</code> and  <code>limit</code> parameters in order to fetch specific group of channels. In that case, your request should look like:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels?offset=0&amp;limit=5
+</code></pre>
+<p>If you don't provide them, default values will be used instead: 0 for <code>offset</code> and 10 for <code>limit</code>. Note that <code>limit</code> cannot be set to values greater than 100. Providing invalid values will be considered malformed request.</p>
+<h4 id="removing-channels">Removing Channels<a class="headerlink" href="#removing-channels" title="Permanent link">#</a></h4>
+<p>In order to remove specific channel you should send following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/&lt;channel_id&gt;
+</code></pre>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">#</a></h3>
+<p>Channel can be observed as a communication group of things. Only things that are connected to the channel can send and receive messages from other things in this channel. 
+Things that are not connected to this channel are not allowed to communicate over it.</p>
+<p>Only user, who is the owner of a channel and of the things, can connect the things to the channel (which is equivalent of giving permissions to these things to communicate over given communication group).</p>
+<p>To connect a thing to the channel you should send following request:</p>
+<blockquote>
+<p>This endpoint will be depreciated in 0.11.0.  It will be replaced with the bulk endpoint found at /connect.</p>
+</blockquote>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X PUT -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/&lt;channel_id&gt;/things/&lt;thing_id&gt;
+</code></pre>
+<p>To connect multiple things to a channel, you can send the following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/connect -d '{&quot;channel_ids&quot;:[&quot;&lt;channel_id&gt;&quot;, &quot;&lt;channel_id&gt;&quot;],&quot;thing_ids&quot;:[&quot;&lt;thing_id&gt;&quot;, &quot;&lt;thing_id&gt;&quot;]}'
+</code></pre>
+<p>You can observe which things are connected to specific channel:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/&lt;channel_id&gt;/things
+</code></pre>
+<p>You can also observe which things are not connected to specific channel by adding a query parameter <code>connected=false</code> to the HTTP request:</p>
+<pre><code>curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/&lt;channel_id&gt;/things?connected=false
+</code></pre>
+<p>Response that you'll get should look like this:</p>
+<pre><code class="language-json">{
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;3ffb3880-d1e6-4edd-acd9-4294d013f35b&quot;,
+      &quot;name&quot;: &quot;d0&quot;,
+      &quot;key&quot;: &quot;b1996995-237a-4552-94b2-83ec2e92a040&quot;,
+      &quot;metadata&quot;: &quot;{}&quot;
+    },
+    {
+      &quot;id&quot;: &quot;94d166d6-6477-43dc-93b7-5c3707dbef1e&quot;,
+      &quot;name&quot;: &quot;d1&quot;,
+      &quot;key&quot;: &quot;e4588a68-6028-4740-9f12-c356796aebe8&quot;,
+      &quot;metadata&quot;: &quot;{}&quot;
+    }
+  ]
+}
+</code></pre>
+<p>You can observe to which channels is specified thing connected:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things/&lt;thing_id&gt;/channels
+</code></pre>
+<p>You can also observe to which channels is specified thing not connected by adding a query parameter <code>connected=false</code> to the HTTP request:</p>
+<pre><code>curl -s -S -i --cacert docker/ssl/certs/ca.crt -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/things/&lt;thing_id&gt;/channels?connected=false
+</code></pre>
+<p>Response that you'll get should look like this:</p>
+<pre><code class="language-json">{
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;channels&quot;: [
+    {
+      &quot;id&quot;: &quot;5e62eb13-2695-4860-8d87-85b8a2f80fd4&quot;,
+      &quot;name&quot;: &quot;c1&quot;,
+      &quot;metadata&quot;: &quot;{}&quot;
+    },
+    {
+      &quot;id&quot;: &quot;c4b5e19a-7ffe-4172-b2c5-c8b9d570a165&quot;,
+      &quot;name&quot;: &quot;c0&quot;,
+      &quot;metadata&quot;:&quot;{}&quot;
+    }
+  ]
+}
+</code></pre>
+<p>If you want to disconnect your thing from the channel, send following request:</p>
+<pre><code class="language-bash">curl -s -S -i --cacert docker/ssl/certs/ca.crt -X DELETE -H &quot;Authorization: &lt;user_auth_token&gt;&quot; https://localhost/channels/&lt;channel_id&gt;/things/&lt;thing_id&gt;
+</code></pre>
+<p>For more information about the Things service API, please check out the <a href="https://github.com/mainflux/mainflux/blob/master/things/openapi.yml">API documentation</a>.</p>
+<h2 id="provision-service">Provision Service<a class="headerlink" href="#provision-service" title="Permanent link">#</a></h2>
+<p>Provisioning is a process of configuration of an IoT platform in which system operator creates and sets-up different entities used in the platform - users, channels and things. It is part of process of setting up IoT applications where we connect devices on edge with platform in cloud.</p>
+<p>For provisioning we can use <a href="https://github.com/mainflux/mainflux/tree/master/cli">Mainflux CLI</a> for creating users and for each node in the edge (eg. gateway) required number of things, channels, connecting them and creating certificates if needed.</p>
+<p>Provision service is used to set up initial application configuration once user is created. Provision service creates  things, channels, connections and certificates. Once user is created we can use provision to create a setup for edge node in one HTTP request instead of issuing several CLI commands.</p>
+<p>Provision service provides an HTTP API to interact with <a href="https://github.com/mainflux/mainflux">Mainflux</a>.</p>
+<p>For gateways to communicate with <a href="https://github.com/mainflux/mainflux">Mainflux</a> configuration is required (MQTT host, thing, channels, certificates...). Gateway will send a request to <a href="https://github.com/mainflux/mainflux/tree/master/bootstrap">Bootstrap</a> service providing <code>&lt;external_id&gt;</code> and <code>&lt;external_key&gt;</code> in HTTP request to get the configuration. To make a request to <a href="https://github.com/mainflux/mainflux/tree/master/bootstrap">Bootstrap</a> service you can use <a href="https://github.com/mainflux/agent">Agent</a> service on a gateway.</p>
+<p>To create bootstrap configuration you can use <a href="https://github.com/mainflux/mainflux/tree/master/bootstrap">Bootstrap</a> or <code>Provision</code> service. <a href="https://github.com/mainflux/mainflux/ui">Mainflux UI</a> uses <a href="https://github.com/mainflux/mainflux/tree/master/bootstrap">Bootstrap</a> service for creating gateway configurations. <code>Provision</code> service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many things and channels that your setup requires.</p>
+<p>Also, you may use provision service to create certificates for each thing. Each service running on gateway may require more than one thing and channel for communication.
+If, for example, you are using services <a href="https://github.com/mainflux/agent">Agent</a> and <a href="https://github.com/mainflux/export">Export</a> on a gateway you will need two channels for <code>Agent</code> (<code>data</code> and <code>control</code>) and one thing for <code>Export</code>.
+Additionally, if you enabled mTLS each service will need its own thing and certificate for access to <a href="https://github.com/mainflux/mainflux">Mainflux</a>.
+Your setup could require any number of things and channels, this kind of setup we can call <code>provision layout</code>.</p>
+<p>Provision service provides a way of specifying this <code>provision layout</code> and creating a setup according to that layout by serving requests on <code>/mapping</code> endpoint. Provision layout is configured in <a href="https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml">config.toml</a>.</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h3>
+<p>The service is configured using the environment variables presented in the following <a href="https://github.com/mainflux/mainflux/tree/master/provision#configuration">table</a>. Note that any unset variables will be replaced with their default values.</p>
+<p>By default, call to <code>/mapping</code> endpoint will create one thing and two channels (<code>control</code> and <code>data</code>) and connect it as this is typical setup required by <a href="/edge/#agent">Agent</a>. If there is a requirement for different provision layout we can use <a href="https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml">config</a> file in addition to environment variables.</p>
+<p>For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in <a href="https://github.com/mainflux/mainflux/blob/master/.env">.env</a>.</p>
+<p>Configuration can be specified in <a href="https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml">config.toml</a>. Config file can specify all the settings that environment variables can configure and in addition <code>/mapping</code> endpoint provision layout can be configured.</p>
+<p>In <code>config.toml</code> we can enlist an array of things and channels that we want to create and make connections between them which we call provision layout.</p>
+<p>Things Metadata can be whatever suits your needs. Thing that has metadata with <code>external_id</code> will have bootstrap configuration created, <code>external_id</code> value will be populated with value from <a href="#example">request</a>).
+Bootstrap configuration can be fetched with <a href="https://github.com/mainflux/agent">Agent</a>. For channel's metadata <code>type</code> is reserved for <code>control</code> and <code>data</code> which we use with <a href="https://github.com/mainflux/agent">Agent</a>.</p>
+<p>Example of provision layout below</p>
+<pre><code class="language-toml">[bootstrap]
+  [bootstrap.content]
+    [bootstrap.content.agent.edgex]
+      url = &quot;http://localhost:48090/api/v1/&quot;
+
+    [bootstrap.content.agent.log]
+      level = &quot;info&quot;
+
+    [bootstrap.content.agent.mqtt]
+      mtls = false
+      qos = 0
+      retain = false
+      skip_tls_ver = true
+      url = &quot;localhost:1883&quot;
+
+    [bootstrap.content.agent.server]
+      nats_url = &quot;localhost:4222&quot;
+      port = &quot;9000&quot;
+
+    [bootstrap.content.agent.heartbeat]
+      interval = &quot;30s&quot;
+
+    [bootstrap.content.agent.terminal]
+      session_timeout = &quot;30s&quot;
+
+    [bootstrap.content.export.exp]
+      log_level = &quot;debug&quot;
+      nats = &quot;nats://localhost:4222&quot;
+      port = &quot;8172&quot;
+      cache_url = &quot;localhost:6379&quot;
+      cache_pass = &quot;&quot;
+      cache_db = &quot;0&quot;
+
+    [bootstrap.content.export.mqtt]
+      ca_path = &quot;ca.crt&quot;
+      cert_path = &quot;thing.crt&quot;
+      channel = &quot;&quot;
+      host = &quot;tcp://localhost:1883&quot;
+      mtls = false
+      password = &quot;&quot;
+      priv_key_path = &quot;thing.key&quot;
+      qos = 0
+      retain = false
+      skip_tls_ver = false
+      username = &quot;&quot;
+
+    [[bootstrap.content.export.routes]]
+      mqtt_topic = &quot;&quot;
+      nats_topic = &quot;channels&quot;
+      subtopic = &quot;&quot;
+      type = &quot;mfx&quot;
+      workers = 10
+
+    [[bootstrap.content.export.routes]]
+      mqtt_topic = &quot;&quot;
+      nats_topic = &quot;export&quot;
+      subtopic = &quot;&quot;
+      type = &quot;default&quot;
+      workers = 10
+
+[[things]]
+  name = &quot;thing&quot;
+
+  [things.metadata]
+    external_id = &quot;xxxxxx&quot;
+
+[[channels]]
+  name = &quot;control-channel&quot;
+
+  [channels.metadata]
+    type = &quot;control&quot;
+
+[[channels]]
+  name = &quot;data-channel&quot;
+
+  [channels.metadata]
+    type = &quot;data&quot;
+
+[[channels]]
+  name = &quot;export-channel&quot;
+
+  [channels.metadata]
+    type = &quot;export&quot;
+</code></pre>
+<p><code>[bootstrap.content]</code> will be marshalled and saved into <code>content</code> field in bootstrap configs when request to <code>/mappings</code> is made, <code>content</code> field from bootstrap config is used to create <code>Agent</code> and <code>Export</code> configuration files upon <code>Agent</code> fetching bootstrap configuration.</p>
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">#</a></h3>
+<p>In order to create necessary entities provision service needs to authenticate against Mainflux.
+To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Mainflux user and password or as API token (that can be issued on <code>/users</code> or <code>/keys</code> endpoint of <a href="https://github.com/mainflux/mainflux/blob/master/auth/README.md">auth</a>.</p>
+<p>Additionally, users or API token can be passed in Authorization header, this authentication takes precedence over others.</p>
+<ul>
+<li><code>username</code>, <code>password</code> - (<code>MF_PROVISION_USER</code>, <code>MF_PROVISION_PASSWORD</code> in <a href="https://github.com/mainflux/mainflux/blob/master/.env">.env</a>, <code>mf_user</code>, <code>mf_pass</code> in <a href="https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml">config.toml</a></li>
+<li>API Key - (<code>MF_PROVISION_API_KEY</code> in <a href="https://github.com/mainflux/mainflux/blob/master/.env">.env</a> or <a href="https://github.com/mainflux/mainflux/blob/master/docker/addons/provision/configs/config.toml">config.toml</a></li>
+<li><code>Authorization: Token|ApiKey</code> - request authorization header containing either users token or API key. Check <a href="https://github.com/mainflux/mainflux/blob/master/auth/README.md">auth</a>.</li>
+</ul>
+<h3 id="running">Running<a class="headerlink" href="#running" title="Permanent link">#</a></h3>
+<p>Provision service can be run as a standalone or in docker composition as addon to the core docker composition.</p>
+<p>Standalone:</p>
+<pre><code class="language-bash">MF_PROVISION_BS_SVC_URL=http://localhost:8202/things \
+MF_PROVISION_THINGS_LOCATION=http://localhost:8182 \
+MF_PROVISION_USERS_LOCATION=http://localhost:8180 \
+MF_PROVISION_CONFIG_FILE=docker/addons/provision/configs/config.toml \
+build/mainflux-provision
+</code></pre>
+<p>Docker composition:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/provision/docker-compose.yml up
+</code></pre>
+<h3 id="provision_1">Provision<a class="headerlink" href="#provision_1" title="Permanent link">#</a></h3>
+<p>For the case that credentials or API token is passed in configuration file or environment variables, call to <code>/mapping</code> endpoint doesn't require <code>Authentication</code> header:</p>
+<pre><code class="language-bash">curl -s -S  -X POST  http://localhost:8888/mapping  -H 'Content-Type: application/json' -d '{&quot;external_id&quot;: &quot;33:52:77:99:43&quot;, &quot;external_key&quot;: &quot;223334fw2&quot;}'
+</code></pre>
+<p>In the case that provision service is not deployed with credentials or API key or you want to use user other than one being set in environment (or config file):</p>
+<pre><code class="language-bash">curl -s -S  -X POST  http://localhost:8091/mapping -H &quot;Authorization: &lt;token|api_key&gt;&quot; -H 'Content-Type: application/json' -d '{&quot;external_id&quot;: &quot;&lt;external_id&gt;&quot;, &quot;external_key&quot;: &quot;&lt;external_key&gt;&quot;}'
+</code></pre>
+<p>Or if you want to specify a name for thing different than in <code>config.toml</code> you can specify post data as:</p>
+<pre><code class="language-json">{&quot;name&quot;: &quot;&lt;name&gt;&quot;, &quot;external_id&quot;: &quot;&lt;external_id&gt;&quot;, &quot;external_key&quot;: &quot;&lt;external_key&gt;&quot;}
+</code></pre>
+<p>Response contains created things, channels and certificates if any:</p>
+<pre><code class="language-json">{
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;c22b0c0f-8c03-40da-a06b-37ed3a72c8d1&quot;,
+      &quot;name&quot;: &quot;thing&quot;,
+      &quot;key&quot;: &quot;007cce56-e0eb-40d6-b2b9-ed348a97d1eb&quot;,
+      &quot;metadata&quot;: {
+        &quot;external_id&quot;: &quot;33:52:79:C3:43&quot;
+      }
+    }
+  ],
+  &quot;channels&quot;: [
+    {
+      &quot;id&quot;: &quot;064c680e-181b-4b58-975e-6983313a5170&quot;,
+      &quot;name&quot;: &quot;control-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;control&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;579da92d-6078-4801-a18a-dd1cfa2aa44f&quot;,
+      &quot;name&quot;: &quot;data-channel&quot;,
+      &quot;metadata&quot;: {
+        &quot;type&quot;: &quot;data&quot;
+      }
+    }
+  ],
+  &quot;whitelisted&quot;: {
+    &quot;c22b0c0f-8c03-40da-a06b-37ed3a72c8d1&quot;: true
+  }
+}
+</code></pre>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h3>
+<p>Deploy Mainflux UI docker composition as it contains all the required services for provisioning to work ( <code>certs</code>, <code>bootstrap</code> and Mainflux core)</p>
+<pre><code>git clone https://github.com/mainflux/ui
+cd ui
+docker-compose -f docker/docker-compose.yml up
+</code></pre>
+<p>Create user and obtain access token</p>
+<pre><code class="language-bash">mainflux-cli -m https://mainflux.com users create john.doe@email.com 12345678
+
+# Retrieve token
+mainflux-cli -m https://mainflux.com users token john.doe@email.com 12345678
+
+created: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
+</code></pre>
+<p>Put a value of token into environment variable</p>
+<pre><code>TOK=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY1ODU3MDUsImlhdCI6MTU5NjU0OTcwNSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJtaXJrYXNoQGdtYWlsLmNvbSIsInR5cGUiOjB9._vq0zJzFc9tQqc8x74kpn7dXYefUtG9IB0Cb-X2KMK8
+</code></pre>
+<p>Make a call to provision endpoint</p>
+<pre><code>curl -s -S  -X POST  http://mainflux.com:8190/mapping -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'   -d '{&quot;name&quot;:&quot;edge-gw&quot;,  &quot;external_id&quot; : &quot;gateway&quot;, &quot;external_key&quot;:&quot;external_key&quot; }'
+</code></pre>
+<p>To check the results you can make a call to bootstrap endpoint</p>
+<pre><code>curl -s -S -X GET http://mainflux.com:8202/things/bootstrap/gateway -H &quot;Authorization: external_key&quot; -H 'Content-Type: application/json'
+</code></pre>
+<p>Or you can start <code>Agent</code> with:</p>
+<pre><code class="language-bash">git clone https://github.com/mainflux/agent
+cd agent
+make
+MF_AGENT_BOOTSTRAP_ID=gateway MF_AGENT_BOOTSTRAP_KEY=external_key MF_AGENT_BOOTSTRAP_URL=http://mainflux.ccom:8202/things/bootstrap build/mainflux-agent
+</code></pre>
+<p>Agent will retrieve connections parameters and connect to Mainflux cloud.</p>
+<p>For more information about the Provision service API, please check out the <a href="https://github.com/mainflux/mainflux/blob/master/provision/openapi.yml">API documentation</a>.</p>
+<h2 id="certs-service">Certs Service<a class="headerlink" href="#certs-service" title="Permanent link">#</a></h2>
+<p>Issues certificates for things. <code>Certs</code> service can create certificates to be used when <code>Mainflux</code> is deployed to support mTLS.<br />
+<code>Certs</code> service will create certificate for valid thing ID if valid user token is passed and user is owner of the provided thing ID.</p>
+<p>Certificate service can create certificates in two modes:
+1. Development mode - to be used when no PKI is deployed, this works similar to the <a href="../docker/ssl/Makefile">make thing_cert</a>
+2. PKI mode - certificates issued by PKI, when you deploy <code>Vault</code> as PKI certificate management <code>cert</code> service will proxy requests to <code>Vault</code> previously checking access rights and saving info on successfully created certificate. </p>
+<h3 id="development-mode">Development mode<a class="headerlink" href="#development-mode" title="Permanent link">#</a></h3>
+<p>If <code>MF_CERTS_VAULT_HOST</code> is empty than Development mode is on.</p>
+<p>To issue a certificate:</p>
+<pre><code class="language-bash">
+TOK=`curl  -s --insecure -S -X POST http://localhost/tokens -H 'Content-Type: application/json' -d '{&quot;email&quot;:&quot;edge@email.com&quot;,&quot;password&quot;:&quot;12345678&quot;}' | jq -r '.token'`
+
+curl -s -S  -X POST  http://localhost:8204/certs -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'   -d '{&quot;thing_id&quot;:&lt;thing_id&gt;, &quot;rsa_bits&quot;:2048, &quot;key_type&quot;:&quot;rsa&quot;}'
+</code></pre>
+<pre><code class="language-json">{
+  &quot;ThingID&quot;: &quot;&quot;,
+  &quot;ClientCert&quot;: &quot;-----BEGIN CERTIFICATE-----\nMIIDmTCCAoGgAwIBAgIRANmkAPbTR1UYeYO0Id/4+8gwDQYJKoZIhvcNAQELBQAw\nVzESMBAGA1UEAwwJbG9jYWxob3N0MREwDwYDVQQKDAhNYWluZmx1eDEMMAoGA1UE\nCwwDSW9UMSAwHgYJKoZIhvcNAQkBFhFpbmZvQG1haW5mbHV4LmNvbTAeFw0yMDA2\nMzAxNDIxMDlaFw0yMDA5MjMyMjIxMDlaMFUxETAPBgNVBAoTCE1haW5mbHV4MREw\nDwYDVQQLEwhtYWluZmx1eDEtMCsGA1UEAxMkYjAwZDBhNzktYjQ2YS00NTk3LTli\nNGYtMjhkZGJhNTBjYTYyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA\ntgS2fLUWG3CCQz/l6VRQRJfRvWmdxK0mW6zIXGeeOILYZeaLiuiUnohwMJ4RiMqT\nuJbInAIuO/Tt5osfrCFFzPEOLYJ5nZBBaJfTIAxqf84Ou1oeMRll4wpzgeKx0rJO\nXMAARwn1bT9n3uky5QQGSLy4PyyILzSXH/1yCQQctdQB/Ar/UI1TaYoYlGzh7dHT\nWpcxq1HYgCyAtcrQrGD0rEwUn82UBCrnya+bygNqu0oDzIFQwa1G8jxSgXk0mFS1\nWrk7rBipsvp8HQhdnvbEVz4k4AAKcQxesH4DkRx/EXmU2UvN3XysvcJ2bL+UzMNI\njNhAe0pgPbB82F6zkYZ/XQIDAQABo2IwYDAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0l\nBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMA4GA1UdDgQHBAUBAgMEBjAfBgNVHSME\nGDAWgBRs4xR91qEjNRGmw391xS7x6Tc+8jANBgkqhkiG9w0BAQsFAAOCAQEAW/dS\nV4vNLTZwBnPVHUX35pRFxPKvscY+vnnpgyDtITgZHYe0KL+Bs3IHuywtqaezU5x1\nkZo+frE1OcpRvp7HJtDiT06yz+18qOYZMappCWCeAFWtZkMhlvnm3TqTkgui6Xgl\nGj5xnPb15AOlsDE2dkv5S6kEwJGHdVX6AOWfB4ubUq5S9e4ABYzXGUty6Hw/ZUmJ\nhCTRVJ7cQJVTJsl1o7CYT8JBvUUG75LirtoFE4M4JwsfsKZXzrQffTf1ynqI3dN/\nHWySEbvTSWcRcA3MSmOTxGt5/zwCglHDlWPKMrXtjTW7NPuGL5/P9HSB9HGVVeET\nDUMdvYwgj0cUCEu3LA==\n-----END CERTIFICATE-----\n&quot;,
+  &quot;IssuingCA&quot;: &quot;&quot;,
+  &quot;CAChain&quot;: null,
+  &quot;ClientKey&quot;: &quot;-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAtgS2fLUWG3CCQz/l6VRQRJfRvWmdxK0mW6zIXGeeOILYZeaL\niuiUnohwMJ4RiMqTuJbInAIuO/Tt5osfrCFFzPEOLYJ5nZBBaJfTIAxqf84Ou1oe\nMRll4wpzgeKx0rJOXMAARwn1bT9n3uky5QQGSLy4PyyILzSXH/1yCQQctdQB/Ar/\nUI1TaYoYlGzh7dHTWpcxq1HYgCyAtcrQrGD0rEwUn82UBCrnya+bygNqu0oDzIFQ\nwa1G8jxSgXk0mFS1Wrk7rBipsvp8HQhdnvbEVz4k4AAKcQxesH4DkRx/EXmU2UvN\n3XysvcJ2bL+UzMNIjNhAe0pgPbB82F6zkYZ/XQIDAQABAoIBAALoal3tqq+/iWU3\npR2oKiweXMxw3oNg3McEKKNJSH7QoFJob3xFoPIzbc9pBxCvY9LEHepYIpL0o8RW\nHqhqU6olg7t4ZSb+Qf1Ax6+wYxctnJCjrO3N4RHSfevqSjr6fEQBEUARSal4JNmr\n0hNUkCEjWrIvrPFMHsn1C5hXR3okJQpGsad4oCGZDp2eZ/NDyvmLBLci9/5CJdRv\n6roOF5ShWweKcz1+pfy666Q8RiUI7H1zXjPaL4yqkv8eg/WPOO0dYF2Ri2Grk9OY\n1qTM0W1vi9zfncinZ0DpgtwMTFQezGwhUyJHSYHmjVBA4AaYIyOQAI/2dl5fXM+O\n9JfXpOUCgYEA10xAtMc/8KOLbHCprpc4pbtOqfchq/M04qPKxQNAjqvLodrWZZgF\nexa+B3eWWn5MxmQMx18AjBCPwbNDK8Rkd9VqzdWempaSblgZ7y1a0rRNTXzN5DFP\noiuRQV4wszCuj5XSdPn+lxApaI/4+TQ0oweIZCpGW39XKePPoB5WZiMCgYEA2G3W\niJncRpmxWwrRPi1W26E9tWOT5s9wYgXWMc+PAVUd/qdDRuMBHpu861Qoghp/MJog\nBYqt2rQqU0OxvIXlXPrXPHXrCLOFwybRCBVREZrg4BZNnjyDTLOu9C+0M3J9ImCh\n3vniYqb7S0gRmoDM0R3Zu4+ajfP2QOGLXw1qHH8CgYEAl0EQ7HBW8V5UYzi7XNcM\nixKOb0YZt83DR74+hC6GujTjeLBfkzw8DX+qvWA8lxLIKVC80YxivAQemryv4h21\nX6Llx/nd1UkXUsI+ZhP9DK5y6I9XroseIRZuk/fyStFWsbVWB6xiOgq2rKkJBzqw\nCCEQpx40E6/gsqNDiIAHvvUCgYBkkjXc6FJ55DWMLuyozfzMtpKsVYeG++InSrsM\nDn1PizQS/7q9mAMPLCOP312rh5CPDy/OI3FCbfI1GwHerwG0QUP/bnQ3aOTBmKoN\n7YnsemIA/5w16bzBycWE5x3/wjXv4aOWr9vJJ/siMm0rtKp4ijyBcevKBxHpeGWB\nWAR1FQKBgGIqAxGnBpip9E24gH894BaGHHMpQCwAxARev6sHKUy27eFUd6ipoTva\n4Wv36iz3gxU4R5B0gyfnxBNiUab/z90cb5+6+FYO13kqjxRRZWffohk5nHlmFN9K\nea7KQHTfTdRhOLUzW2yVqLi9pzfTfA6Yqf3U1YD3bgnWrp1VQnjo\n-----END RSA PRIVATE KEY-----\n&quot;,
+  &quot;PrivateKeyType&quot;: &quot;&quot;,
+  &quot;Serial&quot;: &quot;&quot;,
+  &quot;Expire&quot;: &quot;0001-01-01T00:00:00Z&quot;
+}
+</code></pre>
+<h3 id="pki-mode">PKI mode<a class="headerlink" href="#pki-mode" title="Permanent link">#</a></h3>
+<p>When <code>MF_CERTS_VAULT_HOST</code> is set it is presumed that <code>Vault</code> is installed and <code>certs</code> service will issue certificates using <code>Vault</code> API.
+First you'll need to set up <code>Vault</code>. 
+To setup <code>Vault</code> follow steps in <a href="https://learn.hashicorp.com/tutorials/vault/pki-engine">Build Your Own Certificate Authority (CA)</a>.</p>
+<p>To setup certs service with <code>Vault</code> following environment variables must be set:</p>
+<pre><code>MF_CERTS_VAULT_HOST=vault-domain.com
+MF_CERTS_VAULT_PKI_PATH=&lt;vault_pki_path&gt;
+MF_CERTS_VAULT_ROLE=&lt;vault_role&gt;
+MF_CERTS_VAULT_TOKEN=&lt;vault_acces_token&gt;
+</code></pre>
+<p>For lab purposes you can use docker-compose and script for setting up PKI in <a href="https://github.com/mteodor/vault">https://github.com/mteodor/vault</a></p>
+<p>Issuing certificate is same as in <strong>Development</strong> mode.
+In this mode certificates can also be revoked:</p>
+<pre><code class="language-bash">curl -s -S -X DELETE http://localhost:8204/certs/revoke -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'   -d '{&quot;thing_id&quot;:&quot;c30b8842-507c-4bcd-973c-74008cef3be5&quot;}'
+</code></pre>
+<p>For more information about the Certification service API, please check out the <a href="https://github.com/mainflux/mainflux/blob/master/certs/openapi.yml">API documentation</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Getting Started
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../messaging/" class="md-footer__link md-footer__link--next" aria-label="Next: Messaging" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Messaging
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>

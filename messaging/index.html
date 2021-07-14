@@ -1,0 +1,832 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/messaging/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Messaging - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#messaging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Messaging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provision/" class="md-nav__link">
+        Provision
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Messaging
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Messaging
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    HTTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt" class="md-nav__link">
+    MQTT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coap" class="md-nav__link">
+    CoAP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws" class="md-nav__link">
+    WS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subtopics" class="md-nav__link">
+    Subtopics
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edge/" class="md-nav__link">
+        Edge
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        Groups
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twins/" class="md-nav__link">
+        Twins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    HTTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt" class="md-nav__link">
+    MQTT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coap" class="md-nav__link">
+    CoAP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws" class="md-nav__link">
+    WS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subtopics" class="md-nav__link">
+    Subtopics
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="messaging">Messaging<a class="headerlink" href="#messaging" title="Permanent link">#</a></h1>
+<p>Once a channel is provisioned and thing is connected to it, it can start to
+publish messages on the channel. The following sections will provide an example
+of message publishing for each of the supported protocols.</p>
+<h2 id="http">HTTP<a class="headerlink" href="#http" title="Permanent link">#</a></h2>
+<p>To publish message over channel, thing should send following request:</p>
+<pre><code>curl -s -S -i --cacert docker/ssl/certs/ca.crt -X POST -H &quot;Authorization: &lt;thing_token&gt;&quot; https://localhost/http/channels/&lt;channel_id&gt;/messages -d '[{&quot;bn&quot;:&quot;some-base-name:&quot;,&quot;bt&quot;:1.276020076001e+09, &quot;bu&quot;:&quot;A&quot;,&quot;bver&quot;:5, &quot;n&quot;:&quot;voltage&quot;,&quot;u&quot;:&quot;V&quot;,&quot;v&quot;:120.1}, {&quot;n&quot;:&quot;current&quot;,&quot;t&quot;:-5,&quot;v&quot;:1.2}, {&quot;n&quot;:&quot;current&quot;,&quot;t&quot;:-4,&quot;v&quot;:1.3}]'
+</code></pre>
+<p>Note that if you're going to use senml message format, you should always send
+messages as an array.</p>
+<p>For more information about the HTTP messaging service API, please check out the <a href="https://github.com/mainflux/mainflux/blob/master/http/openapi.yml">API documentation</a>.</p>
+<h2 id="mqtt">MQTT<a class="headerlink" href="#mqtt" title="Permanent link">#</a></h2>
+<p>To send and receive messages over MQTT you could use <a href="https://mosquitto.org">Mosquitto tools</a>,
+or <a href="https://www.eclipse.org/paho/">Paho</a> if you want to use MQTT over WebSocket.</p>
+<p>To publish message over channel, thing should call following command:</p>
+<pre><code>mosquitto_pub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages -h localhost -m '[{&quot;bn&quot;:&quot;some-base-name:&quot;,&quot;bt&quot;:1.276020076001e+09, &quot;bu&quot;:&quot;A&quot;,&quot;bver&quot;:5, &quot;n&quot;:&quot;voltage&quot;,&quot;u&quot;:&quot;V&quot;,&quot;v&quot;:120.1}, {&quot;n&quot;:&quot;current&quot;,&quot;t&quot;:-5,&quot;v&quot;:1.2}, {&quot;n&quot;:&quot;current&quot;,&quot;t&quot;:-4,&quot;v&quot;:1.3}]'
+</code></pre>
+<p>To subscribe to channel, thing should call following command:</p>
+<pre><code>mosquitto_sub -u &lt;thing_id&gt; -P &lt;thing_key&gt; -t channels/&lt;channel_id&gt;/messages -h localhost
+</code></pre>
+<p>If you want to use standard topic such as <code>channels/&lt;channel_id&gt;/messages</code> with SenML content type (JSON or CBOR), you should use following topic <code>channels/&lt;channel_id&gt;/messages</code>.</p>
+<p>If you are using TLS to secure MQTT connection, add <code>--cafile docker/ssl/certs/ca.crt</code>
+to every command.</p>
+<h2 id="coap">CoAP<a class="headerlink" href="#coap" title="Permanent link">#</a></h2>
+<p>CoAP adapter implements CoAP protocol using underlying UDP and according to <a href="https://tools.ietf.org/html/rfc7252">RFC 7252</a>. To send and receive messages over CoAP, you can use <a href="https://github.com/mkovatsc/Copper">Copper</a> CoAP user-agent. To set the add-on, please follow the installation instructions provided <a href="https://github.com/mkovatsc/Copper#how-to-integrate-the-copper-sources-into-firefox">here</a>. Once the Mozilla Firefox and Copper are ready and CoAP adapter is running locally on the default port (5683), you can navigate to the appropriate URL and start using CoAP. The URL should look like this:</p>
+<pre><code>coap://localhost/channels/&lt;channel_id&gt;/messages?auth=&lt;thing_auth_key&gt;
+</code></pre>
+<p>To send a message, use <code>POST</code> request.
+To subscribe, send <code>GET</code> request with Observe option set to 0. There are two ways to unsubscribe:
+  1) Send <code>GET</code> request with Observe option set to 1.
+  2) Forget the token and send <code>RST</code> message as a response to <code>CONF</code> message received by the server.</p>
+<p>The most of the notifications received from the Adapter are non-confirmable. By <a href="https://tools.ietf.org/html/rfc7641#page-18">RFC 7641</a>:</p>
+<blockquote>
+<p>Server must send a notification in a confirmable message instead of a non-confirmable message at least every 24 hours. This prevents a client that went away or is no longer interested from remaining in the list of observers indefinitely.</p>
+</blockquote>
+<p>CoAP Adapter sends these notifications every 12 hours. To configure this period, please check <a href="https://www.github.com/mainflux/mainflux/tree/master/coap/README.md">adapter documentation</a> If the client is no longer interested in receiving notifications, the second scenario described above can be used to unsubscribe.</p>
+<h2 id="ws">WS<a class="headerlink" href="#ws" title="Permanent link">#</a></h2>
+<p>Mainflux supports <a href="https://www.hivemq.com/blog/mqtt-essentials-special-mqtt-over-websockets/#:~:text=In%20MQTT%20over%20WebSockets%2C%20the,(WebSockets%20also%20leverage%20TCP).">MQTT-over-WS</a>, rather than pure WS protocol. this bring numerous benefits for IoT applications that are derived from the properties of MQTT - like QoS and PUB/SUB features.</p>
+<p>There are 2 reccomended Javascript libraries for implementing browser support for Mainflux MQTT-over-WS connectivity:</p>
+<ol>
+<li><a href="https://www.eclipse.org/paho/index.php?page=clients/js/index.php">Eclipse Paho JavaScript Client</a></li>
+<li><a href="https://github.com/mqttjs/MQTT.js">MQTT.js</a></li>
+</ol>
+<p>As WS is an extension of HTTP protocol, Mainflux exposes it on port <code>80</code>, so it's usage is practically transparent.
+Additionally, please notice that since same port as for HTTP is used (<code>80</code>), and extension URL <code>/mqtt</code> should be used -
+i.e. connection URL should be <code>ws://&lt;host_addr&gt;/mqtt</code>.</p>
+<p>For quick testing you can use <a href="http://www.hivemq.com/demos/websocket-client/">HiveMQ UI tool</a>.</p>
+<p>Here is an example of a browser application connecting to Mainflux server and sending and receiving messages over WebSocket using MQTT.js library:</p>
+<pre><code class="language-javascript">&lt;script src=&quot;https://unpkg.com/mqtt/dist/mqtt.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    // Initialize a mqtt variable globally
+    console.log(mqtt)
+
+    // connection option
+    const options = {
+        clean: true, // retain session
+        connectTimeout: 4000, // Timeout period
+        // Authentication information
+        clientId: '14d6c682-fb5a-4d28-b670-ee565ab5866c',
+        username: '14d6c682-fb5a-4d28-b670-ee565ab5866c',
+        password: 'ec82f341-d4b5-4c77-ae05-34877a62428f',
+    }
+
+    var channelId = '08676a76-101d-439c-b62e-d4bb3b014337'
+    var topic = 'channels/' + channelId + '/messages'
+
+    // Connect string, and specify the connection method by the protocol
+    // ws Unencrypted WebSocket connection
+    // wss Encrypted WebSocket connection
+    const connectUrl = 'ws://localhost/mqtt'
+    const client = mqtt.connect(connectUrl, options)
+
+    client.on('reconnect', (error) =&gt; {
+        console.log('reconnecting:', error)
+    })
+
+    client.on('error', (error) =&gt; {
+        console.log('Connection failed:', error)
+    })
+
+    client.on('connect', function () {
+        console.log('client connected:' + options.clientId)
+        client.subscribe(topic, { qos: 0 })
+        client.publish(topic, 'WS connection demo!', { qos: 0, retain: false })
+    })
+
+    client.on('message', function (topic, message, packet) {
+        console.log('Received Message:= ' + message.toString() + '\nOn topic:= ' + topic)
+    })
+
+    client.on('close', function () {
+        console.log(options.clientId + ' disconnected')
+    })
+&lt;/script&gt;
+</code></pre>
+<p><strong>N.B.</strong> Eclipse Paho lib adds sub-URL <code>/mqtt</code> automaticlly, so procedure for connecting to the server can be something like this:</p>
+<pre><code class="language-javascript">var loc = { hostname: 'localhost', port: 80 }
+// Create a client instance
+client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), &quot;clientId&quot;)
+// Connect the client
+client.connect({onSuccess:onConnect});
+</code></pre>
+<h2 id="subtopics">Subtopics<a class="headerlink" href="#subtopics" title="Permanent link">#</a></h2>
+<p>In order to use subtopics and give more meaning to your pub/sub channel, you can simply add any suffix to base <code>/channels/&lt;channel_id&gt;/messages</code> topic.</p>
+<p>Example subtopic publish/subscribe for bedroom temperature would be <code>channels/&lt;channel_id&gt;/messages/bedroom/temperature</code>.</p>
+<p>Subtopics are generic and multilevel. You can use almost any suffix with any depth.</p>
+<p>Topics with subtopics are propagated to NATS broker in the following format <code>channels.&lt;channel_id&gt;.&lt;optional_subtopic&gt;</code>.</p>
+<p>Our example topic <code>channels/&lt;channel_id&gt;/messages/bedroom/temperature</code> will be translated to appropriate NATS topic <code>channels.&lt;channel_id&gt;.bedroom.temperature</code>.</p>
+<p>You can use multilevel subtopics, that have multiple parts. These parts are separated by <code>.</code> or <code>/</code> separators.
+When you use combination of these two, have in mind that behind the scene, <code>/</code> separator will be replaced with <code>.</code>.
+Every empty part of subtopic will be removed. What this means is that subtopic <code>a///b</code> is equivalent to <code>a/b</code>.
+When you want to subscribe, you can use NATS wildcards <code>*</code> and <code>&gt;</code>. Every subtopic part can have <code>*</code> or <code>&gt;</code> as it's value, but if there is any other character beside these wildcards, subtopic will be invalid. What this means is that subtopics such as <code>a.b*c.d</code> will be invalid, while <code>a.b.*.c.d</code> will be valid.</p>
+<p>Authorization is done on channel level, so you only have to have access to channel in order to have access to
+it's subtopics.</p>
+<p><strong>Note:</strong> When using MQTT, it's recommended that you use standard MQTT wildcards <code>+</code> and <code>#</code>.</p>
+<p>For more information and examples checkout <a href="https://nats.io/documentation/writing_applications/subscribing/">official nats.io documentation</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../provision/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Provision" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Provision
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../storage/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Storage
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>

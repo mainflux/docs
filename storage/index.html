@@ -1,0 +1,953 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/storage/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Storage - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#storage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provision/" class="md-nav__link">
+        Provision
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        Messaging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Storage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Storage
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writers" class="md-nav__link">
+    Writers
+  </a>
+  
+    <nav class="md-nav" aria-label="Writers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#influxdb-influxdb-writer-and-grafana" class="md-nav__link">
+    InfluxDB, InfluxDB Writer and Grafana
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-and-cassandra-writer" class="md-nav__link">
+    Cassandra and Cassandra Writer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-and-mongodb-writer" class="md-nav__link">
+    MongoDB and MongoDB Writer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-and-postgresql-writer" class="md-nav__link">
+    PostgreSQL and PostgreSQL Writer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readers" class="md-nav__link">
+    Readers
+  </a>
+  
+    <nav class="md-nav" aria-label="Readers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#influxdb-reader" class="md-nav__link">
+    InfluxDB Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-reader" class="md-nav__link">
+    Cassandra Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-reader" class="md-nav__link">
+    MongoDB Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-reader" class="md-nav__link">
+    PostgreSQL Reader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edge/" class="md-nav__link">
+        Edge
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        Groups
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twins/" class="md-nav__link">
+        Twins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writers" class="md-nav__link">
+    Writers
+  </a>
+  
+    <nav class="md-nav" aria-label="Writers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#influxdb-influxdb-writer-and-grafana" class="md-nav__link">
+    InfluxDB, InfluxDB Writer and Grafana
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-and-cassandra-writer" class="md-nav__link">
+    Cassandra and Cassandra Writer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-and-mongodb-writer" class="md-nav__link">
+    MongoDB and MongoDB Writer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-and-postgresql-writer" class="md-nav__link">
+    PostgreSQL and PostgreSQL Writer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readers" class="md-nav__link">
+    Readers
+  </a>
+  
+    <nav class="md-nav" aria-label="Readers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#influxdb-reader" class="md-nav__link">
+    InfluxDB Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-reader" class="md-nav__link">
+    Cassandra Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-reader" class="md-nav__link">
+    MongoDB Reader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-reader" class="md-nav__link">
+    PostgreSQL Reader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">#</a></h1>
+<p>Mainflux supports various storage databases in which messages are stored:</p>
+<ul>
+<li>CassandraDB</li>
+<li>MongoDB</li>
+<li>InfluxDB</li>
+<li>PostgreSQL</li>
+</ul>
+<p>These storages are activated via docker-compose add-ons.</p>
+<p>The <code>&lt;project_root&gt;/docker</code> folder contains an <code>addons</code> directory. This directory is used for various services that are not core to the Mainflux platform but could be used for providing additional features.</p>
+<p>In order to run these services, core services, as well as the network from the core composition, should be already running.</p>
+<h2 id="writers">Writers<a class="headerlink" href="#writers" title="Permanent link">#</a></h2>
+<p>Writers provide an implementation of various <code>message writers</code>. Message writers are services that consume Mainflux messages, transform them to desired format and store them in specific data store. There are two types of transformers: JSON and SenML. Transformer type is set using the following environment variables: <code>MF_CASSANDRA_WRITER_TRANSFORMER</code>, <code>MF_POSTGRES_WRITER_TRANSFORMER</code>, <code>MF_INFLUX_WRITER_TRANSFORMER</code> and <code>MF_MONGO_WRITER_TRANSFORMER</code>. Valid options for this environment variable are <code>JSON</code> and <code>SenML</code> and those values are not case sensitive. The default Transformer is <code>SenML</code>.</p>
+<p>JSON transformer can be used for any JSON payload. For the messages that contain <em>JSON array as the root element</em>, JSON Transformer does normalization of the data: it creates a separate JSON message for each JSON object in the root. In order to be processed and stored properly, JSON messages need to contain message format information. For the sake of simplicity, nested JSON objects are flatten to a single JSON object in InfluxDB, using composite keys separated by the <code>/</code> separator. This implies that the separator character (<code>/</code>) <em>is not allowed in the JSON object key</em> while using InfluxDB. Apart from InfluxDB, separator character (<code>/</code>) usage in the JSON object key is permitted, since other <a href="./#writers">Writer</a> types do not flat the nested JSON objects. For example, the following JSON object:</p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;name&quot;,
+    &quot;id&quot;:8659456789564231564,
+    &quot;in&quot;: 3.145,
+    &quot;alarm&quot;: true,
+    &quot;ts&quot;: 1571259850000,
+    &quot;d&quot;: {
+        &quot;tmp&quot;: 2.564,
+        &quot;hmd&quot;: 87,
+        &quot;loc&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: 2
+        }
+    }
+}
+</code></pre>
+<p>for InfluxDB will be transformed to:</p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;name&quot;,
+    &quot;id&quot;:8659456789564231564,
+    &quot;in&quot;: 3.145,
+    &quot;alarm&quot;: true,
+    &quot;ts&quot;: 1571259850000,
+    &quot;d/tmp&quot;: 2.564,
+    &quot;d/hmd&quot;: 87,
+    &quot;d/loc/x&quot;: 1,
+    &quot;d/loc/y&quot;: 2
+}
+</code></pre>
+<p>while for other Writers it will preserve its original format.</p>
+<p>The message format is stored in <em>the subtopic</em>. It's the last part of the subtopic. In the example:</p>
+<pre><code>http://localhost:8185/channels/&lt;channelID&gt;/messages/home/temperature/myFormat
+</code></pre>
+<p>the message format is <code>myFormat</code>. It can be any valid subtopic name, JSON transformer is format-agnostic. The format is used by the JSON message consumers so that they can process the message properly. If the format is not present (i.e. message subtopic is empty), JSON Transformer will report an error.  Message writers will store the message(s) in the table/collection/measurement (depending on the underlying database) with the name of the format (which in the example is <code>myFormat</code>). Mainflux writers will try to save any format received (whether it will be successful depends on the writer implementation and the underlying database), but it's recommended that publishers don't send different formats to the same subtopic.</p>
+<p>For SenML transformer, supported message payload formats are SenML+CBOR and SenML+JSON. They are configurable over environment variables in each writer (<code>MF_CASSANDRA_WRITER_CONTENT_TYPE</code>, <code>MF_POSTGRES_WRITER_CONTENT_TYPE</code>, <code>MF_INFLUX_WRITER_CONTENT_TYPE</code> and <code>MF_MONGO_WRITER_CONTENT_TYPE</code>) and expect <code>application/senml+json</code> or <code>application/senml+cbor</code> formats.</p>
+<p>Each writer can filter messages based on subjects list that is set in <code>subjects.toml</code> configuration file. If you want to listen on all subjects, just pass one element ["channels.&gt;"], otherwise pass the list of subjects. Here is an example:</p>
+<pre><code class="language-toml">[subjects]
+filter = [&quot;channels.&gt;&quot;]
+</code></pre>
+<p>Regarding the <a href="../messaging/#subtopics">Subtopics Section</a> in the messaging page, the example <code>channels/&lt;channel_id&gt;/messages/bedroom/temperature</code> can be filtered as <code>"channels.*.bedroom.temperature"</code>. The formatting of this filtering list is determined by the NATS format (<a href="https://docs.nats.io/nats-concepts/subjects">Subject-Based Messaging</a> &amp; <a href="https://docs.nats.io/nats-concepts/subjects#wildcards">Wildcards</a>).</p>
+<h3 id="influxdb-influxdb-writer-and-grafana">InfluxDB, InfluxDB Writer and Grafana<a class="headerlink" href="#influxdb-influxdb-writer-and-grafana" title="Permanent link">#</a></h3>
+<p>From the project root execute the following command:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/influxdb-writer/docker-compose.yml up -d
+</code></pre>
+<p>This will install and start:</p>
+<ul>
+<li><a href="https://docs.influxdata.com/influxdb">InfluxDB</a> - time series database</li>
+<li>InfluxDB writer - message repository implementation for InfluxDB</li>
+<li><a href="https://grafana.com">Grafana</a> - tool for database exploration and data visualization and analytics</li>
+</ul>
+<p>Those new services will take some additional ports:</p>
+<ul>
+<li>8086 by InfluxDB</li>
+<li>8900 by InfluxDB writer service</li>
+<li>3001 by Grafana</li>
+</ul>
+<p>To access Grafana, navigate to <code>http://localhost:3001</code> and login with: <code>admin</code>, password: <code>admin</code></p>
+<h3 id="cassandra-and-cassandra-writer">Cassandra and Cassandra Writer<a class="headerlink" href="#cassandra-and-cassandra-writer" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">./docker/addons/cassandra-writer/init.sh
+</code></pre>
+<p><em>Please note that Cassandra may not be suitable for your testing environment because of its high system requirements.</em></p>
+<h3 id="mongodb-and-mongodb-writer">MongoDB and MongoDB Writer<a class="headerlink" href="#mongodb-and-mongodb-writer" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">docker-compose -f docker/addons/mongodb-writer/docker-compose.yml up -d
+</code></pre>
+<p>MongoDB default port (27017) is exposed, so you can use various tools for database inspection and data visualization.</p>
+<h3 id="postgresql-and-postgresql-writer">PostgreSQL and PostgreSQL Writer<a class="headerlink" href="#postgresql-and-postgresql-writer" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">docker-compose -f docker/addons/postgres-writer/docker-compose.yml up -d
+</code></pre>
+<p>Postgres default port (5432) is exposed, so you can use various tools for database inspection and data visualization.</p>
+<h2 id="readers">Readers<a class="headerlink" href="#readers" title="Permanent link">#</a></h2>
+<p>Readers provide an implementation of various <code>message readers</code>.
+Message readers are services that consume normalized (in <code>SenML</code> format) Mainflux messages from data storage and opens HTTP API for message consumption.
+Installing corresponding writer before reader is implied.</p>
+<p>Each of the Reader services exposes the same <a href="https://github.com/mainflux/mainflux/blob/master/readers/openapi.yml">HTTP API</a> for fetching messages on its default port.</p>
+<p>To read sent messages on channel with id <code>channel_id</code> you should send <code>GET</code> request to <code>/channels/&lt;channel_id&gt;/messages</code> with thing access token in <code>Authorization</code> header. That thing must be connected to  channel with <code>channel_id</code></p>
+<p>Response should look like this:</p>
+<pre><code class="language-http">HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 18 Sep 2018 18:56:19 GMT
+Content-Length: 228
+
+{
+    &quot;messages&quot;: [
+        {
+            &quot;Channel&quot;: 1,
+            &quot;Publisher&quot;: 2,
+            &quot;Protocol&quot;: &quot;mqtt&quot;,
+            &quot;Name&quot;: &quot;name:voltage&quot;,
+            &quot;Unit&quot;: &quot;V&quot;,
+            &quot;Value&quot;: 5.6,
+            &quot;Time&quot;: 48.56
+        },
+        {
+            &quot;Channel&quot;: 1,
+            &quot;Publisher&quot;: 2,
+            &quot;Protocol&quot;: &quot;mqtt&quot;,
+            &quot;Name&quot;: &quot;name:temperature&quot;,
+            &quot;Unit&quot;: &quot;C&quot;,
+            &quot;Value&quot;: 24.3,
+            &quot;Time&quot;: 48.56
+        }
+    ]
+}
+</code></pre>
+<p>Note that you will receive only those messages that were sent by authorization token's owner.
+You can specify <code>offset</code> and <code>limit</code> parameters in order to fetch specific group of messages. An example of HTTP request looks like:</p>
+<pre><code class="language-bash">curl -s -S -i  -H &quot;Authorization: &lt;thing_token&gt;&quot; http://localhost:&lt;service_port&gt;/channels/&lt;channel_id&gt;/messages?offset=0&amp;limit=5&amp;format=&lt;subtopic&gt;
+</code></pre>
+<p>If you don't provide <code>offset</code> and <code>limit</code> parameters, default values will be used instead: 0 for <code>offset</code> and 10 for <code>limit</code>.
+The <code>format</code> parameter indicates the last subtopic of the message. As indicated under the <a href="./#writers"><code>Writers</code></a> section, the message format is stored in the subtopic as the last part of the subtopic. In the example:</p>
+<pre><code>http://localhost:8185/channels/&lt;channelID&gt;/messages/home/temperature/myFormat
+</code></pre>
+<p>the message format is <code>myFormat</code> and the value for <code>format=&lt;subtopic&gt;</code> is <code>format=myFormat</code>.</p>
+<h3 id="influxdb-reader">InfluxDB Reader<a class="headerlink" href="#influxdb-reader" title="Permanent link">#</a></h3>
+<p>To start InfluxDB reader, execute the following command:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/influxdb-reader/docker-compose.yml up -d
+</code></pre>
+<h3 id="cassandra-reader">Cassandra Reader<a class="headerlink" href="#cassandra-reader" title="Permanent link">#</a></h3>
+<p>To start Cassandra reader, execute the following command:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/cassandra-reader/docker-compose.yml up -d
+</code></pre>
+<h3 id="mongodb-reader">MongoDB Reader<a class="headerlink" href="#mongodb-reader" title="Permanent link">#</a></h3>
+<p>To start MongoDB reader, execute the following command:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/mongodb-reader/docker-compose.yml up -d
+</code></pre>
+<h3 id="postgresql-reader">PostgreSQL Reader<a class="headerlink" href="#postgresql-reader" title="Permanent link">#</a></h3>
+<p>To start PostgreSQL reader, execute the following command:</p>
+<pre><code class="language-bash">docker-compose -f docker/addons/postgres-reader/docker-compose.yml up -d
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../messaging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Messaging" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Messaging
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lora/" class="md-footer__link md-footer__link--next" aria-label="Next: LoRa" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              LoRa
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>

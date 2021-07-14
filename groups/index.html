@@ -1,0 +1,1154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mainflux IoT System">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.mainflux.io/groups/">
+      
+      <link rel="icon" href="../img/logo.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>Groups - Mainflux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#groups" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mainflux" class="md-header__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mainflux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Groups
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mainflux" class="md-nav__button md-logo" aria-label="Mainflux" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Mainflux
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mainflux/mainflux" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provision/" class="md-nav__link">
+        Provision
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        Messaging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lora/" class="md-nav__link">
+        LoRa
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        OPC-UA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edge/" class="md-nav__link">
+        Edge
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Groups
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Groups
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#auth-service" class="md-nav__link">
+    Auth service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-group" class="md-nav__link">
+    Create a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-a-group" class="md-nav__link">
+    Fetch a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-child" class="md-nav__link">
+    Create a child
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-a-child-group" class="md-nav__link">
+    Fetch a child group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-group-hierarchy" class="md-nav__link">
+    Fetch group hierarchy
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetch group hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetch-a-parent" class="md-nav__link">
+    Fetch a parent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-children" class="md-nav__link">
+    Fetch children
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-a-member-to-a-group" class="md-nav__link">
+    Assign a member to a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetching-members" class="md-nav__link">
+    Fetching members
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetching members">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-auth-service" class="md-nav__link">
+    Fetching from auth service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-users-service" class="md-nav__link">
+    Fetching from users service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-things-service" class="md-nav__link">
+    Fetching from things service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-membership" class="md-nav__link">
+    Fetching membership
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap/" class="md-nav__link">
+        Bootstrap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twins/" class="md-nav__link">
+        Twins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-guide/" class="md-nav__link">
+        Developer's Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        Benchmark
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#auth-service" class="md-nav__link">
+    Auth service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-group" class="md-nav__link">
+    Create a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-a-group" class="md-nav__link">
+    Fetch a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-child" class="md-nav__link">
+    Create a child
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-a-child-group" class="md-nav__link">
+    Fetch a child group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-group-hierarchy" class="md-nav__link">
+    Fetch group hierarchy
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetch group hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetch-a-parent" class="md-nav__link">
+    Fetch a parent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-children" class="md-nav__link">
+    Fetch children
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-a-member-to-a-group" class="md-nav__link">
+    Assign a member to a group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetching-members" class="md-nav__link">
+    Fetching members
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetching members">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-auth-service" class="md-nav__link">
+    Fetching from auth service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-users-service" class="md-nav__link">
+    Fetching from users service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-from-things-service" class="md-nav__link">
+    Fetching from things service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetching-membership" class="md-nav__link">
+    Fetching membership
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">#</a></h1>
+<h2 id="auth-service">Auth service<a class="headerlink" href="#auth-service" title="Permanent link">#</a></h2>
+<p>For grouping Mainflux entities there are <code>groups</code> object in the <code>auth</code> service. Grouping of entities can be done for <code>things</code> and <code>users</code> but additionally you can use <code>groups</code> for grouping some external entities as well. Groups are organized like a tree, group can have one parent and children. Group with no parent is root of the tree.</p>
+<h2 id="create-a-group">Create a group<a class="headerlink" href="#create-a-group" title="Permanent link">#</a></h2>
+<pre><code class="language-bash">curl -is -S -X POST http://localhost/groups -d '{&quot;name&quot;:&quot;&lt;group_name&gt;&quot;,&quot;description&quot;:&quot;&lt;group_description&gt;&quot;,&quot;parent_id&quot;:&quot;&lt;parent_id&gt;&quot;,&quot;metadata&quot;:&lt;group_metadata&gt;}' -H 'Content-Type: application/json' -H &quot;Authorization: $TOK&quot;                    
+HTTP/1.1 201 Created
+Server: nginx/1.16.0
+Date: Fri, 09 Apr 2021 08:02:02 GMT
+Content-Type: application/json
+Content-Length: 0
+Connection: keep-alive
+Location: /groups/01F2TTDYGMP6DW083NE6E0DKH2
+Access-Control-Expose-Headers: Location
+</code></pre>
+<ul>
+<li><strong>group_name</strong> - name of the group</li>
+<li><strong>group_description</strong> - description of group up to 1024 characters.</li>
+<li><strong>parent_id</strong> - id of parent group, if not specified created group is tree root.</li>
+<li><strong>metadata</strong> - custom metadata that can be attached to group object for specific application needs.</li>
+</ul>
+<h2 id="fetch-a-group">Fetch a group<a class="headerlink" href="#fetch-a-group" title="Permanent link">#</a></h2>
+<pre><code class="language-bash">curl -s -S -X GET http://localhost/groups/01F2TTDYGMP6DW083NE6E0DKH2 -H &quot;Authorization: $TOK&quot; 
+</code></pre>
+<h2 id="create-a-child">Create a child<a class="headerlink" href="#create-a-child" title="Permanent link">#</a></h2>
+<pre><code class="language-bash">curl -is -S -X POST http://localhost/groups -d '{&quot;name&quot;:&quot;test1&quot;,&quot;description&quot;:&quot;&lt;group_description&gt;&quot;,&quot;parent_id&quot;:&quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,&quot;metadata&quot;:{&quot;group_attr&quot;:&quot;attr_value&quot;}}' -H 'Content-Type: application/json' -H &quot;Authorization: $TOK&quot; 
+HTTP/1.1 201 Created
+Server: nginx/1.16.0
+Date: Fri, 09 Apr 2021 08:09:37 GMT
+Content-Type: application/json
+Content-Length: 0
+Connection: keep-alive
+Location: /groups/01F2TTVV5NJH63FE5KXMNPWB8P
+Access-Control-Expose-Headers: Location
+</code></pre>
+<h2 id="fetch-a-child-group">Fetch a child group<a class="headerlink" href="#fetch-a-child-group" title="Permanent link">#</a></h2>
+<pre><code class="language-bash">curl -s -S -X GET http://localhost/groups/01F2TTVV5NJH63FE5KXMNPWB8P -H &quot;Authorization: $TOK&quot; | jq
+{
+  &quot;id&quot;: &quot;01F2TTVV5NJH63FE5KXMNPWB8P&quot;,
+  &quot;name&quot;: &quot;test1&quot;,
+  &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+  &quot;parent_id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+  &quot;description&quot;: &quot;group for test&quot;,
+  &quot;metadata&quot;: {
+    &quot;group_attr&quot;: &quot;attr_value&quot;
+  },
+  &quot;level&quot;: 1,
+  &quot;created_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;,
+  &quot;updated_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;
+}
+</code></pre>
+<ul>
+<li><strong>owner_id</strong> - is attached by service, it is id of the user that issued create request.</li>
+<li><strong>level</strong> - is generated by service, it represents a level in a tree hierarchy</li>
+<li><strong>created_at</strong> - time of creation, generated by service.</li>
+<li><strong>updated_at</strong> - time of update, generated by service.</li>
+</ul>
+<h2 id="fetch-group-hierarchy">Fetch group hierarchy<a class="headerlink" href="#fetch-group-hierarchy" title="Permanent link">#</a></h2>
+<p>To fetch a group hierarchy you can either fetch children for a group or a direct ascendant line</p>
+<h3 id="fetch-a-parent">Fetch a parent<a class="headerlink" href="#fetch-a-parent" title="Permanent link">#</a></h3>
+<pre><code class="language-bash"> curl -s -S -X GET http://localhost/groups/&lt;group_id&gt;/parents?tree=true&amp;level=5 -H &quot;Authorization: &lt;auth_token&gt;&quot; | jq
+{
+  &quot;total&quot;: 2,
+  &quot;level&quot;: 1,
+  &quot;name&quot;: &quot;&quot;,
+  &quot;groups&quot;: [
+    {
+      &quot;id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+      &quot;name&quot;: &quot;test&quot;,
+      &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;description&quot;: &quot;group for test&quot;,
+      &quot;metadata&quot;: {
+        &quot;group_attr&quot;: &quot;attr_value&quot;
+      },
+      &quot;level&quot;: 1,
+      &quot;path&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+      &quot;children&quot;: [
+        {
+          &quot;id&quot;: &quot;01F2TTVV5NJH63FE5KXMNPWB8P&quot;,
+          &quot;name&quot;: &quot;test1&quot;,
+          &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+          &quot;parent_id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+          &quot;description&quot;: &quot;group for test&quot;,
+          &quot;metadata&quot;: {
+            &quot;group_attr&quot;: &quot;attr_value&quot;
+          },
+          &quot;level&quot;: 2,
+          &quot;path&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2.01F2TTVV5NJH63FE5KXMNPWB8P&quot;,
+          &quot;created_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;,
+          &quot;updated_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;
+        }
+      ],
+      &quot;created_at&quot;: &quot;2021-04-09T08:02:02.389Z&quot;,
+      &quot;updated_at&quot;: &quot;2021-04-09T08:02:02.389Z&quot;
+    }
+  ]
+}
+</code></pre>
+<ul>
+<li><strong>tree</strong> - if true response is JSON that represent a groups tree structure. If ommited or <code>false</code> than groups will be retrieve as list</li>
+<li><strong>level</strong> - limits the hierarchy to be retrieved. Max level to be fetched in one request is 5.</li>
+</ul>
+<h3 id="fetch-children">Fetch children<a class="headerlink" href="#fetch-children" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">curl -s -S -X GET http://localhost/groups/01F2TTDYGMP6DW083NE6E0DKH2/children\?tree\=true\&amp;level\=5 -H &quot;Authorization: $TOK&quot; | jq
+{
+  &quot;total&quot;: 3,
+  &quot;level&quot;: 5,
+  &quot;name&quot;: &quot;&quot;,
+  &quot;groups&quot;: [
+    {
+      &quot;id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+      &quot;name&quot;: &quot;test&quot;,
+      &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;description&quot;: &quot;group for test&quot;,
+      &quot;metadata&quot;: {
+        &quot;group_attr&quot;: &quot;attr_value&quot;
+      },
+      &quot;level&quot;: 1,
+      &quot;path&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+      &quot;children&quot;: [
+        {
+          &quot;id&quot;: &quot;01F2TTVV5NJH63FE5KXMNPWB8P&quot;,
+          &quot;name&quot;: &quot;test1&quot;,
+          &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+          &quot;parent_id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+          &quot;description&quot;: &quot;group for test&quot;,
+          &quot;metadata&quot;: {
+            &quot;group_attr&quot;: &quot;attr_value&quot;
+          },
+          &quot;level&quot;: 2,
+          &quot;path&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2.01F2TTVV5NJH63FE5KXMNPWB8P&quot;,
+          &quot;created_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;,
+          &quot;updated_at&quot;: &quot;2021-04-09T08:09:37.718Z&quot;
+        },
+        {
+          &quot;id&quot;: &quot;01F2TTJPXSZ7K941T57MX3V03M&quot;,
+          &quot;name&quot;: &quot;test&quot;,
+          &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+          &quot;parent_id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+          &quot;description&quot;: &quot;group for test&quot;,
+          &quot;metadata&quot;: {
+            &quot;group_attr&quot;: &quot;attr_value&quot;
+          },
+          &quot;level&quot;: 2,
+          &quot;path&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2.01F2TTJPXSZ7K941T57MX3V03M&quot;,
+          &quot;created_at&quot;: &quot;2021-04-09T08:04:38.458Z&quot;,
+          &quot;updated_at&quot;: &quot;2021-04-09T08:04:38.458Z&quot;
+        }
+      ],
+      &quot;created_at&quot;: &quot;2021-04-09T08:02:02.389Z&quot;,
+      &quot;updated_at&quot;: &quot;2021-04-09T08:02:02.389Z&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="assign-a-member-to-a-group">Assign a member to a group<a class="headerlink" href="#assign-a-member-to-a-group" title="Permanent link">#</a></h2>
+<p>You can assign members to a group by putting entity ids into a group
+For example assigning users to a group</p>
+<pre><code class="language-bash">curl -isSX POST http://localhost/groups/&lt;group_id&gt;/members -d '{&quot;members&quot;:[&quot;&lt;user_id1&gt;&quot;,...&quot;&lt;user_idN&gt;&quot;],&quot;type&quot;:&quot;users&quot;}' -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'
+HTTP/1.1 200 OK
+Server: nginx/1.16.0
+Date: Fri, 09 Apr 2021 09:40:35 GMT
+Content-Type: application/json
+Content-Length: 0
+Connection: keep-alive
+Access-Control-Expose-Headers: Location
+</code></pre>
+<p>Or assigning things to a group</p>
+<pre><code class="language-bash">curl -isSX POST http://localhost/groups/01F2TTDYGMP6DW083NE6E0DKH2/members -d '{&quot;members&quot;:[&quot;a0b1d516-67c6-4e8d-8ea2-ad4aff444ca3&quot;,&quot;9a036414-5d47-4122-9e58-b3b6953a2097&quot;],&quot;type&quot;:&quot;things&quot;}' -H &quot;Authorization: $TOK&quot; -H 'Content-Type: application/json'
+HTTP/1.1 200 OK
+Server: nginx/1.16.0
+Date: Fri, 09 Apr 2021 09:43:24 GMT
+Content-Type: application/json
+Content-Length: 0
+Connection: keep-alive
+Access-Control-Expose-Headers: Location
+</code></pre>
+<p>To fetch members you can use endpoint on <code>auth</code>, <code>things</code> or <code>users</code> service. Endpoint on auth service only retrieves member ids. Endpoints on <code>things</code> and <code>users</code> will retrieve full objects.</p>
+<h2 id="fetching-members">Fetching members<a class="headerlink" href="#fetching-members" title="Permanent link">#</a></h2>
+<h3 id="fetching-from-auth-service">Fetching from <code>auth</code> service<a class="headerlink" href="#fetching-from-auth-service" title="Permanent link">#</a></h3>
+<pre><code class="language-bash">curl -sSX GET http://localhost/groups/01F2TTDYGMP6DW083NE6E0DKH2/members  -H &quot;Authorization: $TOK&quot; | jq
+{
+  &quot;limit&quot;: 10,
+  &quot;total&quot;: 0,
+  &quot;name&quot;: &quot;&quot;,
+  &quot;Members&quot;: [
+    {
+      &quot;ID&quot;: &quot;5ec9f5f4-5221-43f4-a56f-9594ab110efa&quot;,
+      &quot;Type&quot;: &quot;users&quot;
+    },
+    {
+      &quot;ID&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;Type&quot;: &quot;users&quot;
+    },
+    {
+      &quot;ID&quot;: &quot;a0b1d516-67c6-4e8d-8ea2-ad4aff444ca3&quot;,
+      &quot;Type&quot;: &quot;things&quot;
+    },
+    {
+      &quot;ID&quot;: &quot;9a036414-5d47-4122-9e58-b3b6953a2097&quot;,
+      &quot;Type&quot;: &quot;things&quot;
+    }
+  ]
+}
+</code></pre>
+<p>You can filter by <code>type</code></p>
+<pre><code class="language-bash">curl -sSX GET http://localhost/groups/01F2TTDYGMP6DW083NE6E0DKH2/members\?type\='users'  -H &quot;Authorization: $TOK&quot; | jq
+{
+  &quot;limit&quot;: 10,
+  &quot;total&quot;: 2,
+  &quot;level&quot;: 0,
+  &quot;name&quot;: &quot;&quot;,
+  &quot;Members&quot;: [
+    {
+      &quot;ID&quot;: &quot;5ec9f5f4-5221-43f4-a56f-9594ab110efa&quot;,
+      &quot;Type&quot;: &quot;users&quot;
+    },
+    {
+      &quot;ID&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;Type&quot;: &quot;users&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="fetching-from-users-service">Fetching from <code>users</code> service<a class="headerlink" href="#fetching-from-users-service" title="Permanent link">#</a></h3>
+<pre><code>curl -sSX GET http://localhost/groups/users/01F2TTDYGMP6DW083NE6E0DKH2  -H &quot;Authorization: $TOK&quot; | jq        
+{
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: &quot;5ec9f5f4-5221-43f4-a56f-9594ab110efa&quot;,
+      &quot;email&quot;: &quot;admin@example.com&quot;
+    },
+    {
+      &quot;id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;email&quot;: &quot;moko@example.com&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="fetching-from-things-service">Fetching from <code>things</code> service<a class="headerlink" href="#fetching-from-things-service" title="Permanent link">#</a></h3>
+<pre><code> curl -sSX GET http://localhost/groups/things/01F2TTDYGMP6DW083NE6E0DKH2  -H &quot;Authorization: $TOK&quot; | jq
+{
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;limit&quot;: 10,
+  &quot;order&quot;: &quot;&quot;,
+  &quot;direction&quot;: &quot;&quot;,
+  &quot;things&quot;: [
+    {
+      &quot;id&quot;: &quot;a0b1d516-67c6-4e8d-8ea2-ad4aff444ca3&quot;,
+      &quot;key&quot;: &quot;54dfc44c-3471-4903-a6b5-529dc7a2dd41&quot;
+    },
+    {
+      &quot;id&quot;: &quot;9a036414-5d47-4122-9e58-b3b6953a2097&quot;,
+      &quot;key&quot;: &quot;e874fc75-461d-4ece-ac55-2d7cdc10c20a&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="fetching-membership">Fetching membership<a class="headerlink" href="#fetching-membership" title="Permanent link">#</a></h3>
+<p>For entity that is being put in multiple groups it is possible to retrieve a list of groups it belongs to.</p>
+<pre><code class="language-bash">curl -sSX GET http://localhost/members/&lt;member_id&gt;/groups  -H &quot;Authorization: $TOK&quot; | jq 
+{
+  &quot;total&quot;: 1,
+  &quot;level&quot;: 0,
+  &quot;name&quot;: &quot;&quot;,
+  &quot;groups&quot;: [
+    {
+      &quot;id&quot;: &quot;01F2TTDYGMP6DW083NE6E0DKH2&quot;,
+      &quot;name&quot;: &quot;test&quot;,
+      &quot;owner_id&quot;: &quot;8e968002-1b19-4e17-bfb6-f0064888a2d1&quot;,
+      &quot;description&quot;: &quot;group for test&quot;,
+      &quot;metadata&quot;: {
+        &quot;group_attr&quot;: &quot;attr_value&quot;
+      },
+      &quot;level&quot;: 0,
+      &quot;path&quot;: &quot;&quot;,
+      &quot;created_at&quot;: &quot;0001-01-01T00:00:00Z&quot;,
+      &quot;updated_at&quot;: &quot;0001-01-01T00:00:00Z&quot;
+    }
+  ]
+}
+</code></pre>
+<ul>
+<li><strong>member_id</strong> - is either thing or user id, or some other enitity if groups are being used for grouping external entities.</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../bootstrap/" class="md-footer__link md-footer__link--next" aria-label="Next: Bootstrap" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Bootstrap
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Mainflux
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+    
+  </body>
+</html>
