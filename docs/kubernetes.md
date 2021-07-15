@@ -156,9 +156,9 @@ By default scale of MQTT adapter, Things, Envoy, Authn and NATS will be set to 3
 ### Additional Steps to Configure Ingress Controller
 To send MQTT messages to your host on ports `1883` and `8883` some additional steps are required in configuring NGINX Ingress Controller.
 
-NGINX Ingress Controller uses ConfigMap to expose TCP services. That ConfigMap is included in helm chart in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L141) file assuming that location of ConfigMap should be `ingress-nginx/tcp-services`. If Ingress Controller expects it in some other namespace or with other name you should edit metadata in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L147). This location was set with `--tcp-services-configmap` flag and you can check it in deployment of Ingress Controller or add it there in [args section for nginx-ingress-controller](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) if it's not already specified. This is explained in [NGINX Ingress documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/)
+NGINX Ingress Controller uses ConfigMap to expose TCP and UDP services. That ConfigMaps are included in helm chart in [ingress.yaml](https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L141) file assuming that location of ConfigMaps should be `ingress-nginx/tcp-services` and `ingress-nginx/udp-services`. These locations was set with `--tcp-services-configmap` and `--udp-services-configmap` flags and you can check it in deployment of Ingress Controller or add it there in [args section for nginx-ingress-controller](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) if it's not already specified. This is explained in [NGINX Ingress documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/)
 
-Also, those two ports need to be exposed in the Service defined for the Ingress. You can do that with command that edit your service:
+Also, these three ports need to be exposed in the Service defined for the Ingress. You can do that with command that edit your service:
 
 ```kubectl edit svc -n ingress-nginx nginx-ingress-ingress-nginx-controller```
 
@@ -173,11 +173,15 @@ and add in spec->ports:
     port: 8883
     protocol: TCP
     targetPort: 8883
+  - name: coap
+    port: 5683
+    protocol: UDP
+    targetPort: 5683
 ```    
 
 ## TLS & mTLS
 
-For testing purposes you can generate certificates as explained in detail in (authentication)[/authentication] chapter of this document. So, you can use (this script)[https://github.com/mainflux/mainflux/blob/master/docker/ssl/Makefile] and after replacing all `localhost` with your hostname, run:
+For testing purposes you can generate certificates as explained in detail in [authentication](/authentication) chapter of this document. So, you can use [this script](https://github.com/mainflux/mainflux/blob/master/docker/ssl/Makefile) and after replacing all `localhost` with your hostname, run:
 
 ```
 make ca
