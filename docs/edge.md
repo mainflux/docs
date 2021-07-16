@@ -379,6 +379,7 @@ MAINFLUX_USER_PASSWORD='12345678'
 [docker-compose]:(https://github.com/mainflux/mainflux/docker/docker-compose.yml)
 [env]:(https://github.com/mainflux/export#environmet-variables)
 [agent]:(https://github.com/mainflux/agent)
+[protomsg]:(https://github.com/mainflux/mainflux/blob/master/pkg/messaging/message.proto)
 
 ## Example deployment
 
@@ -549,5 +550,3 @@ In Mainflux `mqtt` service:
 ```log
 mainflux-mqtt   | {"level":"info","message":"Publish - client ID export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 to the topic: channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages/export/test","ts":"2020-05-08T15:16:02.999684791Z"}
 ```
-
-[protomsg]: (https://github.com/mainflux/mainflux/blob/master/pkg/messaging/message.proto)
