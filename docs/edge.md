@@ -324,7 +324,7 @@ To match Mainflux requirements `mqtt_topic` must contain `channel/<channel_id>/m
 - `workers` - specifies number of workers that will be used for message forwarding.
 - `type` - specifies message transformation:
     - `default` is for sending messages as they are received on NATS with no transformation (so they should be in SenML or JSON format if we want to persist them in Mainflux in cloud). If you don't want to persist messages in Mainflux or you are not exporting to Mainflux cloud - message format can be anything that suits your application as message passes untransformed.
-    - `mfx` is for messages that are being picked up on internal Mainflux NATS bus. When using `Export` along with Mainflux deployed on gateway ([Fig. 1](#edge)) messages coming from MQTT broker that are published to NATS bus are [Mainflux message](https://github.com/mainflux/mainflux/blob/master/pkg/messaging/message.proto). Using `mfx` type will extract payload and `export` will publish it to `mqtt_topic`. Extracted payload is SenML or JSON if we want to persist messages. `nats_topic` in this case must be `channels`, or if you want to pick messages from a specific channel in local Mainflux instance to be exported to cloud you can put `channels.<local_mainflux_channel_id>`.
+    - `mfx` is for messages that are being picked up on internal Mainflux NATS bus. When using `Export` along with Mainflux deployed on gateway ([Fig. 1](#edge)) messages coming from MQTT broker that are published to NATS bus are [Mainflux message][protomsg]. Using `mfx` type will extract payload and `export` will publish it to `mqtt_topic`. Extracted payload is SenML or JSON if we want to persist messages. `nats_topic` in this case must be `channels`, or if you want to pick messages from a specific channel in local Mainflux instance to be exported to cloud you can put `channels.<local_mainflux_channel_id>`.
 
 Before running `Export` service edit `configs/config.toml` and provide `username`, `password` and `url`
  * `username` - matches `thing_id` in Mainflux cloud instance
@@ -549,3 +549,5 @@ In Mainflux `mqtt` service:
 ```log
 mainflux-mqtt   | {"level":"info","message":"Publish - client ID export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 to the topic: channels/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/messages/export/test","ts":"2020-05-08T15:16:02.999684791Z"}
 ```
+
+[protomsg]: (https://github.com/mainflux/mainflux/blob/master/pkg/messaging/message.proto)
